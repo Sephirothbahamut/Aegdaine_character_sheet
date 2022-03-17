@@ -1,0 +1,77 @@
+{
+"race": "Elf",
+"name": "Donald Fauntlery Duck",
+"location": "city",
+"attributes":
+	{
+	"rolls": 
+		{
+		"strength"     : 10,
+		"constitution" : 10,
+		"stamina"      : 10,
+		"agility"      : 10,
+		"precision"    : 10,
+		"intelligence" : 10,
+		"wisdom"       : 10,
+		"focus"        : 10,
+		"eloquence"    : 10,
+		"senses"       : 10,
+		"social status": 10,
+		"hiddenness"   : 10
+		},
+	"tmp":
+		{
+		"strength"     : 5,
+		"constitution" : 5,
+		"stamina"      : 5,
+		"agility"      : 5,
+		"precision"    : 5,
+		"intelligence" : 5,
+		"wisdom"       : 5,
+		"focus"        : 5,
+		"eloquence"    : 5,
+		"senses"       : 5,
+		"social status": 5,
+		"hiddenness"   : 5
+		}
+	},
+	
+"experiences":
+	{
+	"Noble": 
+		{
+		"years": 5,
+		"weapons":
+			{
+			"sword": 3,
+			"axe"  : 2
+			}
+		},
+	"School": { "years": 4 }
+	},
+
+"equipment":
+	{
+	"head": [ "Kettle" ],
+	"body": []
+	},
+"weapon_left" : null,
+"weapon_right": null,
+
+"inventory":
+	{
+	"equipments": [],
+	"weapons"   : []
+	},
+	
+"health":
+	{
+	"soul"  : 100,
+	"head"  : 100,
+	"body"  : 100,
+	"arm_ll": 100,
+	"arm_rr": 100,
+	"leg_ll": 100,
+	"leg_rr": 100,
+	}
+}
