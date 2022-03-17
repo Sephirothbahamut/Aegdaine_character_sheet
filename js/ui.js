@@ -95,6 +95,7 @@ export class ui
 				el_years.value = experience.years;
 				el_years.dataset.name = name;
 				el_years.classList.add("numeric");
+				el_years.style.width = "3em";
 				el_years.onchange = function()
 					{
 					character.set_experience(this.dataset.name, {years: parseInt(this.value)});
@@ -160,7 +161,7 @@ export class ui
 					el_name.dataset.id = key;
 					
 					let el_value = utils.html.emplace_child(element, "input");
-					el_value.style.maxWidth = "40pt";
+					el_value.style.width = "3em";
 					el_value.type = "number";
 					el_value.min = "0";
 					el_value.value = value;
@@ -362,7 +363,7 @@ export function setup()
 		{
 		if(!roll_fields[i]) { continue; }
 		let field = roll_fields[i];
-		field.style.width = "40pt";
+		field.style.width = "3em";
 		field.type = "number";
 		field.min = "1";
 		field.max = "20";
@@ -393,7 +394,10 @@ export function setup()
 		{
 		if(!tmp_fields[i]) { continue; }
 		let field = tmp_fields[i];
+		field.style.width = "3em";
 		field.type = "number";
+		field.min = "-99";
+		field.max = "100";
 		field.classList.add("numeric");
 		field.id = "attr_tmp_" + field.dataset.attribute;
 		
