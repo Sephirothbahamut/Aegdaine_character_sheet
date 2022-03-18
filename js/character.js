@@ -111,6 +111,8 @@ export class Character
 		
 		this.stamina_cost = 0;
 		
+		this.weapons = {};
+		
 		this.defenses = { "head": make_defenses(), "body": make_defenses() };
 		
 		this.update_0_race();
@@ -236,7 +238,7 @@ export class Character
 					const equipment_data = database.equipment[socket][equipment];
 					if(equipment_data)
 						{
-						if(equipment_data.defenses)
+						if(equipment_data.defenses && socket !== "weapons")
 							{
 							if(!this.defenses[socket]) { this.defenses[socket] = make_defenses(); }
 							this.defenses[socket] = merge_defenses(this.defenses[socket], equipment_data.defenses);
@@ -249,6 +251,34 @@ export class Character
 								this.attributes._3_equipment[attribute] += value;
 								}
 							}
+							
+						
+						if(socket === "weapons") 
+							{
+							this.weapons[equipment] = {
+								"attacks_count": 1 + Math.floor(this.weapons_experience / equipment_data.experience_per_attack),
+								"stamina_per_attack": equipment_data.stamina_per_attack,
+								"attacks": {}
+								};
+							for(const [attack, attack_data] of Object.entries(equipment_data.attacks))
+								{
+								this.weapons[equipment].attacks[attack] = {
+									"range": attack_data.range,
+									"damage": {}
+									};
+								for(const [damage, damage_data] of Object.entries(attack_data.damage))
+									{
+									let final_value = 0;
+									
+									for(const [attribute, value] of Object.entries(damage_data))
+										{
+										if(attribute === "base") { final_value += value; }
+										else { final_value += value * this.attributes._2_experiences[attribute]; }
+										}
+									this.weapons[equipment].attacks[attack].damage[damage] = final_value;
+									}
+								}
+							}
 						}
 					else { console.log("Equipment not found: '" + socket + "/" + equipment + "'"); }
 					}
@@ -256,7 +286,6 @@ export class Character
 			}
 		
 		update_senses(this.attributes._3_equipment);
-		//TODOOOOO weapons
 		
 		// If this update was called by a change of equipment, other slots don't need to be changed.
 		// If this parameter is null, this update was called by a change of previous levels of attributes, which 
@@ -267,6 +296,7 @@ export class Character
 			ui.update_equipment(this, "head"); 
 			ui.update_equipment(this, "body"); 
 			ui.update_equipment(this, "jewelry"); 
+			ui.update_equipment(this, "weapons");
 			}
 			
 		ui.update_defenses(this);
@@ -424,6 +454,18 @@ export class Character
 		}
 	
 	// WEAPONS
+	check_equipment(name, socket)
+		{
+		const equipment_data = database.equipment[socket][name];
+		if(!equipment_data) { return false; }
+		if(equipment_data.requirements)
+			{
+			if(!this.check_requirements(equipment_data.requirements, this._2_experiences)) { return false; }
+			}
+		
+		return true;
+		}
+		
 	add_weapon(name)
 		{
 		const data = database.weapons[name];
@@ -441,8 +483,15 @@ export class Character
 			this.character_data.inventory.equipment[slot].splice(index, 1);
 			this.character_data          .equipment[slot].push(name);
 			}
-		ui.update_equipment(this, slot);
-		this.update_3_equipment(slot);
+		if(slot != "weapons")
+			{
+			this.update_3_equipment(slot);
+			ui.update_equipment(this, slot);
+			}
+		else
+			{
+			this.update
+			}
 		}
 	unequip(name, slot)
 		{
@@ -539,19 +588,18 @@ window.data = {
 	{
 	"head":    [ "Kettle" ],
 	"body":    [],
-	"jewelry": []
-	},	
-"weapon_left" : null,
-"weapon_right": null,
+	"jewelry": [],
+	"weapons": []
+	},
 
 "inventory":
 	{
-	"weapons": [],
 	"equipment":
 		{
 		"head":    [],
 		"body":    [],
-		"jewelry": []
+		"jewelry": [],
+		"weapons": []
 		},
 	"other":
 		{

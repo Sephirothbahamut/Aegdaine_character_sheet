@@ -105,7 +105,7 @@ export class ui
 					
 			function add_attribute_span(parent, key, value)
 				{
-				const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
+				const color = utils.getColorForPercentage((value / 100) + .5, utils.color_percent_red_to_green);
 				let span = utils.html.emplace_child(parent, "span");
 				span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
 				span.innerHTML = value + " " + database.symbols[key];
@@ -181,12 +181,9 @@ export class ui
 		ui.update_symbols(experiences_container);
 		}
 	
-	static update_weapons(character)
-		{
-		//TODO
-		}
 	static update_equipment(character, slot)
 		{
+		if(slot === "weapons") { ui.update_weapons(character); return; }
 		const container = document.getElementById("container_" + slot);
 		while(container.lastChild) { container.removeChild(container.lastChild); }
 		
@@ -223,26 +220,20 @@ export class ui
 				name_col.style.color = "#FF0000";
 				}
 			
-			let reductions_cut_col       = utils.html.emplace_child(row, "td"); 
-			let reductions_pierce_col    = utils.html.emplace_child(row, "td"); 
-			let reductions_crush_col     = utils.html.emplace_child(row, "td"); 
-			let protection_strength_col  = utils.html.emplace_child(row, "td"); 
-			let protection_precision_col = utils.html.emplace_child(row, "td"); 
-			reductions_cut_col      .classList.add("numeric"); 
-			reductions_pierce_col   .classList.add("numeric"); 
-			reductions_crush_col    .classList.add("numeric"); 
-			protection_strength_col .classList.add("numeric"); 
-			protection_precision_col.classList.add("numeric"); 
-			reductions_cut_col      .innerHTML = data.defenses.reductions.cut;
-			reductions_pierce_col   .innerHTML = data.defenses.reductions.pierce;
-			reductions_crush_col    .innerHTML = data.defenses.reductions.crush;
-			protection_strength_col .innerHTML = data.defenses.protection.strength;
-			protection_precision_col.innerHTML = data.defenses.protection.precision;
-			reductions_cut_col      .style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses.reductions.cut       / 100, utils.color_percent_red_to_green), .6));
-			reductions_pierce_col   .style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses.reductions.pierce    / 100, utils.color_percent_red_to_green), .6));
-			reductions_crush_col    .style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses.reductions.crush     / 100, utils.color_percent_red_to_green), .6));
-			protection_strength_col .style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses.protection.strength  / 100, utils.color_percent_red_to_green), .6));
-			protection_precision_col.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses.protection.precision / 100, utils.color_percent_red_to_green), .6));
+			function add_defense_stat(parent, a, b)
+				{
+				let element = utils.html.emplace_child(parent, "td");
+				element.classList.add("numeric");
+				element.innerHTML = data.defenses[a][b];
+				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
+				return element;
+				}
+			
+			add_defense_stat(row, "reductions", "cut");
+			add_defense_stat(row, "reductions", "pierce");
+			add_defense_stat(row, "reductions", "crush");
+			add_defense_stat(row, "protection", "strength");
+			add_defense_stat(row, "protection", "precision");
 			
 			let attrs_col = utils.html.emplace_child(row, "td");
 			if(data.attributes)
@@ -298,6 +289,102 @@ export class ui
 				}
 			}
 		}
+	
+	static update_weapons(character)
+		{
+		/*const container = document.getElementById("container_weapons");
+		while(container.lastChild) { container.removeChild(container.lastChild); }
+		
+		let headers_row = utils.html.emplace_child(container, "tr");
+			{
+			let col_0 = utils.html.emplace_child(headers_row, "th");
+			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Actions";
+			}
+			
+		function add_element(name)
+			{
+			let data = database.weapons[name];
+			if(!data) { console.log("Invalid equipment in character. Equipment is '" + slot + "/" + name + "'"); return; }
+			
+			let row = utils.html.emplace_child(container, "tr");
+			
+			let name_col = utils.html.emplace_child(row, "th");
+			
+			name_col.innerHTML = name;
+			if(!character.check_weapon(name))
+				{
+				name_col.style.color = "#FF0000";
+				}
+			
+			function add_defense_stat(parent, a, b)
+				{
+				let element = utils.html.emplace_child(parent, "td");
+				element.classList.add("numeric");
+				element.innerHTML = data.defenses[a][b];
+				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
+				return element;
+				}
+			
+			add_defense_stat(row, "reductions", "cut");
+			add_defense_stat(row, "reductions", "pierce");
+			add_defense_stat(row, "reductions", "crush");
+			add_defense_stat(row, "protection", "strength");
+			add_defense_stat(row, "protection", "precision");
+			
+			let attrs_col = utils.html.emplace_child(row, "td");
+			if(data.attributes)
+				{
+				attrs_col.classList.add("numeric");
+				for(const [key, value] of Object.entries(data.attributes))
+					{
+					const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
+					let span = utils.html.emplace_child(attrs_col, "span");
+					span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
+					span.innerHTML = value + " " + database.symbols[key];
+					}
+				}
+			
+			let btn_col = utils.html.emplace_child(row, "td");
+			return btn_col;
+			}
+		
+		for(const name of character.character_data.equipment[slot])
+			{
+			let btn_col = add_element(name);
+			
+			let btn = utils.html.emplace_child(btn_col, "button");
+			
+			btn.type = "button";
+			btn.innerHTML = "Unequip";
+			
+			btn.dataset.name = name;
+			btn.dataset.slot = slot;
+			btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
+			}
+		for(const name of character.character_data.inventory.equipment[slot])
+			{
+			let btn_col = add_element(name);
+			
+			let btn_equip = utils.html.emplace_child(btn_col, "button");
+				{
+				btn_equip.type = "button";
+				btn_equip.innerHTML = "Equip";
+				
+				btn_equip.dataset.name = name;
+				btn_equip.dataset.slot = slot;
+				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
+				}
+			let btn_delete = utils.html.emplace_child(btn_col, "button");
+				{
+				btn_delete.type = "button";
+				btn_delete.innerHTML = "Delete";
+				
+				btn_delete.dataset.name = name;
+				btn_delete.dataset.slot = slot;
+				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
+				}
+			}
+		*/}
 		
 	static update_defenses(character)
 		{
@@ -338,6 +425,28 @@ export class ui
 
 export function setup()
 	{
+	let btn_save_character = document.getElementById("btn_save_character");
+	btn_save_character.onclick = function()
+		{
+		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(window.character.character_data, null, "\t"));
+		this.setAttribute("href", "data:" + data);
+		this.setAttribute("download", window.character.character_data.name + ".Aegdaine_character_data");
+		};
+	let btn_load_character = document.getElementById("btn_load_character");
+	btn_load_character.onchange = function()
+		{
+        var reader = new FileReader();
+        reader.onload = function(event)
+			{
+			console.log("Loaded:");
+			console.dir(event.target.result);
+			window.character = new Character(JSON.parse(event.target.result));
+			
+			init();
+			};
+        reader.readAsText(event.target.files[0]);
+		};
+		
 	///////////////////// Icons replacements
 	ui.update_symbols();
 		
@@ -455,7 +564,7 @@ export function setup()
 	const jewelry_selector_add     = document.getElementById("selector_add_jewelry");
 	
 	
-	for(const [key, value] of Object.entries(database.weapons))
+	for(const [key, value] of Object.entries(database.equipment.weapons))
 		{
 		let element = document.createElement("option");
 		element.innerHTML = key;
@@ -482,7 +591,7 @@ export function setup()
 		
 	weapon_selector_add.onclick = function()
 		{
-		window.character.add_weapon(weapon_selector.value);
+		window.character.add_equipment(weapon_selector.value, "weapons");
 		};
 	head_selector_add.onclick = function()
 		{
