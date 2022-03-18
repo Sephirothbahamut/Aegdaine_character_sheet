@@ -233,10 +233,10 @@ export class Character
 			{
 			for(const equipment of equipments)
 				{
-				if(this.check_equipment(equipment, socket))
+				const equipment_data = database.equipment[socket][equipment];
+				if(equipment_data)
 					{
-					const equipment_data = database.equipment[socket][equipment];
-					if(equipment_data)
+					if(this.check_equipment(equipment, socket))
 						{
 						if(equipment_data.defenses && socket !== "weapons")
 							{
@@ -251,37 +251,27 @@ export class Character
 								this.attributes._3_equipment[attribute] += value;
 								}
 							}
-							
-						
-						if(socket === "weapons") 
-							{
-							this.weapons[equipment] = {
-								"attacks_count": 1 + Math.floor(this.weapons_experience / equipment_data.experience_per_attack),
-								"stamina_per_attack": equipment_data.stamina_per_attack,
-								"attacks": {}
-								};
-							for(const [attack, attack_data] of Object.entries(equipment_data.attacks))
-								{
-								this.weapons[equipment].attacks[attack] = {
-									"range": attack_data.range,
-									"damage": {}
-									};
-								for(const [damage, damage_data] of Object.entries(attack_data.damage))
-									{
-									let final_value = 0;
-									
-									for(const [attribute, value] of Object.entries(damage_data))
-										{
-										if(attribute === "base") { final_value += value; }
-										else { final_value += value * this.attributes._2_experiences[attribute]; }
-										}
-									this.weapons[equipment].attacks[attack].damage[damage] = final_value;
-									}
-								}
-							}
 						}
-					else { console.log("Equipment not found: '" + socket + "/" + equipment + "'"); }
+							
+					if(socket === "weapons") 
+						{
+						this.evaluate_weapon_data(equipment);
+						}
 					}
+				else { console.log("Equipment not found: '" + socket + "/" + equipment + "'"); }
+				}
+			}
+		
+		if(this.character_data.inventory.equipment["weapons"])
+			{
+			for(const equipment of this.character_data.inventory.equipment["weapons"])
+				{
+				const equipment_data = database.equipment["weapons"][equipment];
+				if(equipment_data)
+					{
+					this.evaluate_weapon_data(equipment);
+					}
+				else { console.log("Equipment not found: 'inventory/" + socket + "/" + equipment + "'"); }
 				}
 			}
 		
@@ -452,26 +442,45 @@ export class Character
 		
 		return true;
 		}
-	
-	// WEAPONS
-	check_equipment(name, socket)
+		
+	evaluate_weapon_data(equipment)
 		{
-		const equipment_data = database.equipment[socket][name];
-		if(!equipment_data) { return false; }
-		if(equipment_data.requirements)
+		const equipment_data = database.equipment.weapons[equipment];
+		this.weapons[equipment] = {
+			"attacks_count": 1,
+			"stamina_per_attack": equipment_data.stamina_per_attack,
+			"attacks": {}
+			};
+			
+		if(this.weapons_experience[equipment_data.type] && equipment_data.experience_per_attack)
+		this.weapons[equipment].attacks_count += Math.floor(this.weapons_experience[equipment_data.type] / equipment_data.experience_per_attack)
+			
+		for(const [attack, attack_data] of Object.entries(equipment_data.attacks))
 			{
-			if(!this.check_requirements(equipment_data.requirements, this._2_experiences)) { return false; }
+			let attack_stats = this.weapons[equipment].attacks[attack];
+			attack_stats = {
+				"range" : attack_data.range,
+				"damage": { "cut": 0, "pierce": 0, "crush": 0 },
+				"bonus" : { "strength": 0, "precision": 0 }
+				};
+			for(const [damage, damage_data] of Object.entries(attack_data.damage))
+				{
+				let final_value = 0;
+				
+				for(const [attribute, value] of Object.entries(damage_data))
+					{
+					if(attribute === "base") { final_value += value; }
+					else { final_value += value * this.attributes._2_experiences[attribute]; }
+					}
+				attack_stats.damage[damage] = final_value;
+				}
+			if(attack_data.bonus)
+				{
+				if(attack_data.bonus.strength ) { attack_stats.bonus.strength  = attack_data.bonus.strength;  }
+				if(attack_data.bonus.precision) { attack_stats.bonus.precision = attack_data.bonus.precision; }
+				}
+			this.weapons[equipment].attacks[attack] = attack_stats;
 			}
-		
-		return true;
-		}
-		
-	add_weapon(name)
-		{
-		const data = database.weapons[name];
-		if(!data) { return; }
-		this.character_data.inventory.weapons.push(name);
-		ui.update_weapons(this);
 		}
 	
 	// REST
@@ -483,15 +492,7 @@ export class Character
 			this.character_data.inventory.equipment[slot].splice(index, 1);
 			this.character_data          .equipment[slot].push(name);
 			}
-		if(slot != "weapons")
-			{
-			this.update_3_equipment(slot);
-			ui.update_equipment(this, slot);
-			}
-		else
-			{
-			this.update
-			}
+		this.update_3_equipment(slot);
 		}
 	unequip(name, slot)
 		{
@@ -501,7 +502,6 @@ export class Character
 			this.character_data          .equipment[slot].splice(index, 1);
 			this.character_data.inventory.equipment[slot].push(name);
 			}
-		ui.update_equipment(this, slot);
 		this.update_3_equipment(slot);
 		}
 	delete_equipment(name, slot)
@@ -518,7 +518,8 @@ export class Character
 		const data = database.equipment[socket][name];
 		if(!data) { return; }
 		this.character_data.inventory.equipment[socket].push(name);
-		ui.update_equipment(this, socket);
+		if(socket == "weapons") { this.update_3_equipment("weapons"); } // Since UI's weapons in the inventory needs calculations done on update, we have to update the character as well.
+		else { ui.update_equipment(this, socket); }
 		}
 	//////////////////////////////// EQUIPMENT END
 	

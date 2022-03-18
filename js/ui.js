@@ -193,7 +193,8 @@ export class ui
 			let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
 			let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
 			let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
-			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Actions";
+			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost"; 
+			let col_5 = utils.html.emplace_child(headers_row, "th"); col_5.innerHTML = "Actions";
 			}
 		let headers_2_row = utils.html.emplace_child(container, "tr");
 			{
@@ -248,6 +249,13 @@ export class ui
 					}
 				}
 			
+			let cost_col = utils.html.emplace_child(row, "td");
+			if(data.stamina_cost) 
+				{
+				cost_col.innerHTML = data.stamina_cost;
+				cost_col.classList.add("numeric");
+				}
+			
 			let btn_col = utils.html.emplace_child(row, "td");
 			return btn_col;
 			}
@@ -292,67 +300,106 @@ export class ui
 	
 	static update_weapons(character)
 		{
-		/*const container = document.getElementById("container_weapons");
+		const slot = "weapons";
+		const container = document.getElementById("container_weapons");
 		while(container.lastChild) { container.removeChild(container.lastChild); }
 		
 		let headers_row = utils.html.emplace_child(container, "tr");
 			{
 			let col_0 = utils.html.emplace_child(headers_row, "th");
-			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Actions";
+			let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
+			//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
+			let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
+			}
+		let headers_2_row = utils.html.emplace_child(container, "tr");
+			{
+			let col_0 = utils.html.emplace_child(headers_2_row, "th"); col_0.colSpan = 2;
+			let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = "Bonus";  col_1.colSpan = 2;
+			let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
+			let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
+			let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
+			}
+		let headers_3_row = utils.html.emplace_child(container, "tr");
+			{
+			let col_0 = utils.html.emplace_child(headers_3_row, "th"); col_0.colSpan = 2;
+			let col_1 = utils.html.emplace_child(headers_3_row, "th"); col_1.innerHTML = database.symbols["strength"];
+			let col_2 = utils.html.emplace_child(headers_3_row, "th"); col_2.innerHTML = database.symbols["precision"];
+			let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
+			let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
+			let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
 			}
 			
 		function add_element(name)
 			{
-			let data = database.weapons[name];
-			if(!data) { console.log("Invalid equipment in character. Equipment is '" + slot + "/" + name + "'"); return; }
+			let data  = database .equipment.weapons[name];
+			let weapon_stats = character.weapons[name];
+			if(!data) { console.log("Invalid equipment in character. Equipment is 'weapons/" + name + "'"); return; }
 			
-			let row = utils.html.emplace_child(container, "tr");
+			let first_row = utils.html.emplace_child(container, "tr");
 			
-			let name_col = utils.html.emplace_child(row, "th");
+			let col_name = utils.html.emplace_child(first_row, "th");
 			
-			name_col.innerHTML = name;
-			if(!character.check_weapon(name))
+			col_name.innerHTML = name;
+			if(!character.check_equipment(name, "weapons"))
 				{
-				name_col.style.color = "#FF0000";
+				col_name.style.color = "#FF0000";
 				}
 			
-			function add_defense_stat(parent, a, b)
-				{
-				let element = utils.html.emplace_child(parent, "td");
-				element.classList.add("numeric");
-				element.innerHTML = data.defenses[a][b];
-				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
-				return element;
-				}
+			console.log(Object.keys(data.attacks).length);
 			
-			add_defense_stat(row, "reductions", "cut");
-			add_defense_stat(row, "reductions", "pierce");
-			add_defense_stat(row, "reductions", "crush");
-			add_defense_stat(row, "protection", "strength");
-			add_defense_stat(row, "protection", "precision");
-			
-			let attrs_col = utils.html.emplace_child(row, "td");
-			if(data.attributes)
+			if(Object.keys(data.attacks).length)
 				{
-				attrs_col.classList.add("numeric");
-				for(const [key, value] of Object.entries(data.attributes))
+				col_name.rowSpan = Object.keys(data.attacks).length;
+				function add_attack(parent, name, attack_stats)
 					{
-					const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
-					let span = utils.html.emplace_child(attrs_col, "span");
-					span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
-					span.innerHTML = value + " " + database.symbols[key];
+					utils.html.emplace_child(parent, "th").innerHTML = name;
+					
+					function add_value(value)
+						{
+						let col_dmg = utils.html.emplace_child(parent, "td");
+						col_dmg.classList.add("numeric");
+						col_dmg.innerHTML = value;
+						}
+					add_value(attack_stats.bonus .strength);
+					add_value(attack_stats.bonus .precision);
+					add_value(attack_stats.damage.cut);
+					add_value(attack_stats.damage.pierce);
+					add_value(attack_stats.damage.crush);
+					}
+				
+				let first_row_used = false;
+				for(const [key, attack_stats] of Object.entries(weapon_stats.attacks))
+					{
+					let attack_row = null;
+					if(!first_row_used) { first_row_used = true; attack_row = first_row; }
+					else { attack_row = utils.html.emplace_child(container, "tr"); }
+					add_attack(attack_row, key, attack_stats);
 					}
 				}
+			else 
+				{
+				let no_attacks_col = utils.html.emplace_child(parent, "td");
+				no_attacks_col.colSpan = 5;
+				no_attacks_col.innerHTML = "none";
+				} 
 			
-			let btn_col = utils.html.emplace_child(row, "td");
-			return btn_col;
+			
+			let col_cost = utils.html.emplace_child(first_row, "td");  col_cost.rowSpan = col_name.rowSpan;
+			col_cost.classList.add("numeric");
+			col_cost.innerHTML = weapon_stats.stamina_per_attack;
+			let col_count = utils.html.emplace_child(first_row, "td"); col_count.rowSpan = col_name.rowSpan;
+			col_count.classList.add("numeric");
+			col_count.innerHTML = weapon_stats.attacks_count;
+			
+			let col_btn  = utils.html.emplace_child(first_row, "td");  col_btn .rowSpan = col_name.rowSpan;
+			return col_btn;
 			}
 		
 		for(const name of character.character_data.equipment[slot])
 			{
-			let btn_col = add_element(name);
+			let col_btn = add_element(name);
 			
-			let btn = utils.html.emplace_child(btn_col, "button");
+			let btn = utils.html.emplace_child(col_btn, "button");
 			
 			btn.type = "button";
 			btn.innerHTML = "Unequip";
@@ -363,9 +410,9 @@ export class ui
 			}
 		for(const name of character.character_data.inventory.equipment[slot])
 			{
-			let btn_col = add_element(name);
+			let col_btn = add_element(name);
 			
-			let btn_equip = utils.html.emplace_child(btn_col, "button");
+			let btn_equip = utils.html.emplace_child(col_btn, "button");
 				{
 				btn_equip.type = "button";
 				btn_equip.innerHTML = "Equip";
@@ -374,7 +421,8 @@ export class ui
 				btn_equip.dataset.slot = slot;
 				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
 				}
-			let btn_delete = utils.html.emplace_child(btn_col, "button");
+			utils.html.emplace_child(col_btn, "br");
+			let btn_delete = utils.html.emplace_child(col_btn, "button");
 				{
 				btn_delete.type = "button";
 				btn_delete.innerHTML = "Delete";
@@ -384,7 +432,7 @@ export class ui
 				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
 				}
 			}
-		*/}
+		}
 		
 	static update_defenses(character)
 		{

@@ -131,7 +131,7 @@ export const equipment = {
 		{
 		"type": "sword",
 		
-		"attributes": { "social_status": 5 },
+		"attributes": { "social_status": 2 },
 		"requirements":	{ "attributes": { "strength": 45, "precision": 60 }, "weapons_experience": { "sword": 2 } },
 		
 		"stamina_cost": 0,
@@ -152,6 +152,7 @@ export const equipment = {
 			"Thrust":
 				{
 				"range": 1.6,
+				"bonus": { "precision": 5 },
 				"damage":
 					{
 					"pierce": { "base": 15, "precision": .5 }
@@ -176,8 +177,67 @@ export const equipment = {
 				},
 			"protection":
 				{
-				"strength" :  50,
-				"precision":  10
+				"strength" :  40,
+				"precision":   0
+				},
+			"bonus":
+				{
+				"constitution": -5
+				}
+			}
+		},
+	"Falchion": 
+		{
+		"type": "sword",
+		
+		"attributes": { "social_status": 3 },
+		"requirements":	{ "attributes": { "strength": 40, "precision": 45 }, "weapons_experience": { "sword": 2 } },
+		
+		"stamina_cost": 0,
+		
+		"stamina_per_attack": 2,
+		"experience_per_attack": 5,
+		"attacks":
+			{
+			"Swing":
+				{
+				"range": 1.4,
+				"damage":
+					{
+					"cut":   { "base": 35, "strength": .2, "precision": .3 },
+					"crush": { "base":  5, "strength": .1 }
+					}
+				},
+			"Thrust":
+				{
+				"range": 1.6,
+				"bonus": { "precision": 2 },
+				"damage":
+					{
+					"pierce": { "base": 10, "precision": .5 }
+					}
+				},
+			"Pummel":
+				{
+				"range": .5,
+				"damage":
+					{
+					"crush": { "base": 10, "strength": .2 }
+					}
+				}
+			},
+		"defenses":
+			{
+			"reductions":
+				{
+				"cut"   : 100,
+				"pierce": 100,
+				"crush" : 100
+				},
+			"protection":
+				{
+				"strength" :  45,
+				"precision":   0
 				},
 			"bonus":
 				{
