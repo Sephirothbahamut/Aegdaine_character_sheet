@@ -193,8 +193,7 @@ export class ui
 			let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
 			let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
 			let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
-			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost"; 
-			let col_5 = utils.html.emplace_child(headers_row, "th"); col_5.innerHTML = "Actions";
+			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost";
 			}
 		let headers_2_row = utils.html.emplace_child(container, "tr");
 			{
@@ -262,9 +261,9 @@ export class ui
 		
 		for(const name of character.character_data.equipment[slot])
 			{
-			let btn_col = add_element(name);
+			let col_btn = add_element(name);
 			
-			let btn = utils.html.emplace_child(btn_col, "button");
+			let btn = utils.html.emplace_child(col_btn, "button");
 			
 			btn.type = "button";
 			btn.innerHTML = "Unequip";
@@ -272,12 +271,26 @@ export class ui
 			btn.dataset.name = name;
 			btn.dataset.slot = slot;
 			btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
+			
+			utils.html.emplace_child(col_btn, "br");
+			if(database.equipment[slot][name].requirements)
+				{
+				let btn_req = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_req.innerHTML = "Requiprements";
+					
+					btn_req.dataset.name = name;
+					btn_req.dataset.slot = slot;
+					btn_req.dataset.go_to = "sheet";
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					}
+				}
 			}
 		for(const name of character.character_data.inventory.equipment[slot])
 			{
-			let btn_col = add_element(name);
+			let col_btn = add_element(name);
 			
-			let btn_equip = utils.html.emplace_child(btn_col, "button");
+			let btn_equip = utils.html.emplace_child(col_btn, "button");
 				{
 				btn_equip.type = "button";
 				btn_equip.innerHTML = "Equip";
@@ -286,7 +299,7 @@ export class ui
 				btn_equip.dataset.slot = slot;
 				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
 				}
-			let btn_delete = utils.html.emplace_child(btn_col, "button");
+			let btn_delete = utils.html.emplace_child(col_btn, "button");
 				{
 				btn_delete.type = "button";
 				btn_delete.innerHTML = "Delete";
@@ -294,6 +307,20 @@ export class ui
 				btn_delete.dataset.name = name;
 				btn_delete.dataset.slot = slot;
 				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
+				}
+				
+			utils.html.emplace_child(col_btn, "br");
+			if(database.equipment[slot][name].requirements)
+				{
+				let btn_req = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_req.innerHTML = "Requiprements";
+					
+					btn_req.dataset.name = name;
+					btn_req.dataset.slot = slot;
+					btn_req.dataset.go_to = "sheet";
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					}
 				}
 			}
 		}
@@ -407,6 +434,20 @@ export class ui
 			btn.dataset.name = name;
 			btn.dataset.slot = slot;
 			btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
+			
+			utils.html.emplace_child(col_btn, "br");
+			if(database.equipment[slot][name].requirements)
+				{
+				let btn_req = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_req.innerHTML = "Requiprements";
+					
+					btn_req.dataset.name = name;
+					btn_req.dataset.slot = slot;
+					btn_req.dataset.go_to = "sheet";
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					}
+				}
 			}
 		for(const name of character.character_data.inventory.equipment[slot])
 			{
@@ -414,22 +455,32 @@ export class ui
 			
 			let btn_equip = utils.html.emplace_child(col_btn, "button");
 				{
-				btn_equip.type = "button";
 				btn_equip.innerHTML = "Equip";
 				
 				btn_equip.dataset.name = name;
 				btn_equip.dataset.slot = slot;
 				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
 				}
-			utils.html.emplace_child(col_btn, "br");
 			let btn_delete = utils.html.emplace_child(col_btn, "button");
 				{
-				btn_delete.type = "button";
 				btn_delete.innerHTML = "Delete";
 				
 				btn_delete.dataset.name = name;
 				btn_delete.dataset.slot = slot;
 				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
+				}
+			utils.html.emplace_child(col_btn, "br");
+			if(database.equipment[slot][name].requirements)
+				{
+				let btn_req = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_req.innerHTML = "Requiprements";
+					
+					btn_req.dataset.name = name;
+					btn_req.dataset.slot = slot;
+					btn_req.dataset.go_to = "sheet";
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					}
 				}
 			}
 		}
@@ -468,6 +519,21 @@ export class ui
 			else { element.innerHTML = "[" + element.dataset.id + "]"; }
 			}
 		}
+	
+	static show_message(title, text)
+		{
+		document.getElementById("message_title").innerHTML = title;
+		document.getElementById("message_text" ).innerHTML = text;
+		
+		let previous = null;
+		if(document.getElementById("sheet"        ).style.display != "none") { previous = "sheet"; }
+		if(document.getElementById("full_selector").style.display != "none") { previous = "full_selector"; }
+		document.getElementById(previous).style.display = "none";
+		
+		document.getElementById("message_close_btn").dataset.go_to = previous;
+		document.getElementById("message").style.display = "block";
+		}
+	
 	};
 
 
@@ -495,7 +561,7 @@ export function setup()
         reader.readAsText(event.target.files[0]);
 		};
 		
-	///////////////////// Icons replacements
+	//////////////////// Icons replacements
 	ui.update_symbols();
 		
 	//////////////////// Creation
@@ -533,7 +599,7 @@ export function setup()
 			};
 		}
 
-	////////////////// Attributes
+	//////////////////// Attributes
 	const attributes_table = document.getElementById("attributes_table");
 
 
@@ -578,80 +644,74 @@ export function setup()
 			};
 		}
 
-	////////////////// Experiences
-
-	const experience_selector_choices = document.getElementById("selector_choices_experiences");
-	const experience_selector = document.getElementById("selector_experiences");
-	const experience_selector_add = document.getElementById("selector_add_experiences");
+	//////////////////// Selectors
 	
-	experience_selector_add.onclick = function()
+	function setup_selectors(slot)
 		{
-		window.character.add_experience(experience_selector.value);
-		};
-
-	for(const [key, value] of Object.entries(database.experiences))
-		{
-		let element = document.createElement("option");
-		element.innerHTML = key;
-		experience_selector_choices.appendChild(element);
-		}
-	
-	
-	////////////////// Equipment
-	const weapon_selector_choices  = document.getElementById("selector_choices_weapons");
-	const weapon_selector          = document.getElementById("selector_weapons");
-	const weapon_selector_add      = document.getElementById("selector_add_weapons");
-	const head_selector_choices    = document.getElementById("selector_choices_head");
-	const head_selector            = document.getElementById("selector_head");
-	const head_selector_add        = document.getElementById("selector_add_head");
-	const body_selector_choices    = document.getElementById("selector_choices_body");
-	const body_selector            = document.getElementById("selector_body");
-	const body_selector_add        = document.getElementById("selector_add_body");
-	const jewelry_selector_choices = document.getElementById("selector_choices_jewelry");
-	const jewelry_selector         = document.getElementById("selector_jewelry");
-	const jewelry_selector_add     = document.getElementById("selector_add_jewelry");
-	
-	
-	for(const [key, value] of Object.entries(database.equipment.weapons))
-		{
-		let element = document.createElement("option");
-		element.innerHTML = key;
-		weapon_selector_choices.appendChild(element);
-		}
-	for(const [key, value] of Object.entries(database.equipment.head))
-		{
-		let element = document.createElement("option");
-		element.innerHTML = key;
-		head_selector_choices.appendChild(element);
-		}
-	for(const [key, value] of Object.entries(database.equipment.body))
-		{
-		let element = document.createElement("option");
-		element.innerHTML = key;
-		body_selector_choices.appendChild(element);
-		}
-	for(const [key, value] of Object.entries(database.equipment.jewelry))
-		{
-		let element = document.createElement("option");
-		element.innerHTML = key;
-		jewelry_selector_choices.appendChild(element);
-		}
+		// Base selectors
+		const selector_add = document.getElementById("selector_add_" + slot);
+		selector_add.dataset.slot = slot;
 		
-	weapon_selector_add.onclick = function()
+		if(slot == "experiences")
+			{
+			selector_add.onclick = function()
+				{
+				const object_id = document.getElementById("selector_" + slot).value;
+				window.character.add_experience(object_id);
+				};
+			}
+		else
+			{
+			selector_add.onclick = function() 
+				{
+				const object_id = document.getElementById("selector_" + slot).value;
+				window.character.add_equipment(object_id, slot);
+				}
+			}
+			
+		const selector_choices = document.getElementById("selector_choices_" + slot);
+		
+		const entries = Object.entries((slot == "experiences") ? database.experiences : database.equipment[slot]);
+		
+		var full_table = document.getElementById("full_container_" + slot);
+		for(const [key, value] of entries)
+			{
+			// HTML Selector
+			let element = document.createElement("option");
+			element.innerHTML = key;
+			selector_choices.appendChild(element);
+			
+			// Advanced selectors
+			let row      = utils.html.emplace_child(full_table, "tr");
+			let col_name = utils.html.emplace_child(row, "td");
+			
+			col_name.innerHTML = key;
+			
+			let col_btn  = utils.html.emplace_child(row, "td");
+			let btn      = utils.html.emplace_child(col_btn, "button");
+			
+			btn.innerHTML = "➕&#xFE0E;";
+			
+			if(slot != "experiences") { btn.dataset.slot = slot; }
+			btn.dataset.name = key;
+			
+			if(slot == "experiences") { btn.onclick = function() { window.character.add_experience(this.dataset.name); } }
+			else                      { btn.onclick = function() { window.character.add_equipment (this.dataset.name, this.dataset.slot); } }
+			}
+		}
+	setup_selectors("weapons");
+	setup_selectors("head");
+	setup_selectors("body");
+	setup_selectors("jewelry");
+	setup_selectors("experiences");
+	
+	//////////////////// Message
+	const message_close_btn = document.getElementById("message_close_btn");
+	message_close_btn.dataset.my_div = document.getElementById("message");
+	message_close_btn.onclick = function()
 		{
-		window.character.add_equipment(weapon_selector.value, "weapons");
-		};
-	head_selector_add.onclick = function()
-		{
-		window.character.add_equipment(head_selector.value, "head");
-		};
-	body_selector_add.onclick = function()
-		{
-		window.character.add_equipment(body_selector.value, "body");
-		};
-	jewelry_selector_add.onclick = function()
-		{
-		window.character.add_equipment(jewelry_selector.value, "jewelry");
+		document.getElementById(this.dataset.go_to).style.display = "block";
+		this.dataset.my_div.style.display = "none";
 		};
 	}
 	
@@ -689,7 +749,6 @@ export function init()
 		}
 
 	////////////////// Experiences
-	////////////////// Equipment
 		
 	ui.update_weapons(window.character);
 	ui.update_equipment(window.character, "head");
