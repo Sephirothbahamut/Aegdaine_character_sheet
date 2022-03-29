@@ -20,30 +20,30 @@ export class ui
 			let element = document.getElementById("roll_field_" + key);
 			if(element) 
 				{
-				element.innerHTML = value; 
+				element.innerHTML = Math.round(value);
 				var color = utils.getColorForPercentage(value / 20, utils.color_percent_red_to_green);
 				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
 				}
 			}
 		}
 		
-	static update_base(character)
+	static update_base(attributes)
 		{
-		for(let [key, value] of Object.entries(character.attributes._4_location)) 
+		for(let [key, value] of Object.entries(attributes)) 
 			{
 			let element = document.getElementById("attr_base_" + key);
-			if(element) { element.innerHTML = value; }
+			if(element) { element.innerHTML = Math.round(value); }
 			}
 		}
 	
-	static update_tot(character)
+	static update_tot(attributes)
 		{
-		for(let [key, value] of Object.entries(character.attributes._5_final)) 
+		for(let [key, value] of Object.entries(attributes)) 
 			{
 			let element = document.getElementById("attr_tot_" + key);
 			if(element) 
 				{
-				element.innerHTML = value; 
+				element.innerHTML = Math.round(value); 
 				const color = utils.getColorForPercentage(value / 100, utils.color_percent_red_to_green);
 				const light_css_color = utils.color_to_css(utils.color_multiply(color, .6));
 				const dark__css_color = utils.color_to_css(utils.color_multiply(color, .4));
@@ -79,13 +79,14 @@ export class ui
 			
 			let row = utils.html.emplace_child(experiences_container, "tr");
 				
-			if(!character.check_experience(name))
-				{
-				element.style.color = "#FF0000";
-				}
 			
 			let col_name = utils.html.emplace_child(row, "th");
 			col_name.innerHTML = name;
+			
+			if(!character.check_experience(name))
+				{
+				col_name.style.color = "#FF0000";
+				}
 			
 			let col_years = utils.html.emplace_child(row, "td");
 				{
@@ -108,7 +109,7 @@ export class ui
 				const color = utils.getColorForPercentage((value / 100) + .5, utils.color_percent_red_to_green);
 				let span = utils.html.emplace_child(parent, "span");
 				span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
-				span.innerHTML = value + " " + database.symbols[key];
+				span.innerHTML = value.toPrecision(3) + " " + database.symbols[key];
 				return span;
 				}
 			
@@ -119,7 +120,7 @@ export class ui
 					{
 					for(const [key, value] of Object.entries(experience_data.attributes.base))
 						{
-						let my_contribution_to_reduced = (((value * experience.years) / character.attributes.cache_experiences.base.full[key]) * character.attributes.cache_experiences.base.reduced[key]).toPrecision(3);
+						let my_contribution_to_reduced = ((value * experience.years) / character.attributes.cache._2_experiences["base"].full[key]) * character.attributes.cache._2_experiences["base"].reduced[key];
 						
 						add_attribute_span(col_attributes_base, key, my_contribution_to_reduced);
 						}
@@ -128,9 +129,9 @@ export class ui
 			let col_attributes_city = utils.html.emplace_child(row, "td");
 				{
 				col_attributes_city.classList.add("numeric");
-				if(experience_data.location_attributes && experience_data.location_attributes["city"])
+				if(experience_data.attributes && experience_data.attributes["city"])
 					{
-					for(const [key, value] of Object.entries(experience_data.location_attributes["city"]))
+					for(const [key, value] of Object.entries(experience_data.attributes["city"]))
 						{
 						add_attribute_span(col_attributes_city, key, value * experience.years);
 						}
@@ -139,9 +140,9 @@ export class ui
 			let col_attributes_wild = utils.html.emplace_child(row, "td");
 				{
 				col_attributes_wild.classList.add("numeric");
-				if(experience_data.location_attributes && experience_data.location_attributes["wild"])
+				if(experience_data.attributes && experience_data.attributes["wild"])
 					{
-					for(const [key, value] of Object.entries(experience_data.location_attributes["wild"]))
+					for(const [key, value] of Object.entries(experience_data.attributes["wild"]))
 						{
 						add_attribute_span(col_attributes_wild, key, value * experience.years);
 						}
@@ -183,305 +184,214 @@ export class ui
 	
 	static update_equipment(character, slot)
 		{
-		if(slot === "weapons") { ui.update_weapons(character); return; }
+		//if(slot === "weapons") { ui.update_weapons(character); return; }
 		const container = document.getElementById("container_" + slot);
 		while(container.lastChild) { container.removeChild(container.lastChild); }
 		
-		let headers_row = utils.html.emplace_child(container, "tr");
+		///////////////// HEADERS
+		if(slot === "weapons")
 			{
-			let col_0 = utils.html.emplace_child(headers_row, "th");
-			let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
-			let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
-			let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
-			let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost";
+			let headers_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_row, "th");
+				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
+				//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
+				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
+				}
+			let headers_2_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_2_row, "th"); col_0.colSpan = 2;
+				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = "Bonus";  col_1.colSpan = 2;
+				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
+				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
+				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
+				}
+			let headers_3_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_3_row, "th"); col_0.colSpan = 2;
+				let col_1 = utils.html.emplace_child(headers_3_row, "th"); col_1.innerHTML = database.symbols["strength"];
+				let col_2 = utils.html.emplace_child(headers_3_row, "th"); col_2.innerHTML = database.symbols["precision"];
+				let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
+				let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
+				let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
+				}
 			}
-		let headers_2_row = utils.html.emplace_child(container, "tr");
+		else
 			{
-			let col_0 = utils.html.emplace_child(headers_2_row, "th");
-			let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = database.symbols["cut"];
-			let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = database.symbols["pierce"];
-			let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = database.symbols["crush"];
-			let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = database.symbols["strength"];
-			let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = database.symbols["precision"];
+			let headers_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_row, "th");
+				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
+				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
+				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
+				let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost";
+				}
+			let headers_2_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_2_row, "th");
+				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = database.symbols["cut"];
+				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = database.symbols["pierce"];
+				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = database.symbols["crush"];
+				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = database.symbols["strength"];
+				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = database.symbols["precision"];
+				}
 			}
 		
-		function add_element(name)
+		function add_element(name, equipped)
 			{
 			let data = database.equipment[slot][name];
 			if(!data) { console.log("Invalid equipment in character. Equipment is '" + slot + "/" + name + "'"); return; }
-			
-			let row = utils.html.emplace_child(container, "tr");
-			
-			let name_col = utils.html.emplace_child(row, "th");
-			
-			name_col.innerHTML = name;
-			if(!character.check_equipment(name, slot))
-				{
-				name_col.style.color = "#FF0000";
-				}
-			
-			function add_defense_stat(parent, a, b)
-				{
-				let element = utils.html.emplace_child(parent, "td");
-				element.classList.add("numeric");
-				element.innerHTML = data.defenses[a][b];
-				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
-				return element;
-				}
-			
-			add_defense_stat(row, "reductions", "cut");
-			add_defense_stat(row, "reductions", "pierce");
-			add_defense_stat(row, "reductions", "crush");
-			add_defense_stat(row, "protection", "strength");
-			add_defense_stat(row, "protection", "precision");
-			
-			let attrs_col = utils.html.emplace_child(row, "td");
-			if(data.attributes)
-				{
-				attrs_col.classList.add("numeric");
-				for(const [key, value] of Object.entries(data.attributes))
-					{
-					const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
-					let span = utils.html.emplace_child(attrs_col, "span");
-					span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
-					span.innerHTML = value + " " + database.symbols[key];
-					}
-				}
-			
-			let cost_col = utils.html.emplace_child(row, "td");
-			if(data.stamina_cost) 
-				{
-				cost_col.innerHTML = data.stamina_cost;
-				cost_col.classList.add("numeric");
-				}
-			
-			let btn_col = utils.html.emplace_child(row, "td");
-			return btn_col;
-			}
-		
-		for(const name of character.character_data.equipment[slot])
-			{
-			let col_btn = add_element(name);
-			
-			let btn = utils.html.emplace_child(col_btn, "button");
-			
-			btn.type = "button";
-			btn.innerHTML = "Unequip";
-			
-			btn.dataset.name = name;
-			btn.dataset.slot = slot;
-			btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
-			
-			utils.html.emplace_child(col_btn, "br");
-			if(database.equipment[slot][name].requirements)
-				{
-				let btn_req = utils.html.emplace_child(col_btn, "button");
-					{
-					btn_req.innerHTML = "Requiprements";
-					
-					btn_req.dataset.name = name;
-					btn_req.dataset.slot = slot;
-					btn_req.dataset.go_to = "sheet";
-					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
-					}
-				}
-			}
-		for(const name of character.character_data.inventory.equipment[slot])
-			{
-			let col_btn = add_element(name);
-			
-			let btn_equip = utils.html.emplace_child(col_btn, "button");
-				{
-				btn_equip.type = "button";
-				btn_equip.innerHTML = "Equip";
-				
-				btn_equip.dataset.name = name;
-				btn_equip.dataset.slot = slot;
-				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
-				}
-			let btn_delete = utils.html.emplace_child(col_btn, "button");
-				{
-				btn_delete.type = "button";
-				btn_delete.innerHTML = "Delete";
-				
-				btn_delete.dataset.name = name;
-				btn_delete.dataset.slot = slot;
-				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
-				}
-				
-			utils.html.emplace_child(col_btn, "br");
-			if(database.equipment[slot][name].requirements)
-				{
-				let btn_req = utils.html.emplace_child(col_btn, "button");
-					{
-					btn_req.innerHTML = "Requiprements";
-					
-					btn_req.dataset.name = name;
-					btn_req.dataset.slot = slot;
-					btn_req.dataset.go_to = "sheet";
-					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
-					}
-				}
-			}
-		}
-	
-	static update_weapons(character)
-		{
-		const slot = "weapons";
-		const container = document.getElementById("container_weapons");
-		while(container.lastChild) { container.removeChild(container.lastChild); }
-		
-		let headers_row = utils.html.emplace_child(container, "tr");
-			{
-			let col_0 = utils.html.emplace_child(headers_row, "th");
-			let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
-			//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
-			let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
-			}
-		let headers_2_row = utils.html.emplace_child(container, "tr");
-			{
-			let col_0 = utils.html.emplace_child(headers_2_row, "th"); col_0.colSpan = 2;
-			let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = "Bonus";  col_1.colSpan = 2;
-			let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
-			let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
-			let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
-			}
-		let headers_3_row = utils.html.emplace_child(container, "tr");
-			{
-			let col_0 = utils.html.emplace_child(headers_3_row, "th"); col_0.colSpan = 2;
-			let col_1 = utils.html.emplace_child(headers_3_row, "th"); col_1.innerHTML = database.symbols["strength"];
-			let col_2 = utils.html.emplace_child(headers_3_row, "th"); col_2.innerHTML = database.symbols["precision"];
-			let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
-			let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
-			let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
-			}
-			
-		function add_element(name)
-			{
-			let data  = database .equipment.weapons[name];
-			let weapon_stats = character.weapons[name];
-			if(!data) { console.log("Invalid equipment in character. Equipment is 'weapons/" + name + "'"); return; }
+			let weapon_stats = (slot === "weapons")? character.weapons[name] : null;
 			
 			let first_row = utils.html.emplace_child(container, "tr");
 			
 			let col_name = utils.html.emplace_child(first_row, "th");
 			
 			col_name.innerHTML = name;
-			if(!character.check_equipment(name, "weapons"))
+			const requirements_satisfied = character.check_equipment(name, slot);
+			if(!requirements_satisfied)
 				{
 				col_name.style.color = "#FF0000";
 				}
 			
-			console.log(Object.keys(data.attacks).length);
-			
-			if(Object.keys(data.attacks).length)
+			if(weapon_stats)
 				{
-				col_name.rowSpan = Object.keys(data.attacks).length;
-				function add_attack(parent, name, attack_stats)
+				if(Object.keys(data.attacks).length)
 					{
-					utils.html.emplace_child(parent, "th").innerHTML = name;
-					
-					function add_value(value)
+					col_name.rowSpan = Object.keys(data.attacks).length;
+					function add_attack(parent, name, attack_stats)
 						{
-						let col_dmg = utils.html.emplace_child(parent, "td");
-						col_dmg.classList.add("numeric");
-						col_dmg.innerHTML = value;
+						utils.html.emplace_child(parent, "th").innerHTML = name;
+						
+						function add_value(value)
+							{
+							let col_dmg = utils.html.emplace_child(parent, "td");
+							col_dmg.classList.add("numeric");
+							col_dmg.innerHTML = Math.round(value);
+							}
+						add_value(attack_stats.bonus .strength);
+						add_value(attack_stats.bonus .precision);
+						add_value(attack_stats.damage.cut);
+						add_value(attack_stats.damage.pierce);
+						add_value(attack_stats.damage.crush);
 						}
-					add_value(attack_stats.bonus .strength);
-					add_value(attack_stats.bonus .precision);
-					add_value(attack_stats.damage.cut);
-					add_value(attack_stats.damage.pierce);
-					add_value(attack_stats.damage.crush);
+					
+					let first_row_used = false;
+					for(const [key, attack_stats] of Object.entries(weapon_stats.attacks))
+						{
+						let attack_row = null;
+						if(!first_row_used) { first_row_used = true; attack_row = first_row; }
+						else { attack_row = utils.html.emplace_child(container, "tr"); }
+						add_attack(attack_row, key, attack_stats);
+						}
+					}
+				else 
+					{
+					let no_attacks_col = utils.html.emplace_child(first_row, "th");
+					no_attacks_col.colSpan = 6;
+					no_attacks_col.innerHTML = "Not available (yet) sorry";
+					} 
+				}
+			else
+				{
+				function add_defense_stat(parent, a, b)
+					{
+					let element = utils.html.emplace_child(parent, "td");
+					element.classList.add("numeric");
+					element.innerHTML = Math.round(data.defenses[a][b]);
+					element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
+					return element;
 					}
 				
-				let first_row_used = false;
-				for(const [key, attack_stats] of Object.entries(weapon_stats.attacks))
+				add_defense_stat(first_row, "reductions", "cut");
+				add_defense_stat(first_row, "reductions", "pierce");
+				add_defense_stat(first_row, "reductions", "crush");
+				add_defense_stat(first_row, "protection", "strength");
+				add_defense_stat(first_row, "protection", "precision");
+				
+				let attrs_col = utils.html.emplace_child(first_row, "td");
+				if(data.attributes)
 					{
-					let attack_row = null;
-					if(!first_row_used) { first_row_used = true; attack_row = first_row; }
-					else { attack_row = utils.html.emplace_child(container, "tr"); }
-					add_attack(attack_row, key, attack_stats);
+					attrs_col.classList.add("numeric");
+					for(const [key, value] of Object.entries(data.attributes))
+						{
+						const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
+						let span = utils.html.emplace_child(attrs_col, "span");
+						span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
+						span.innerHTML = Math.round(value) + " " + database.symbols[key];
+						}
 					}
 				}
-			else 
-				{
-				let no_attacks_col = utils.html.emplace_child(parent, "td");
-				no_attacks_col.colSpan = 5;
-				no_attacks_col.innerHTML = "none";
-				} 
-			
-			
+					
+					
 			let col_cost = utils.html.emplace_child(first_row, "td");  col_cost.rowSpan = col_name.rowSpan;
 			col_cost.classList.add("numeric");
-			col_cost.innerHTML = weapon_stats.stamina_per_attack;
-			let col_count = utils.html.emplace_child(first_row, "td"); col_count.rowSpan = col_name.rowSpan;
-			col_count.classList.add("numeric");
-			col_count.innerHTML = weapon_stats.attacks_count;
+			if(weapon_stats) { col_cost.innerHTML = Math.round(weapon_stats.stamina_per_attack); }
+			else             { col_cost.innerHTML = Math.round(data.stamina_cost); }
 			
+			if(weapon_stats)
+				{
+				let col_count = utils.html.emplace_child(first_row, "td"); col_count.rowSpan = col_name.rowSpan;
+				col_count.classList.add("numeric");
+				col_count.innerHTML = Math.round(weapon_stats.attacks_count);
+				}
+					
 			let col_btn  = utils.html.emplace_child(first_row, "td");  col_btn .rowSpan = col_name.rowSpan;
-			return col_btn;
+					
+					
+			if(equipped)
+				{
+				let btn = utils.html.emplace_child(col_btn, "button");
+					{
+					btn.type = "button";
+					btn.innerHTML = "Unequip";
+					
+					btn.dataset.name = name;
+					btn.dataset.slot = slot;
+					btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
+					}
+				}
+			else
+				{
+				let btn_equip = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_equip.innerHTML = "Equip";
+					
+					btn_equip.dataset.name = name;
+					btn_equip.dataset.slot = slot;
+					btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
+					}
+				let btn_delete = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_delete.innerHTML = "Delete";
+					
+					btn_delete.dataset.name = name;
+					btn_delete.dataset.slot = slot;
+					btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
+					}
+				}
+			if(!requirements_satisfied)
+				{
+				utils.html.emplace_child(col_btn, "br");
+				let btn_req = utils.html.emplace_child(col_btn, "button");
+					{
+					btn_req.innerHTML = "Requirements";
+					
+					btn_req.dataset.name = name;
+					btn_req.dataset.slot = slot;
+					btn_req.dataset.go_to = "sheet";
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					}
+				}
 			}
 		
 		for(const name of character.character_data.equipment[slot])
 			{
-			let col_btn = add_element(name);
-			
-			let btn = utils.html.emplace_child(col_btn, "button");
-			
-			btn.type = "button";
-			btn.innerHTML = "Unequip";
-			
-			btn.dataset.name = name;
-			btn.dataset.slot = slot;
-			btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
-			
-			utils.html.emplace_child(col_btn, "br");
-			if(database.equipment[slot][name].requirements)
-				{
-				let btn_req = utils.html.emplace_child(col_btn, "button");
-					{
-					btn_req.innerHTML = "Requiprements";
-					
-					btn_req.dataset.name = name;
-					btn_req.dataset.slot = slot;
-					btn_req.dataset.go_to = "sheet";
-					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
-					}
-				}
+			add_element(name, true);
 			}
 		for(const name of character.character_data.inventory.equipment[slot])
 			{
-			let col_btn = add_element(name);
-			
-			let btn_equip = utils.html.emplace_child(col_btn, "button");
-				{
-				btn_equip.innerHTML = "Equip";
-				
-				btn_equip.dataset.name = name;
-				btn_equip.dataset.slot = slot;
-				btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
-				}
-			let btn_delete = utils.html.emplace_child(col_btn, "button");
-				{
-				btn_delete.innerHTML = "Delete";
-				
-				btn_delete.dataset.name = name;
-				btn_delete.dataset.slot = slot;
-				btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
-				}
-			utils.html.emplace_child(col_btn, "br");
-			if(database.equipment[slot][name].requirements)
-				{
-				let btn_req = utils.html.emplace_child(col_btn, "button");
-					{
-					btn_req.innerHTML = "Requiprements";
-					
-					btn_req.dataset.name = name;
-					btn_req.dataset.slot = slot;
-					btn_req.dataset.go_to = "sheet";
-					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
-					}
-				}
+			add_element(name, false);
 			}
 		}
 		
@@ -504,6 +414,12 @@ export class ui
 			}
 		}
 		
+	static update_skills(character) 
+		{
+		//TODO
+		}
+	
+	
 	static update_symbols(root = document)
 		{
 		let symbols_replacements = document.getElementsByClassName("symbol");
@@ -707,11 +623,10 @@ export function setup()
 	
 	//////////////////// Message
 	const message_close_btn = document.getElementById("message_close_btn");
-	message_close_btn.dataset.my_div = document.getElementById("message");
 	message_close_btn.onclick = function()
 		{
 		document.getElementById(this.dataset.go_to).style.display = "block";
-		this.dataset.my_div.style.display = "none";
+		document.getElementById("message").style.display = "none";
 		};
 	}
 	
@@ -750,7 +665,7 @@ export function init()
 
 	////////////////// Experiences
 		
-	ui.update_weapons(window.character);
+	ui.update_equipment(window.character, "weapons");
 	ui.update_equipment(window.character, "head");
 	ui.update_equipment(window.character, "body");
 	ui.update_equipment(window.character, "jewelry");

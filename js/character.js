@@ -40,11 +40,12 @@ function add_attributes(a, b)
 		"wisdom"       : (a["wisdom"       ] + b["wisdom"       ]),
 		"focus"        : (a["focus"        ] + b["focus"        ]),
 		"eloquence"    : (a["eloquence"    ] + b["eloquence"    ]),
-		"sight"        : (a["sight"        ] + b["sight"        ]),
-		"touch"        : (a["touch"        ] + b["touch"        ]),
-		"smell"        : (a["smell"        ] + b["smell"        ]),
-		"taste"        : (a["taste"        ] + b["taste"        ]),
-		"hearing"      : (a["hearing"      ] + b["hearing"      ]),
+		"senses"       : (a["senses"       ] + b["senses"       ]),
+		"sight"        : (a["sight"        ] + b["sight"        ] + b["senses"]),
+		"touch"        : (a["touch"        ] + b["touch"        ] + b["senses"]),
+		"smell"        : (a["smell"        ] + b["smell"        ] + b["senses"]),
+		"taste"        : (a["taste"        ] + b["taste"        ] + b["senses"]),
+		"hearing"      : (a["hearing"      ] + b["hearing"      ] + b["senses"]),
 		"social_status": (a["social_status"] + b["social_status"]),
 		"hiddenness"   : (a["hiddenness"   ] + b["hiddenness"   ])
 		};
@@ -97,13 +98,19 @@ export class Character
 			"_2_experiences": make_attributes(),
 			"_3_equipment"  : make_attributes(),
 			"_4_location"   : make_attributes(),
-			"_5_final"      : make_attributes(),
+			"_5_skills"     : make_attributes(),
+			"_6_final"      : make_attributes(),
 			
-			"cache_experiences": 
+			"cache":
 				{
-				"base": { "full": make_attributes(), "reduced": make_attributes() },
-				"wild": { "full": make_attributes(), "reduced": make_attributes() },
-				"city": { "full": make_attributes(), "reduced": make_attributes() }
+				"_2_experiences": 
+					{
+					"base": { "full": make_attributes(), "reduced": make_attributes() },
+					"wild": { "full": make_attributes(), "reduced": make_attributes() },
+					"city": { "full": make_attributes(), "reduced": make_attributes() }
+					},
+				"_3_equipment": make_attributes(),
+				"_5_skills"   : make_attributes()
 				}
 			};
 		
@@ -114,6 +121,8 @@ export class Character
 		this.weapons = {};
 		
 		this.defenses = { "head": make_defenses(), "body": make_defenses() };
+		
+		this.skills = new Set();
 		
 		this.update_0_race();
 		}
@@ -137,12 +146,6 @@ export class Character
 			tmp_roll_attributes[key] = value - 10;
 			}
 		
-		tmp_roll_attributes["sight"]   = tmp_roll_attributes["senses"];
-		tmp_roll_attributes["touch"]   = tmp_roll_attributes["senses"];
-		tmp_roll_attributes["smell"]   = tmp_roll_attributes["senses"];
-		tmp_roll_attributes["taste"]   = tmp_roll_attributes["senses"];
-		tmp_roll_attributes["hearing"] = tmp_roll_attributes["senses"];
-		
 		this.attributes._1_rolls = add_attributes(this.attributes._0_race, tmp_roll_attributes);
 		
 		ui.update_rolls(this);
@@ -153,8 +156,9 @@ export class Character
 		const experiences = this.character_data.experiences;
 		
 		this.weapons_experience = {};
+		this.skills = new Set();
 		
-		this.attributes.cache_experiences = 
+		this.attributes.cache._2_experiences = 
 			{
 			"base": { "full": make_attributes(), "reduced": make_attributes() },
 			"wild": { "full": make_attributes(), "reduced": make_attributes() },
@@ -179,12 +183,12 @@ export class Character
 					{
 					for (const [location, attrs] of Object.entries(experience_data.attributes)) 
 						{
-						if(!this.attributes.cache_experiences[location]) { this.location_attributes_cache[key] = make_attributes(); }
-						let cache = this.attributes.cache_experiences[location];
+						if(!this.attributes.cache._2_experiences[location]) { this.location_attributes_cache[key] = make_attributes(); }
+						let cache = this.attributes.cache._2_experiences[location];
 						
 						for (const [key, value] of Object.entries(attrs)) 
 							{
-							cache.full[key] += value * character_experience.years;
+							cache.reduced[key] += value * character_experience.years;
 							}
 						}
 					}
@@ -205,20 +209,27 @@ export class Character
 					
 					if(weapon_exp_years_tot > character_experience.years) { alert("CHEATER!"); }
 					}
+					
+				if(experience_data.skills)
+					{
+					for(const [skill, min_years] of Object.entries(experience_data.skills))
+						{
+						if(character_experience.years >= min_years) { character.skills.add(skill); }
+						}
+					}
 				}
 			}
 		
-		for (let [location, cache] of Object.entries(this.attributes.cache_experiences))
+		for (let [location, cache] of Object.entries(this.attributes.cache._2_experiences))
 			{
 			//turn linear gain into diminishing returns gain
 			for(let [key, value] of Object.entries(cache.full))
 				{
-				cache.reduced[key] = Math.round(Math.pow(value, 0.9));
+				cache.reduced[key] = Math.pow(value, 0.9);
 				}
 			}
 		
-		this.attributes._2_experiences = add_attributes(this.attributes._1_rolls, this.attributes.cache_experiences.base.reduced);
-		update_senses(this.attributes._2_experiences);
+		this.attributes._2_experiences = add_attributes(this.attributes._1_rolls, this.attributes.cache._2_experiences.base.reduced);
 		
 		ui.update_experiences(this);
 		
@@ -226,7 +237,7 @@ export class Character
 		}
 	update_3_equipment(update_only_ui_slot = null)
 		{
-		this.attributes._3_equipment = { ...this.attributes._2_experiences };
+		this.attributes.cache._3_equipment = make_attributes();
 		this.defenses = { "head": make_defenses(), "body": make_defenses() };
 		
 		for (const [socket, equipments] of Object.entries(this.character_data.equipment)) 
@@ -248,14 +259,14 @@ export class Character
 							{
 							for (const [attribute, value] of Object.entries(equipment_data.attributes)) 
 								{
-								this.attributes._3_equipment[attribute] += value;
+								this.attributes.cache._3_equipment[attribute] += value;
 								}
 							}
 						}
 							
 					if(socket === "weapons") 
 						{
-						this.evaluate_weapon_data(equipment);
+						this.evaluate_weapon_stats(equipment);
 						}
 					}
 				else { console.log("Equipment not found: '" + socket + "/" + equipment + "'"); }
@@ -269,13 +280,13 @@ export class Character
 				const equipment_data = database.equipment["weapons"][equipment];
 				if(equipment_data)
 					{
-					this.evaluate_weapon_data(equipment);
+					this.evaluate_weapon_stats(equipment);
 					}
 				else { console.log("Equipment not found: 'inventory/" + socket + "/" + equipment + "'"); }
 				}
 			}
 		
-		update_senses(this.attributes._3_equipment);
+		this.attributes._3_equipment = add_attributes(this.attributes._2_experiences, this.attributes.cache._3_equipment);
 		
 		// If this update was called by a change of equipment, other slots don't need to be changed.
 		// If this parameter is null, this update was called by a change of previous levels of attributes, which 
@@ -290,35 +301,51 @@ export class Character
 			}
 			
 		ui.update_defenses(this);
+			
 		this.update_4_location();
 		}
 	update_4_location()
 		{
-		let current_location_attributes = this.attributes.cache_experiences[this.character_data.location].reduced;
-		if(current_location_attributes === null) { this.attributes._4_location = this.attributes._3_equipment; }
-		else { this.attributes._4_location = add_attributes(this.attributes._3_equipment, current_location_attributes); }
+		const current_location_attributes_cached = this.attributes.cache._2_experiences[this.character_data.location];
+		let current_location_attributes = current_location_attributes_cached ? current_location_attributes_cached.reduced : make_attributes();
+		this.attributes._4_location = add_attributes(this.attributes._3_equipment, current_location_attributes);
 		
-		update_senses(this.attributes._4_location);
-		
-		ui.update_base(this);
-		this.update_5_final();
+		this.update_5_skills();
 		}
-	update_5_final()
+	update_5_skills()
 		{
-		this.attributes._5_final = add_attributes(this.attributes._4_location, this.character_data.attributes.tmp);
-		this.attributes._5_final["sight"]   += this.character_data.attributes.tmp["senses"];
-		this.attributes._5_final["touch"]   += this.character_data.attributes.tmp["senses"];
-		this.attributes._5_final["smell"]   += this.character_data.attributes.tmp["senses"];
-		this.attributes._5_final["taste"]   += this.character_data.attributes.tmp["senses"];
-		this.attributes._5_final["hearing"] += this.character_data.attributes.tmp["senses"];
-		update_senses(this.attributes._5_final);
+		this.attributes.cache._5_skills = make_attributes();
 		
-		for(let [key, value] of Object.entries(this.attributes._5_final)) 
+		for(const skill of this.skills)
 			{
-			value = utils.clamp(value, 0, 100);
+			const skill_data = database.skills[skill];
+			if(!skill.requirements || check_requirements(skill_requirements, this.attributes._4_location))
+				{
+				if(skill_data.effect) { skill_data.effect(this); }
+				}
+			}
+		ui.update_skills(this);
+		
+		this.attributes._5_skills = add_attributes(this.attributes._4_location, this.attributes.cache._5_skills);
+		
+		update_senses(this.attributes._5_skills);
+		
+		ui.update_base(this.attributes._5_skills);
+		
+		
+		this.update_6_final();
+		}
+	update_6_final()
+		{
+		this.attributes._6_final = add_attributes(this.attributes._5_skills, this.character_data.attributes.tmp);
+		update_senses(this.attributes._6_final);
+		
+		for(let key of Object.keys(this.attributes._6_final)) 
+			{
+			this.attributes._6_final[key] = utils.clamp(this.attributes._6_final[key], 0, 100);
 			}
 			
-		ui.update_tot(this);
+		ui.update_tot(this.attributes._6_final);
 		}
 	
 	set_race(race)
@@ -334,14 +361,13 @@ export class Character
 	set_tmp(attribute, value)
 		{
 		this.character_data.attributes.tmp[attribute] = value;
-		this.update_5_final();
+		this.update_6_final();
 		}
 	/* expects (string_name, {years: number, weapons { name: number, name: number ...}})*/
 	
 	//////////////////////////////// EXPERIENCE BEG
 	set_experience(name, data)
 		{
-		console.dir(this.character_data.experiences[name]);
 		if(data.years !== 0) 
 			{
 			if(!this.character_data.experiences[name]) { add_experience(name); }
@@ -360,7 +386,6 @@ export class Character
 			{
 			if(this.character_data.experiences[name]) { this.character_data.experiences[name] = null; }
 			}
-		console.dir(this.character_data.experiences[name]);
 			
 		this.update_2_experiences();
 		}
@@ -392,8 +417,6 @@ export class Character
 			{
 			if(!this.check_requirements(experience_data.requirements, this._1_rolls)) { return false; }
 			}
-		if(experience_data.requirements_check)
-			{ if(!experience_data.requirements_check(this)) { return false;} }
 		
 		return true;
 		}
@@ -427,6 +450,11 @@ export class Character
 				}
 			}
 			
+		if(requirements.custom)
+			{
+			if(!requirements.custom(this, attributes_layer)) { return false;}
+			}
+			
 		return true;
 		}
 	
@@ -443,7 +471,7 @@ export class Character
 		return true;
 		}
 		
-	evaluate_weapon_data(equipment)
+	evaluate_weapon_stats(equipment)
 		{
 		const equipment_data = database.equipment.weapons[equipment];
 		this.weapons[equipment] = {

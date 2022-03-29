@@ -10,14 +10,14 @@ export const experiences = {
 		"city": { "social_status": 1 }
 		},
 	"weapons": [ "sword", "axe" ],
-	/*"requirements": 
+	"requirements": 
 		{
 		"races": ["Elf"],
-		"experiences": { "School": 4 }
-		}*/
-	"requirements_check": function(character)
-		{
-		return character.character_data.race === "Elf";
+		"experiences": { "School": 4 },
+		"custom": function(character)
+			{
+			return character.character_data.race != "Human";
+			}
 		}
 	},
 "Hunter": 
@@ -32,6 +32,13 @@ export const experiences = {
 "Soldier":
 	{
 	"attributes": { "base": { "strength": 2, "precision": 2 } },
-	"weapons": [ "axe", "sword", "polearm", "mace", "shield" ]
+	"weapons": [ "axe", "sword", "polearm", "mace", "shield" ],
+	"skills": { "Weapon Mastery": 1, "Flurry of Blows": 1 }
+	},
+"Blacksmith":
+	{
+	"attributes": { "base": { "strength": 2, "precision": 2 } },
+	"weapons": [ "mace" ],
+	"skills": { "Blacksmith's Keen Eye": 1 }
 	}
 };
