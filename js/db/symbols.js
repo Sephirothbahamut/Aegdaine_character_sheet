@@ -25,13 +25,13 @@ export const symbols = {
 "crush"  : "🔨",
 
 // Weapon types
-"axe"      : "🪓",
-"bow"      : "🏹",
-"mace"     : "🔨",
-"polearm"  : "𐃆",
-"shield"   : "🛡",
-"short"    : "🗡",
-"sword"    : "⚔",
-"throwable": "🪨"
+"Axe"      : "🪓",
+"Bow"      : "🏹",
+"Mace"     : "🔨",
+"Polearm"  : "𐃆",
+"Shield"   : "🛡",
+"Short"    : "🗡",
+"Sword"    : "⚔",
+"Throwable": "🪨"
 };
 

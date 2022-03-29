@@ -188,7 +188,7 @@ export class Character
 						
 						for (const [key, value] of Object.entries(attrs)) 
 							{
-							cache.reduced[key] += value * character_experience.years;
+							cache.full[key] += value * character_experience.years;
 							}
 						}
 					}
@@ -465,7 +465,7 @@ export class Character
 		if(!equipment_data) { return false; }
 		if(equipment_data.requirements)
 			{
-			if(!this.check_requirements(equipment_data.requirements, this._2_experiences)) { return false; }
+			if(!this.check_requirements(equipment_data.requirements, this.attributes._2_experiences)) { return false; }
 			}
 		
 		return true;
@@ -606,8 +606,6 @@ window.data = {
 		"years": 5,
 		"weapons":
 			{
-			"sword": 3,
-			"axe"  : 2
 			}
 		},
 	"School": { "years": 4 }

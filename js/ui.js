@@ -151,16 +151,18 @@ export class ui
 				
 			let col_weapons = utils.html.emplace_child(row, "td");
 			
-			if(experience.weapons)
+			if(experience_data.weapons)
 				{
-				for(const [key, value] of Object.entries(experience.weapons))
+				for(let index in Object.keys(experience_data.weapons))
 					{
+					const key = experience_data.weapons[index];
 					let element = utils.html.emplace_child(col_weapons, "span");
 					
 					let el_name = utils.html.emplace_child(element, "span");
 					el_name.classList.add("symbol");
 					el_name.dataset.id = key;
 					
+					const value = experience.weapons[key];
 					let el_value = utils.html.emplace_child(element, "input");
 					el_value.style.width = "3em";
 					el_value.type = "number";
