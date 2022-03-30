@@ -262,11 +262,16 @@ export class Character
 								this.attributes.cache._3_equipment[attribute] += value;
 								}
 							}
-						}
 							
-					if(socket === "weapons") 
-						{
-						this.evaluate_weapon_stats(equipment);
+							
+						if(socket === "weapons") 
+							{
+							this.evaluate_weapon_stats(equipment);
+							}
+						}
+					else
+						{//if a weapon is unequipped, weapon data is still evaluated on the next step
+						this.unequip(equipment, socket);
 						}
 					}
 				else { console.log("Equipment not found: '" + socket + "/" + equipment + "'"); }
