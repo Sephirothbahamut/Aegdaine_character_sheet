@@ -187,59 +187,21 @@ export class ui
 	static update_equipment(character, slot)
 		{
 		//if(slot === "weapons") { ui.update_weapons(character); return; }
-		const container = document.getElementById("container_" + slot);
-		while(container.lastChild) { container.removeChild(container.lastChild); }
+		const container         = document.getElementById("container_" + slot);
+		const container_attacks = document.getElementById("container_attacks");
 		
 		///////////////// HEADERS
 		if(slot === "weapons")
 			{
-			let headers_row = utils.html.emplace_child(container, "tr");
-				{
-				let col_0 = utils.html.emplace_child(headers_row, "th");
-				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
-				//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
-				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
-				}
-			let headers_2_row = utils.html.emplace_child(container, "tr");
-				{
-				let col_0 = utils.html.emplace_child(headers_2_row, "th"); col_0.colSpan = 2;
-				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = "Bonus";  col_1.colSpan = 2;
-				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
-				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
-				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
-				}
-			let headers_3_row = utils.html.emplace_child(container, "tr");
-				{
-				let col_0 = utils.html.emplace_child(headers_3_row, "th"); col_0.colSpan = 2;
-				let col_1 = utils.html.emplace_child(headers_3_row, "th"); col_1.innerHTML = database.symbols["strength"];
-				let col_2 = utils.html.emplace_child(headers_3_row, "th"); col_2.innerHTML = database.symbols["precision"];
-				let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
-				let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
-				let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
-				}
+			while(container        .childElementCount >= 4) { container        .removeChild(container        .lastChild); }
+			while(container_attacks.childElementCount >= 4) { container_attacks.removeChild(container_attacks.lastChild); }
 			}
 		else
 			{
-			let headers_row = utils.html.emplace_child(container, "tr");
-				{
-				let col_0 = utils.html.emplace_child(headers_row, "th");
-				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
-				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
-				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
-				let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost";
-				}
-			let headers_2_row = utils.html.emplace_child(container, "tr");
-				{
-				let col_0 = utils.html.emplace_child(headers_2_row, "th");
-				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = database.symbols["cut"];
-				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = database.symbols["pierce"];
-				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = database.symbols["crush"];
-				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = database.symbols["strength"];
-				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = database.symbols["precision"];
-				}
+			while(container.childElementCount >= 3) { container.removeChild(container.lastChild); }
 			}
 		
-		function add_element(name, equipped)
+		function add_element(container, name, buttons)
 			{
 			let data = database.equipment[slot][name];
 			if(!data) { console.log("Invalid equipment in character. Equipment is '" + slot + "/" + name + "'"); return; }
@@ -341,7 +303,7 @@ export class ui
 			let col_btn  = utils.html.emplace_child(first_row, "td");  col_btn .rowSpan = col_name.rowSpan;
 					
 					
-			if(equipped)
+			if(buttons == "equipped")
 				{
 				let btn = utils.html.emplace_child(col_btn, "button");
 					{
@@ -353,7 +315,7 @@ export class ui
 					btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
 					}
 				}
-			else
+			else if(buttons == "inventory")
 				{
 				let btn_equip = utils.html.emplace_child(col_btn, "button");
 					{
@@ -389,11 +351,12 @@ export class ui
 		
 		for(const name of character.character_data.equipment[slot])
 			{
-			add_element(name, true);
+			add_element(container, name, "equipped");
+			if(slot === "weapons") { add_element(container_attacks, name, "none"); }
 			}
 		for(const name of character.character_data.inventory.equipment[slot])
 			{
-			add_element(name, false);
+			add_element(container, name, "inventory");
 			}
 		}
 		
@@ -561,7 +524,63 @@ export function setup()
 			window.character.set_tmp(this.dataset.attribute, parseInt(this.value));
 			};
 		}
-
+	//////////////////// Inventory
+		{
+		const containers_ids = ["container_head", "container_body", "container_jewelry"];
+		for(let container_id of containers_ids)
+			{
+			let container = document.getElementById(container_id);
+			let headers_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_row, "th");
+				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Reductions"; col_1.colSpan = 3;
+				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Protection"; col_2.colSpan = 2;
+				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Attributes bonus"; 
+				let col_4 = utils.html.emplace_child(headers_row, "th"); col_4.innerHTML = "Stamina cost";
+				}
+			let headers_2_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_2_row, "th");
+				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = database.symbols["cut"];
+				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = database.symbols["pierce"];
+				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = database.symbols["crush"];
+				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = database.symbols["strength"];
+				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = database.symbols["precision"];
+				}
+			}
+		}
+		{
+		const containers_ids = ["container_weapons", "container_attacks"];
+		for(let container_id of containers_ids)
+			{
+			let container = document.getElementById(container_id);
+			let headers_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_row, "th");
+				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
+				//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
+				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
+				}
+			let headers_2_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_2_row, "th"); col_0.colSpan = 2;
+				let col_1 = utils.html.emplace_child(headers_2_row, "th"); col_1.innerHTML = "Bonus";  col_1.colSpan = 2;
+				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
+				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
+				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
+				}
+			let headers_3_row = utils.html.emplace_child(container, "tr");
+				{
+				let col_0 = utils.html.emplace_child(headers_3_row, "th"); col_0.colSpan = 2;
+				let col_1 = utils.html.emplace_child(headers_3_row, "th"); col_1.innerHTML = database.symbols["strength"];
+				let col_2 = utils.html.emplace_child(headers_3_row, "th"); col_2.innerHTML = database.symbols["precision"];
+				let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
+				let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
+				let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
+				}
+			}
+		}
+	
 	//////////////////// Selectors
 	
 	function setup_selectors(slot)
