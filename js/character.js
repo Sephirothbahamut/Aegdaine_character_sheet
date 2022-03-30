@@ -563,7 +563,7 @@ window.Character = Character;
 
 window.data = {
 "race": "Elf",
-"name": "Donald Fauntlery Duck",
+"name": "Donald Fauntleroy Duck",
 "location": "city",
 "attributes":
 	{

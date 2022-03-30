@@ -43,6 +43,15 @@ export class utils
 			parent.appendChild(element);
 			return element;
 			}
+			
+		static download(content, content_type, fileName) 
+			{
+			const a = document.createElement("a");
+			const file = new Blob([content], { type: content_type });
+			a.href = URL.createObjectURL(file);
+			a.download = fileName;
+			a.click();
+			}
 		};
 		
 	}

@@ -423,9 +423,10 @@ export function setup()
 	let btn_save_character = document.getElementById("btn_save_character");
 	btn_save_character.onclick = function()
 		{
-		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(window.character.character_data, null, "\t"));
+		/*var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(window.character.character_data, null, "\t"));
 		this.setAttribute("href", "data:" + data);
-		this.setAttribute("download", window.character.character_data.name + ".Aegdaine_character_data");
+		this.setAttribute("download", window.character.character_data.name + ".Aegdaine_character_data");*/
+		utils.html.download(JSON.stringify(window.character.character_data), "text/plain", window.character.character_data.name + ".Aegdaine_character_data");
 		};
 	let btn_load_character = document.getElementById("btn_load_character");
 	btn_load_character.onchange = function()
