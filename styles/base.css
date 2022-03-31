@@ -1,6 +1,7 @@
 :root {
   --color_bronze: rgb(180, 120,  50);
-  --color_silver: rgb(160, 165, 170);
+  --color_silver: rgb(245, 250, 255);
+  --color_gold  : rgb(255, 192,   0);
   
   --color_border_table:    var(--color_bronze);
   --color_border_button:   var(--color_bronze);
@@ -198,7 +199,7 @@ button, .button
 	margin: 2px;
 	letter-spacing: 2px;
 	border-radius: 8px;
-	color: #ffc000;
+	color: var(--color_gold);
 	font-size: 18px;
 	font-weight: 400;
 	text-shadow: 0 1px 3px #000;
@@ -216,7 +217,7 @@ td button, th button
 	margin: 0px;
 	letter-spacing: 2px;
 	border-radius: 8px;
-	color: #ffc000;
+	color: var(--color_gold);
 	font-size: 18px;
 	font-weight: 400;
 	text-shadow: 0 1px 3px #000;
@@ -244,7 +245,8 @@ button:active, .button:active
 	
 button.current
 	{
-	background:               var(--color_background_blue);
+	background: var(--color_background_blue);
+	color:      var(--color_silver);
 	}
 	
 ul.navbar
@@ -256,7 +258,8 @@ ul.navbar
 
 ul.navbar li
 	{
-	float: left;
+	/*float: left;*/
+	display: inline;
 	}
 
 ul.navbar li button, ul.navbar li .button

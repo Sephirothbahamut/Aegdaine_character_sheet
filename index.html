@@ -27,36 +27,33 @@
 				{
 				for(let element of document.getElementsByClassName("tab_content"))
 					{
-					if(element.dataset.id == tab_id)
-						{
-						element.style.display = "block";
-						element.classList.add("current");
-						}
-					else
-						{
-						element.style.display = "none";
-						element.classList.remove("current");
-						}
+					if(element.dataset.id == tab_id) { element.style.display = "block"; }
+					else                             { element.style.display = "none";  }
+					}
+				for(let element of document.getElementsByClassName("tab_btn"))
+					{
+					if(element.dataset.id == tab_id) { element.classList.add   ("current"); }
+					else                             { element.classList.remove("current"); }
 					}
 				}
 		</script>
 	</head>
 	<body>
 		<ul class="navbar">
-			<li><button onclick="show('main')"       > Main        </button></li>
-			<li><button onclick="show('inventory')"  > Inventory   </button></li>
-			<li><button onclick="show('experiences')"> Experiences </button></li>
-			<li><button onclick="show('skills')"     > Skills      </button></li>
-			<li><button onclick="show('creation')"   > Creation    </button></li>
+			<li><button onclick="show('main')"        class="tab_btn" data-id="main" id="start"> Main        </button></li>
+			<li><button onclick="show('inventory')"   class="tab_btn" data-id="inventory"  > Inventory   </button></li>
+			<li><button onclick="show('experiences')" class="tab_btn" data-id="experiences"> Experiences </button></li>
+			<li><button onclick="show('skills')"      class="tab_btn" data-id="skills"     > Skills      </button></li>
+			<li><button onclick="show('creation')"    class="tab_btn" data-id="creation"   > Creation    </button></li>
 			<li>
 				<label class="button">
 					<span> Load Character </span><input id="btn_load_character" type="file" style="display: none"/>
 				</label>
 			</li>
 			<li><button id="btn_save_character"> Save character </button></li>
-		</ul>
+		</ul><br/>
 		
-		<div id="sheet" style="float: left">
+		<div id="sheet">
 			<div class="tab_content" data-id="main">
 				<div style="float: left; padding: 2em">
 					<h1> Attributes </h1>
@@ -182,7 +179,6 @@
 			</div>
 			
 			<div class="tab_content" data-id="creation" style="padding: 1em">
-				<h1> Creation </h1>
 				<label>Name</label>
 				<input id="name"/>
 				<label>Race</label>
