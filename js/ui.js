@@ -381,7 +381,8 @@ export class ui
 		
 	static update_skills(character) 
 		{
-		//TODO
+		//TODO https://www.w3schools.com/css/css_tooltip.asp
+		//tooltip on the name lists categories
 		}
 	
 	

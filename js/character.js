@@ -122,6 +122,8 @@ export class Character
 		
 		this.defenses = { "head": make_defenses(), "body": make_defenses() };
 		
+		this.experience_categories = {};
+		
 		this.skills = new Set();
 		
 		this.update_0_race();
@@ -156,7 +158,7 @@ export class Character
 		const experiences = this.character_data.experiences;
 		
 		this.weapons_experience = {};
-		this.skills = new Set();
+		this.experience_categories = {};
 		
 		this.attributes.cache._2_experiences = 
 			{
@@ -192,7 +194,16 @@ export class Character
 							}
 						}
 					}
-					
+				
+				if(experience_data.categories)
+					{
+					for(const category of experience_data.categories)
+						{
+						if(!this.experience_categories[category]) { this.experience_categories[category] = character_experience.years; }
+						else { this.experience_categories[category] += character_experience.years; }
+						}
+					}
+				
 				if(experience_data.weapons && character_experience.weapons)
 					{
 					let weapon_exp_years_tot = 0;
@@ -208,14 +219,6 @@ export class Character
 						}
 					
 					if(weapon_exp_years_tot > character_experience.years) { alert("CHEATER!"); }
-					}
-					
-				if(experience_data.skills)
-					{
-					for(const [skill, min_years] of Object.entries(experience_data.skills))
-						{
-						if(character_experience.years >= min_years) { character.skills.add(skill); }
-						}
 					}
 				}
 			}
@@ -321,14 +324,34 @@ export class Character
 		{
 		this.attributes.cache._5_skills = make_attributes();
 		
-		for(const skill of this.skills)
+		this.skills = new Set();
+		
+		// Add auto_assign skills which requirements are satisfied
+		for(const [skill_name, skill_data] of Object.entries(database.skills))
 			{
-			const skill_data = database.skills[skill];
-			if(!skill.requirements || check_requirements(skill_requirements, this.attributes._4_location))
+			if(skill_data.auto_assign && (!skill_data.requirements || this.check_requirements(skill_data.requirements, this.attributes._4_location)))
 				{
-				if(skill_data.effect) { skill_data.effect(this); }
+				this.skills.add(skill_name);
 				}
 			}
+		
+		// Add character_data skills which requirements are satisfied
+		for(const skill_name of this.character_data.skills)
+			{
+			const skill_data = database.skills[skill_name];
+			if(!skill_data.requirements || check_requirements(skill_data.requirements, this.attributes._4_location))
+				{
+				this.skills.add(skill_name)
+				}
+			}
+			
+		// Evaluate skill effect (if any) for added skills
+		for(const skill_name of this.skills)
+			{
+			const skill_data = database.skills[skill_name];
+			if(skill_data.effect) { skill_data.effect(this); }
+			}			
+		
 		ui.update_skills(this);
 		
 		this.attributes._5_skills = add_attributes(this.attributes._4_location, this.attributes.cache._5_skills);
@@ -443,6 +466,15 @@ export class Character
 				{
 				if(!this.character_data.experiences[key]) { return false; }
 				if(this.character_data.experiences[key].years < value) { return false; }
+				}
+			}
+			
+		if(requirements.experience_categories)
+			{
+			for (const [key, value] of Object.entries(requirements.experience_categories)) 
+				{
+				if(!this.experience_categories[key]) { return false; }
+				if(this.experience_categories[key].years < value) { return false; }
 				}
 			}
 			
@@ -615,6 +647,8 @@ window.data = {
 		},
 	"School": { "years": 4 }
 	},
+	
+"skills": ["Help Developer"],
 
 "equipment":
 	{

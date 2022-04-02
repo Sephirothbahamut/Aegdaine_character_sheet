@@ -4,6 +4,7 @@ export const experiences = {
 	},
 "Noble": 
 	{ 
+	"categories": ["occupation"],
 	"attributes": 
 		{
 		"base": { "social_status": 2, "wisdom": 1 },
@@ -31,14 +32,14 @@ export const experiences = {
 	},
 "Soldier":
 	{
+	"categories": ["occupation", "military"],
 	"attributes": { "base": { "strength": 2, "precision": 2 } },
-	"weapons": [ "Axe", "Sword", "Polearm", "Mace", "Shield" ],
-	"skills": { "Weapon Mastery": 1, "Flurry of Blows": 1 }
+	"weapons": [ "Axe", "Sword", "Polearm", "Mace", "Shield" ]
 	},
 "Blacksmith":
 	{
+	"categories": ["occupation"],
 	"attributes": { "base": { "strength": 2, "precision": 2 } },
-	"weapons": [ "Mace" ],
-	"skills": { "Blacksmith's Keen Eye": 1 }
+	"weapons": [ "Mace" ]
 	}
 };
