@@ -47,6 +47,13 @@ export const skills = {
 	"category": ["combat"],
 	"auto_assign": true,
 	"requirements": { "experiences": { "blacksmith": 5 } },
-	"text": "If your weapon experience with the weapon you're using to attack is higher than the weapon experience of your target with the weapon he's using for defending, your target has a precision and constitution malus equal to the difference in experience for each consecutive attack against the same target. This malus is reset when you attack a different target or at the end of the turn"
+	"text": "During the armor check when you successfully attack an opponent, your precision for the check is increased by your years of experience as a blacksmith."
+	},
+"Fly":
+	{
+	"category": ["racial"],
+	"auto_assign": true,
+	"requirements": { "races": "Winged Human" }, //TODO other winged races
+	"text": "You can fly. Flying in combat costs double your movement stamina per turn. Flying outside of combat costs your movement stamina per minute."
 	}
 };
