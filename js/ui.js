@@ -116,7 +116,7 @@ export class ui
 			let col_attributes_base = utils.html.emplace_child(row, "td");
 				{
 				col_attributes_base.classList.add("numeric");
-				if(experience_data.attributes)
+				if(experience_data.attributes && experience_data.attributes["base"])
 					{
 					for(const [key, value] of Object.entries(experience_data.attributes.base))
 						{
@@ -383,6 +383,24 @@ export class ui
 		{
 		//TODO https://www.w3schools.com/css/css_tooltip.asp
 		//tooltip on the name lists categories
+		
+		let container_skills = document.getElementById("container_skills");
+		while(container_skills.lastChild) { container_skills.removeChild(container_skills.lastChild); }
+		
+		let skills_names = character.skills;
+		
+		for(const skill_name of skills_names)
+			{
+			const skill_data = database.skills[skill_name];
+			
+			let row      = utils.html.emplace_child(container_skills, "tr");
+			let col_name = utils.html.emplace_child(container_skills, "th");
+			let col_desc = utils.html.emplace_child(container_skills, "td");
+			col_desc.classList.add("long_text");
+			
+			col_name.innerHTML = skill_name + (skill_data.effect ? "\n (precalculated)" : "");
+			col_desc.innerHTML = skill_data.text;
+			}
 		}
 	
 	

@@ -1,35 +1,10 @@
 export const experiences = 
 {
-"Studies": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
-"Basic School": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
-"Basic Military training": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
-"Basic Magic training": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
-"Scientific School": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
-"Humanistic School": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	},
+"Basic Education":  {},
+"Basic Military training":  {},
+"Basic Magic training":  {},
+"Scientific Education":  {},
+"Humanistic Education":  {},
 "Mage": 
 	{ 
 	"attributes": 
@@ -41,12 +16,13 @@ export const experiences =
 			"wisdom": 1, 
 			"focus": 1, 
 			"social_status": 1 
-			},
-		"weapons": []
-		}
+			}
+		},
+	"weapons": []
 	},
 "Training": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -90,6 +66,7 @@ export const experiences =
 	},
 "Guard": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -114,6 +91,7 @@ export const experiences =
 	},
 "Soldier": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -129,6 +107,7 @@ export const experiences =
 	},
 "Duelist": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -149,6 +128,7 @@ export const experiences =
 	},
 "Captain": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -165,6 +145,7 @@ export const experiences =
 	},
 "General": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -195,7 +176,6 @@ export const experiences =
 			"senses": 2 
 			}
 		},
-	"weapons": []
 	},
 "Mercant": 
 	{ 
@@ -212,9 +192,8 @@ export const experiences =
 			"senses": 1 
 			}
 		},
-	"weapons": []
 	},
-"Noble/Administration": 
+"Noble": 
 	{ 
 	"attributes": 
 		{
@@ -246,7 +225,6 @@ export const experiences =
 			"focus": 1 
 			}
 		},
-	"weapons": []
 	},
 "Artist": 
 	{ 
@@ -265,7 +243,6 @@ export const experiences =
 			"senses": 1 
 			}
 		},
-	"weapons": []
 	},
 "Musician": 
 	{ 
@@ -285,7 +262,6 @@ export const experiences =
 			"social_status": 1 
 			}
 		},
-	"weapons": []
 	},
 "Architect": 
 	{ 
@@ -302,7 +278,6 @@ export const experiences =
 			"social_status": 1 
 			}
 		},
-	"weapons": []
 	},
 "Alchemist": 
 	{ 
@@ -320,7 +295,6 @@ export const experiences =
 			"focus": 1 
 			}
 		},
-	"weapons": []
 	},
 "Envoy": 
 	{ 
@@ -337,7 +311,6 @@ export const experiences =
 			"social_status": 2 
 			}
 		},
-	"weapons": []
 	},
 "Explorer": 
 	{ 
@@ -411,10 +384,10 @@ export const experiences =
 			"senses": 2 
 			}
 		},
-	"weapons": []
 	},
 "Gladiator": 
 	{ 
+	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
@@ -453,7 +426,6 @@ export const experiences =
 			"eloquence": 1 
 			}
 		},
-	"weapons": []
 	},
 "Reading": 
 	{ 
@@ -466,7 +438,6 @@ export const experiences =
 			"eloquence": -1 
 			}
 		},
-	"weapons": []
 	},
 "Horse Riding": 
 	{ 
@@ -483,7 +454,6 @@ export const experiences =
 			"senses": 1 
 			}
 		},
-	"weapons": []
 	},
 "Gambling": 
 	{ 
@@ -501,7 +471,6 @@ export const experiences =
 			"senses": -1 
 			}
 		},
-	"weapons": []
 	},
 "Brigandage (Wild)": 
 	{ 
@@ -560,11 +529,6 @@ export const experiences =
 			"eloquence": 2 
 			}
 		},
-	"weapons": []
 	},
-"Beggar": 
-	{ 
-	"attributes": {}
-	"weapons": []
-	}
+"Beggar":  {}
 }

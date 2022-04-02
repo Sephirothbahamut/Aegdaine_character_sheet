@@ -185,7 +185,7 @@ export class Character
 					{
 					for (const [location, attrs] of Object.entries(experience_data.attributes)) 
 						{
-						if(!this.attributes.cache._2_experiences[location]) { this.location_attributes_cache[key] = make_attributes(); }
+						if(!this.attributes.cache._2_experiences[location]) { this.attributes.cache._2_experiences[location] = make_attributes(); }
 						let cache = this.attributes.cache._2_experiences[location];
 						
 						for (const [key, value] of Object.entries(attrs)) 
@@ -228,7 +228,7 @@ export class Character
 			//turn linear gain into diminishing returns gain
 			for(let [key, value] of Object.entries(cache.full))
 				{
-				cache.reduced[key] = Math.pow(value, 0.9);
+				cache.reduced[key] = Math.sign(value) * Math.pow(Math.abs(value), 0.9);
 				}
 			}
 		
@@ -616,23 +616,23 @@ window.data = {
 		},
 	"tmp":
 		{
-		"strength"     : 5,
-		"constitution" : 5,
-		"stamina"      : 5,
-		"agility"      : 5,
-		"precision"    : 5,
-		"intelligence" : 5,
-		"wisdom"       : 5,
-		"focus"        : 5,
-		"eloquence"    : 5,
-		"senses"       : 5,
-		"sight"        : 5,
-		"touch"        : 5,
-		"smell"        : 5,
-		"taste"        : 5,
-		"hearing"      : 5,
-		"social_status": 5,
-		"hiddenness"   : 5
+		"strength"     : 0,
+		"constitution" : 0,
+		"stamina"      : 0,
+		"agility"      : 0,
+		"precision"    : 0,
+		"intelligence" : 0,
+		"wisdom"       : 0,
+		"focus"        : 0,
+		"eloquence"    : 0,
+		"senses"       : 0,
+		"sight"        : 0,
+		"touch"        : 0,
+		"smell"        : 0,
+		"taste"        : 0,
+		"hearing"      : 0,
+		"social_status": 0,
+		"hiddenness"   : 0
 		}
 	},
 	
@@ -645,7 +645,7 @@ window.data = {
 			{
 			}
 		},
-	"School": { "years": 4 }
+	"Basic Education": { "years": 4 }
 	},
 	
 "skills": ["Help Developer"],
