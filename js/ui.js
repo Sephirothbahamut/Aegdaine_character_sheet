@@ -36,7 +36,7 @@ export class ui
 			}
 		}
 	
-	static update_tot(attributes)
+	static update_tot(character, attributes)
 		{
 		for(let [key, value] of Object.entries(attributes)) 
 			{
@@ -51,6 +51,9 @@ export class ui
 				}
 			else { console.log(key + " is invalid"); }
 			}
+			
+		document.getElementById("stamina_max").innerHTML = character.stamina_max;
+		document.getElementById("stamina").value = Math.floor(Math.min(character.character_data.stamina_current, character.stamina_max));
 		}
 	
 	static update_experiences(character)
@@ -550,11 +553,28 @@ export function setup()
 		};
 	col_senses_toggle.click();
 	
+	//////////////////// Location and Stamina
 	let location_field = document.getElementById("location");
 	location_field.onchange = function()
 		{
 		window.character.character_data.location = this.value;
 		window.character.update_4_location();
+		};
+		
+	document.getElementById("stamina_move").onclick = function()
+		{
+		document.getElementById("stamina").value -= Math.floor(window.character.stamina_cost);
+		document.getElementById("stamina").onchange();
+		};
+	document.getElementById("stamina_rest").onclick = function()
+		{
+		document.getElementById("stamina").value = parseInt(document.getElementById("stamina").value) + Math.floor(window.character.stamina_max / 10);
+		document.getElementById("stamina").onchange();
+		};
+	document.getElementById("stamina").onchange = function()
+		{
+		this.value = Math.floor(Math.min(window.character.stamina_max, this.value));
+		window.character.character_data.stamina_current = this.value;
 		};
 	
 	//////////////////// Inventory
@@ -688,6 +708,10 @@ export function setup()
 
 export function init()
 	{
+	document.getElementById("stamina_max").innerHTML = window.character.stamina_max;
+	document.getElementById("stamina").value = Math.floor(Math.min(document.getElementById("stamina").value, window.character.stamina_max));
+	document.getElementById("stamina").onchange();
+	
 	//////////////////// Creation
 	let name_field = document.getElementById("name"); 
 	name_field.value = window.character.character_data.name;

@@ -117,6 +117,7 @@ export class Character
 		this.weapons_experience = {};
 		
 		this.stamina_cost = 0;
+		this.stamina_max = 0;
 		
 		this.weapons = {};
 		
@@ -383,7 +384,8 @@ export class Character
 			this.attributes._6_final[key] = utils.clamp(this.attributes._6_final[key], 0, 100);
 			}
 			
-		ui.update_tot(this.attributes._6_final);
+		this.stamina_max = Math.floor(this.attributes._6_final.stamina);
+		ui.update_tot(this, this.attributes._6_final);
 		}
 	
 	set_race(race)
@@ -607,6 +609,7 @@ window.data = {
 "race": "Elf",
 "name": "Donald Fauntleroy Duck",
 "location": "city",
+"stamina_current": 0,
 "attributes":
 	{
 	"rolls": //no individual senses
@@ -648,17 +651,9 @@ window.data = {
 	
 "experiences":
 	{
-	"Noble": 
-		{
-		"years": 5,
-		"weapons":
-			{
-			}
-		},
-	"Basic Education": { "years": 4 }
 	},
 	
-"skills": ["Help Developer"],
+"skills": [],
 
 "equipment":
 	{
