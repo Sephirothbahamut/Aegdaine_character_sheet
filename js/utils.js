@@ -40,11 +40,16 @@ export class utils
 		const sign = Math.sign(x);
 		let abs_retval = 0;
 		const abs_x = Math.abs(x);
-		     if(abs_x <=  10) { abs_retval =         abs_x    ; }
+		/*     if(abs_x <=  10) { abs_retval =         abs_x    ; }
 		else if(abs_x <=  30) { abs_retval =    5  + abs_x / 2; }
 		else if(abs_x <=  70) { abs_retval = 12.5  + abs_x / 4; }
 		else if(abs_x <= 150) { abs_retval = 21.25 + abs_x / 8; }
-		else                  { abs_retval = 21.25 + abs_x / 8; }
+		else                  { abs_retval = 21.25 + abs_x / 8; }*/
+		     if(abs_x <=  20) { abs_retval =         abs_x      ; }
+		else if(abs_x <=  50) { abs_retval =  2/3  + abs_x / 1.5; }
+		else if(abs_x <=  90) { abs_retval = 15    + abs_x / 2  ; }
+		else if(abs_x <= 150) { abs_retval = 37.5  + abs_x / 4  ; }
+		else                  { abs_retval = 37.5  + abs_x / 4  ; }
 		return sign * abs_retval;
 		};
 	static soften_on_tot_precalc(x, tot, precalc)
