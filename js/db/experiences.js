@@ -236,7 +236,7 @@ export const experiences =
 			"stamina": -1, 
 			"precision": 2, 
 			"intelligence": 1, 
-			"focus": 1 
+			"focus": 1
 			},
 		"wild": 
 			{ 
@@ -255,11 +255,33 @@ export const experiences =
 			"intelligence": 1, 
 			"focus": 1, 
 			"eloquence": 1, 
-			"senses": 1 
+			"hearing": 2 
 			},
 		"city": 
 			{ 
 			"social_status": 1 
+			}
+		}
+	},
+"Blacksmith": 
+	{ 
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"strength": 1, 
+			"constitution": 2, 
+			"eloquence": -2, 
+			"senses": -1,
+			"touch": 2
+			},
+		"city": 
+			{ 
+			"social_status": 1 
+			},
+		"wild": 
+			{ 
+			"social_status": -1 
 			}
 		},
 	},

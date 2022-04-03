@@ -384,7 +384,8 @@ export class ui
 			col_desc.classList.add("long_text");
 			
 			col_name.innerHTML = skill_name + (skill_data.effect ? "\n (precalculated)" : "");
-			col_desc.innerHTML = skill_data.text;
+			
+			col_desc.innerHTML = skill_data.text.replaceAll("\n", "<br/>");
 			}
 		}
 	
