@@ -26,7 +26,7 @@ function make_attributes()
 	}
 function update_senses(attributes)
 	{
-	attributes["senses"] = utils.average(attributes["sight"], attributes["touch"], attributes["smell"], attributes["taste"], attributes["hearing"]);
+	attributes["senses"] = /*utils.average*/Math.max(attributes["sight"], attributes["touch"], attributes["smell"], attributes["taste"], attributes["hearing"]);
 	}
 function add_attributes(a, b)
 	{
@@ -41,11 +41,11 @@ function add_attributes(a, b)
 		"focus"        : (a["focus"        ] + b["focus"        ]),
 		"eloquence"    : (a["eloquence"    ] + b["eloquence"    ]),
 		"senses"       : (a["senses"       ] + b["senses"       ]),
-		"sight"        : (a["sight"        ] + b["sight"        ] + b["senses"]),
-		"touch"        : (a["touch"        ] + b["touch"        ] + b["senses"]),
-		"smell"        : (a["smell"        ] + b["smell"        ] + b["senses"]),
-		"taste"        : (a["taste"        ] + b["taste"        ] + b["senses"]),
-		"hearing"      : (a["hearing"      ] + b["hearing"      ] + b["senses"]),
+		"sight"        : (a["sight"        ] + b["sight"        ] + (b["senses"] ? b["senses"] : 0)),
+		"touch"        : (a["touch"        ] + b["touch"        ] + (b["senses"] ? b["senses"] : 0)),
+		"smell"        : (a["smell"        ] + b["smell"        ] + (b["senses"] ? b["senses"] : 0)),
+		"taste"        : (a["taste"        ] + b["taste"        ] + (b["senses"] ? b["senses"] : 0)),
+		"hearing"      : (a["hearing"      ] + b["hearing"      ] + (b["senses"] ? b["senses"] : 0)),
 		"social_status": (a["social_status"] + b["social_status"]),
 		"hiddenness"   : (a["hiddenness"   ] + b["hiddenness"   ])
 		};
@@ -134,9 +134,7 @@ export class Character
 		this.race_data = database.races[this.character_data.race];
 		if(this.race_data === null) { console.log("Character update exception: Invalid race"); }
 			
-		this.attributes._0_race = this.race_data.attributes;
-		
-		update_senses(this.attributes._0_race);
+		this.attributes._0_race = add_attributes(make_attributes(), this.race_data.attributes);
 		
 		ui.update_race(this);
 		this.update_1_rolls();

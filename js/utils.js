@@ -65,7 +65,8 @@ export class utils
 			{
 			element.style.display = b_visible ? true_val : false_val;
 			}
-		static toggle_visibility(element, true_val = "block", false_val = "none") { utils.html.set_visibility(element, element.style.display != true_val, true_val, false_val); }
+		static toggle_visibility(element, true_val = "block", false_val = "none") { utils.html.set_visibility(element, !utils.html.is_visible(element), true_val, false_val); }
+		static is_visible(element, false_val = "none") { return element.style.display != false_val; }
 			
 		static emplace_child(parent, child_type)
 			{
@@ -85,3 +86,5 @@ export class utils
 		};
 		
 	}
+	
+window.utils = utils;

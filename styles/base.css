@@ -16,10 +16,16 @@
     font-family: "pirate_font";
     src: url(./JackPirate.ttf) format("truetype");
 }
+@font-face {
+    font-family: "rapscallion";
+    src: url(./Rapscallion.ttf) format("truetype");
+}
+
 
 * 
 	{
-	font-family: trattatello, cursive;
+	font-family: trattatello, cursive, Arial, Serif, Sans-serif;
+	
 	font-weight: 1;
 	}
 	

@@ -20,18 +20,18 @@ export const symbols = {
 "hiddenness"   : "🐭",
 
 // Attacks/defenses
-"cut"    : "🔪",
-"pierce" : "🏹",
-"crush"  : "🔨",
+"cut"          : "🔪",
+"pierce"       : "🏹",
+"crush"        : "🔨",
 
 // Weapon types
-"Axe"      : "🪓",
-"Bow"      : "🏹",
-"Mace"     : "🔨",
-"Polearm"  : "𐃆",
-"Shield"   : "🛡",
-"Short"    : "🗡",
-"Sword"    : "⚔",
-"Throwable": "🪨"
+"Axe"          : "🪓",
+"Bow"          : "🏹",
+"Mace"         : "🔨",
+"Polearm"      : "↘", //"𐃆",
+"Shield"       : "🛡",
+"Short Weapon" : "🗡",
+"Sword"        : "⚔",
+"Throwable"    : "🪨"
 };
 

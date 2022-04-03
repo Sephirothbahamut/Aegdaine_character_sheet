@@ -538,11 +538,14 @@ export function setup()
 	col_senses_toggle.classList.add("button");
 	col_senses_toggle.onclick = function()
 		{
-		utils.html.toggle_visibility(document.getElementById("attr_base_sight"  ).parentNode, "none", "");
-		utils.html.toggle_visibility(document.getElementById("attr_base_touch"  ).parentNode, "none", "");
-		utils.html.toggle_visibility(document.getElementById("attr_base_smell"  ).parentNode, "none", "");
-		utils.html.toggle_visibility(document.getElementById("attr_base_taste"  ).parentNode, "none", "");
-		utils.html.toggle_visibility(document.getElementById("attr_base_hearing").parentNode, "none", "");
+		let new_visibility = !utils.html.is_visible(document.getElementById("attr_base_sight").parentNode);
+		utils.html.set_visibility(document.getElementById("attr_base_sight"  ).parentNode, new_visibility, "", "none");
+		utils.html.set_visibility(document.getElementById("attr_base_touch"  ).parentNode, new_visibility, "", "none");
+		utils.html.set_visibility(document.getElementById("attr_base_smell"  ).parentNode, new_visibility, "", "none");
+		utils.html.set_visibility(document.getElementById("attr_base_taste"  ).parentNode, new_visibility, "", "none");
+		utils.html.set_visibility(document.getElementById("attr_base_hearing").parentNode, new_visibility, "", "none");
+		
+		this.innerHTML = "Senses " + (new_visibility ? "▼" : "►");
 		};
 	col_senses_toggle.click();
 	

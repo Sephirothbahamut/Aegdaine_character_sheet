@@ -35,7 +35,7 @@ export const experiences =
 			"social_status": -1 
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short", "Sword" ]
+	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
 	},
 "Scout": 
 	{ 
@@ -62,7 +62,7 @@ export const experiences =
 			"hiddenness": 1
 			},
 		},
-	"weapons": [ "Axe", "Short" ]
+	"weapons": [ "Axe", "Short Weapon" ]
 	},
 "Guard": 
 	{ 
@@ -124,7 +124,7 @@ export const experiences =
 			"social_status": 1 
 			}
 		},
-	"weapons": [ "Axe", "Mace", "Polearm", "Short", "Sword" ]
+	"weapons": [ "Axe", "Mace", "Polearm", "Short Weapon", "Sword" ]
 	},
 "Captain": 
 	{ 
@@ -333,7 +333,7 @@ export const experiences =
 			"senses": 1 
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Short" ]
+	"weapons": [ "Axe", "Bow", "Short Weapon" ]
 	},
 "Hunter": 
 	{
@@ -360,7 +360,7 @@ export const experiences =
 			"hiddenness": 2
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Polearm", "Short" ]
+	"weapons": [ "Axe", "Bow", "Polearm", "Short Weapon" ]
 	},
 "Heremit": 
 	{ 
@@ -491,7 +491,7 @@ export const experiences =
 			"hiddenness": 1
 			}
 		},
-	"weapons": [ "Short" ]
+	"weapons": [ "Short Weapon" ]
 	},
 "Thiefing (Town)": 
 	{ 
@@ -512,7 +512,7 @@ export const experiences =
 			"hiddenness": -1
 			}
 		},
-	"weapons": [ "Short" ]
+	"weapons": [ "Short Weapon" ]
 	},
 "Oration": 
 	{ 

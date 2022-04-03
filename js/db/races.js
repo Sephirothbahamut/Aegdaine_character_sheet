@@ -1,50 +1,4 @@
 export const races = {
-"Elf":
-	{
-	"attributes":
-		{
-		"strength"     : 45,
-		"constitution" : 40,
-		"stamina"      : 45,
-		"agility"      : 55,
-		"precision"    : 55,
-		"intelligence" : 55,
-		"wisdom"       : 60,
-		"focus"        : 70,
-		"eloquence"    : 50,
-		"sight"        : 60,
-		"touch"        : 60,
-		"smell"        : 60,
-		"taste"        : 60,
-		"hearing"      : 60,
-		"social_status": 50,
-		"hiddenness"   : 50
-		},
-	"step"             : 0.6
-	},
-"Human":
-	{
-	"attributes":
-		{
-		"strength"     : 50,
-		"constitution" : 50,
-		"stamina"      : 50,
-		"agility"      : 50,
-		"precision"    : 50,
-		"intelligence" : 50,
-		"wisdom"       : 50,
-		"focus"        : 50,
-		"eloquence"    : 50,
-		"sight"        : 50,
-		"touch"        : 50,
-		"smell"        : 50,
-		"taste"        : 50,
-		"hearing"      : 50,
-		"social_status": 50,
-		"hiddenness"   : 50
-		},
-	"step"		       : 0.5
-	},
 "Astral Dragon":
 	{
 	"attributes":
@@ -183,6 +137,52 @@ export const races = {
 		},
 	"step"             : 6
 	},
+"Elf":
+	{
+	"attributes":
+		{
+		"strength"     : 45,
+		"constitution" : 40,
+		"stamina"      : 45,
+		"agility"      : 55,
+		"precision"    : 55,
+		"intelligence" : 55,
+		"wisdom"       : 60,
+		"focus"        : 70,
+		"eloquence"    : 50,
+		"sight"        : 60,
+		"touch"        : 40,
+		"smell"        : 40,
+		"taste"        : 40,
+		"hearing"      : 60,
+		"social_status": 50,
+		"hiddenness"   : 50
+		},
+	"step"             : 0.6
+	},
+"Human":
+	{
+	"attributes":
+		{
+		"strength"     : 50,
+		"constitution" : 50,
+		"stamina"      : 50,
+		"agility"      : 50,
+		"precision"    : 50,
+		"intelligence" : 50,
+		"wisdom"       : 50,
+		"focus"        : 50,
+		"eloquence"    : 50,
+		"sight"        : 50,
+		"touch"        : 50,
+		"smell"        : 50,
+		"taste"        : 50,
+		"hearing"      : 50,
+		"social_status": 50,
+		"hiddenness"   : 50
+		},
+	"step"		       : 0.5
+	},
 "Half elf":
 	{
 	"attributes":
@@ -197,9 +197,9 @@ export const races = {
 		"focus"        : 60,
 		"eloquence"    : 50,
 		"sight"        : 55,
-		"touch"        : 55,
-		"smell"        : 55,
-		"taste"        : 55,
+		"touch"        : 45,
+		"smell"        : 45,
+		"taste"        : 45,
 		"hearing"      : 55,
 		"social_status": 50,
 		"hiddenness"   : 50
@@ -220,9 +220,9 @@ export const races = {
 		"focus"        : 40,
 		"eloquence"    : 40,
 		"sight"        : 40,
-		"touch"        : 40,
+		"touch"        : 60,
 		"smell"        : 40,
-		"taste"        : 40,
+		"taste"        : 60,
 		"hearing"      : 40,
 		"social_status": 40,
 		"hiddenness"   : 55
@@ -243,10 +243,10 @@ export const races = {
 		"focus"        : 50,
 		"eloquence"    : 70,
 		"sight"        : 30,
-		"touch"        : 30,
-		"smell"        : 30,
-		"taste"        : 30,
-		"hearing"      : 30,
+		"touch"        : 80,
+		"smell"        : 60,
+		"taste"        : 60,
+		"hearing"      : 60,
 		"social_status": 10,
 		"hiddenness"   : 55
 		},
@@ -266,9 +266,9 @@ export const races = {
 		"focus"        : 30,
 		"eloquence"    : 10,
 		"sight"        : 70,
-		"touch"        : 70,
+		"touch"        : 30,
 		"smell"        : 70,
-		"taste"        : 70,
+		"taste"        : 60,
 		"hearing"      : 70,
 		"social_status": 10,
 		"hiddenness"   : 60
@@ -288,11 +288,11 @@ export const races = {
 		"wisdom"       : 40,
 		"focus"        : 50,
 		"eloquence"    : 40,
-		"sight"        : 50,
-		"touch"        : 50,
-		"smell"        : 50,
-		"taste"        : 50,
-		"hearing"      : 50,
+		"sight"        : 65,
+		"touch"        : 55,
+		"smell"        : 40,
+		"taste"        : 40,
+		"hearing"      : 60,
 		"social_status": 50,
 		"hiddenness"   : 40
 		},
@@ -312,10 +312,10 @@ export const races = {
 		"focus"        : 30,
 		"eloquence"    : 40,
 		"sight"        : 40,
-		"touch"        : 40,
-		"smell"        : 40,
+		"touch"        : 30,
+		"smell"        : 10,
 		"taste"        : 40,
-		"hearing"      : 40,
+		"hearing"      : 50,
 		"social_status": 10,
 		"hiddenness"   : 40
 		},
@@ -335,37 +335,14 @@ export const races = {
 		"focus"        : 20,
 		"eloquence"    : 70,
 		"sight"        : 40,
-		"touch"        : 40,
-		"smell"        : 40,
+		"touch"        : 50,
+		"smell"        : 55,
 		"taste"        : 40,
-		"hearing"      : 40,
+		"hearing"      : 70,
 		"social_status": 30,
 		"hiddenness"   : 40
 		},
 	"step"             : 0.8
-	},
-"Master Of Masters":
-	{
-	"attributes":
-		{
-		"strength"     : 200,
-		"constitution" : 200,
-		"stamina"      : 200,
-		"agility"      : 200,
-		"precision"    : 200,
-		"intelligence" : 200,
-		"wisdom"       : 200,
-		"focus"        : 200,
-		"eloquence"    : 200,
-		"sight"        : 200,
-		"touch"        : 200,
-		"smell"        : 200,
-		"taste"        : 200,
-		"hearing"      : 200,
-		"social_status": 200,
-		"hiddenness"   : 200
-		},
-	"step"             : 200
 	},
 "Minotaur":
 	{
@@ -381,9 +358,9 @@ export const races = {
 		"focus"        : 20,
 		"eloquence"    : 10,
 		"sight"        : 40,
-		"touch"        : 40,
-		"smell"        : 40,
-		"taste"        : 40,
+		"touch"        : 30,
+		"smell"        : 70,
+		"taste"        : 50,
 		"hearing"      : 40,
 		"social_status": 10,
 		"hiddenness"   : 40
@@ -403,10 +380,10 @@ export const races = {
 		"wisdom"       : 50,
 		"focus"        : 70,
 		"eloquence"    : 30,
-		"sight"        : 30,
-		"touch"        : 30,
-		"smell"        : 30,
-		"taste"        : 30,
+		"sight"        : 80,
+		"touch"        : 20,
+		"smell"        : 40,
+		"taste"        : 50,
 		"hearing"      : 30,
 		"social_status": 20,
 		"hiddenness"   : 30
