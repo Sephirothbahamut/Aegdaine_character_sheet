@@ -109,45 +109,30 @@ export class ui
 				const color = utils.getColorForPercentage((value / 100) + .5, utils.color_percent_red_to_green);
 				let span = utils.html.emplace_child(parent, "span");
 				span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
+				span.dataset.value = value;
 				span.innerHTML = value.toPrecision(3) + " " + database.symbols[key];
 				return span;
 				}
-			
-			let col_attributes_base = utils.html.emplace_child(row, "td");
+				
+			function add_location_col(parent, location)
 				{
-				col_attributes_base.classList.add("numeric");
-				if(experience_data.attributes && experience_data.attributes["base"])
+				let col_attributes = utils.html.emplace_child(parent, "td");
+				if(experience_data.attributes && experience_data.attributes[location])
 					{
-					for(const [key, value] of Object.entries(experience_data.attributes.base))
+					for(const [key, value] of Object.entries(experience_data.attributes[location]))
 						{
-						let my_contribution_to_reduced = ((value * experience.years) / character.attributes.cache._2_experiences["base"].full[key]) * character.attributes.cache._2_experiences["base"].reduced[key];
-						
-						add_attribute_span(col_attributes_base, key, my_contribution_to_reduced);
-						}
-					}
-				}	
-			let col_attributes_city = utils.html.emplace_child(row, "td");
-				{
-				col_attributes_city.classList.add("numeric");
-				if(experience_data.attributes && experience_data.attributes["city"])
-					{
-					for(const [key, value] of Object.entries(experience_data.attributes["city"]))
-						{
-						add_attribute_span(col_attributes_city, key, value * experience.years);
-						}
-					}
-				}	
-			let col_attributes_wild = utils.html.emplace_child(row, "td");
-				{
-				col_attributes_wild.classList.add("numeric");
-				if(experience_data.attributes && experience_data.attributes["wild"])
-					{
-					for(const [key, value] of Object.entries(experience_data.attributes["wild"]))
-						{
-						add_attribute_span(col_attributes_wild, key, value * experience.years);
+						let my_contribution_to_reduced = 
+							character.attributes.cache._2_experiences[location].full[key] == 0 ? 0 :
+								utils.soften_on_tot_precalc(value * experience.years, character.attributes.cache._2_experiences[location].full[key], character.attributes.cache._2_experiences[location].reduced[key]);
+							
+						add_attribute_span(col_attributes, key, my_contribution_to_reduced);
 						}
 					}
 				}
+			
+			add_location_col(row, "base");
+			add_location_col(row, "city");
+			add_location_col(row, "wild");
 				
 			let col_weapons = utils.html.emplace_child(row, "td");
 			
@@ -428,10 +413,10 @@ export class ui
 		let previous = null;
 		if(document.getElementById("sheet"        ).style.display != "none") { previous = "sheet"; }
 		if(document.getElementById("full_selector").style.display != "none") { previous = "full_selector"; }
-		document.getElementById(previous).style.display = "none";
+		utils.html.set_visibility(document.getElementById(previous), false);
 		
 		document.getElementById("message_close_btn").dataset.go_to = previous;
-		document.getElementById("message").style.display = "block";
+		utils.html.set_visibility(document.getElementById("message"), true);
 		}
 	
 	};
@@ -468,7 +453,11 @@ export function setup()
 	//////////////////// Creation
 
 	const name_field = document.getElementById("name");
-	name_field.onchange = function() { window.character.character_data.name = this.value; }
+	name_field.onchange = function()
+		{
+		window.character.character_data.name = this.value; 
+		document.title                       = this.value;
+		}
 
 	const race_selector = document.getElementById("selector_race");
 	race_selector.onchange = function() { window.character.set_race(this.value); }
@@ -544,6 +533,26 @@ export function setup()
 			window.character.set_tmp(this.dataset.attribute, parseInt(this.value));
 			};
 		}
+		
+	const col_senses_toggle = document.getElementById("attr_base_senses").parentNode.getElementsByTagName("th")[1];
+	col_senses_toggle.classList.add("button");
+	col_senses_toggle.onclick = function()
+		{
+		utils.html.toggle_visibility(document.getElementById("attr_base_sight"  ).parentNode, "none", "");
+		utils.html.toggle_visibility(document.getElementById("attr_base_touch"  ).parentNode, "none", "");
+		utils.html.toggle_visibility(document.getElementById("attr_base_smell"  ).parentNode, "none", "");
+		utils.html.toggle_visibility(document.getElementById("attr_base_taste"  ).parentNode, "none", "");
+		utils.html.toggle_visibility(document.getElementById("attr_base_hearing").parentNode, "none", "");
+		};
+	col_senses_toggle.click();
+	
+	let location_field = document.getElementById("location");
+	location_field.onchange = function()
+		{
+		window.character.character_data.location = this.value;
+		window.character.update_4_location();
+		};
+	
 	//////////////////// Inventory
 		{
 		const containers_ids = ["container_head", "container_body", "container_jewelry"];
@@ -666,8 +675,8 @@ export function setup()
 	const message_close_btn = document.getElementById("message_close_btn");
 	message_close_btn.onclick = function()
 		{
-		document.getElementById(this.dataset.go_to).style.display = "block";
-		document.getElementById("message").style.display = "none";
+		utils.html.set_visibility(document.getElementById(this.dataset.go_to), true);
+		utils.html.set_visibility(document.getElementById("message"), false);
 		};
 	}
 	
@@ -676,6 +685,13 @@ export function setup()
 export function init()
 	{
 	//////////////////// Creation
+	let name_field = document.getElementById("name"); 
+	name_field.value = window.character.character_data.name;
+	document.title   = window.character.character_data.name;
+	
+	let location_field = document.getElementById("location");
+	location_field.value = window.character.character_data.location;
+	
 	let roll_fields = document.getElementsByClassName("roll_field")
 
 	for(let i = 0; i < roll_fields.length; i++)

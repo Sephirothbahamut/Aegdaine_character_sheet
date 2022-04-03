@@ -9,7 +9,7 @@ That way, all attributes affecting effects are cumulated in attributes.cache._5_
 export const skills = {
 "Help Developer":
 	{
-	"effect": function(character)
+	"effectz": function(character)
 		{
 		for(const [key, value] of Object.entries(character.attributes._4_location))
 			{

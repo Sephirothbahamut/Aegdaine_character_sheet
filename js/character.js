@@ -135,6 +135,7 @@ export class Character
 		if(this.race_data === null) { console.log("Character update exception: Invalid race"); }
 			
 		this.attributes._0_race = this.race_data.attributes;
+		
 		update_senses(this.attributes._0_race);
 		
 		ui.update_race(this);
@@ -225,10 +226,18 @@ export class Character
 		
 		for (let [location, cache] of Object.entries(this.attributes.cache._2_experiences))
 			{
+			let tot = 0;
+			
+			for(let [key, value] of Object.entries(cache.full)) 
+				{
+				tot += value; 
+				}
+			const softened_tot = utils.soften(tot);
+			
 			//turn linear gain into diminishing returns gain
 			for(let [key, value] of Object.entries(cache.full))
 				{
-				cache.reduced[key] = Math.sign(value) * Math.pow(Math.abs(value), 0.9);
+				cache.reduced[key] = utils.soften_on_tot_precalc(value, tot, softened_tot);
 				}
 			}
 		
@@ -314,9 +323,12 @@ export class Character
 		}
 	update_4_location()
 		{
-		const current_location_attributes_cached = this.attributes.cache._2_experiences[this.character_data.location];
-		let current_location_attributes = current_location_attributes_cached ? current_location_attributes_cached.reduced : make_attributes();
-		this.attributes._4_location = add_attributes(this.attributes._3_equipment, current_location_attributes);
+		if(this.attributes.cache._2_experiences[this.character_data.location])
+			{
+			const current_location_attributes_cached = this.attributes.cache._2_experiences[this.character_data.location];
+			this.attributes._4_location = add_attributes(this.attributes._3_equipment, current_location_attributes_cached.reduced);
+			}
+		else { this.attributes._4_location = this.attributes_3_equipment; }
 		
 		this.update_5_skills();
 		}

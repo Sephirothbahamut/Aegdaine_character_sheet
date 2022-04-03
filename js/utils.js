@@ -35,8 +35,38 @@ export class utils
 	static color_multiply(color, value) { return { "r": color.r * value, "g": color.g * value, "b": color.b * value }; }
 	static color_to_css(color) { return "rgb(" + color.r + ", " + color.g + ", " + color.b + ")"; }
 	
+	static soften(x)
+		{
+		const sign = Math.sign(x);
+		let abs_retval = 0;
+		const abs_x = Math.abs(x);
+		     if(abs_x <=  10) { abs_retval =         abs_x    ; }
+		else if(abs_x <=  30) { abs_retval =    5  + abs_x / 2; }
+		else if(abs_x <=  70) { abs_retval = 12.5  + abs_x / 4; }
+		else if(abs_x <= 150) { abs_retval = 21.25 + abs_x / 8; }
+		else                  { abs_retval = 21.25 + abs_x / 8; }
+		return sign * abs_retval;
+		};
+	static soften_on_tot_precalc(x, tot, precalc)
+		{
+		if(tot == 0) { return 0; }
+		const proportion = x / tot;
+		return precalc * proportion;
+		};
+	static soften_on_tot(x, tot)
+		{
+		if(tot == 0) { return 0; }
+		return soften_on_tot_precalc(x, tot, utils.soften(tot));
+		};
+	
 	static html = class html
 		{
+		static set_visibility(element, b_visible, true_val = "block", false_val = "none")
+			{
+			element.style.display = b_visible ? true_val : false_val;
+			}
+		static toggle_visibility(element, true_val = "block", false_val = "none") { utils.html.set_visibility(element, element.style.display != true_val, true_val, false_val); }
+			
 		static emplace_child(parent, child_type)
 			{
 			const element = document.createElement(child_type);
