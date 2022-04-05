@@ -1,12 +1,14 @@
 :root {
-  --color_bronze: rgb(180, 120,  50);
-  --color_silver: rgb(245, 250, 255);
-  --color_gold  : rgb(255, 192,   0);
-  
-  --color_border_table:    var(--color_bronze);
-  --color_border_button:   var(--color_bronze);
-  --color_background_red:  radial-gradient(circle, #8b0000, #400000);
-  --color_background_blue: radial-gradient(circle, #00008b, #000040);
+	--color_bronze  : rgb(180, 120,  50);
+	--color_copper  : var(--color_bronze);
+	--color_silver  : rgb(200, 190, 170);
+	--color_gold    : rgb(255, 192,   0);
+	--color_platinum: rgb(220, 250, 255);
+
+	--color_border_table:    var(--color_bronze);
+	--color_border_button:   var(--color_bronze);
+	--color_background_red:  radial-gradient(circle, #8b0000, #400000);
+	--color_background_blue: radial-gradient(circle, #00008b, #000040);
 }
 @font-face {
     font-family: "trattatello";
@@ -259,7 +261,7 @@ button:active, .button:active
 button.current
 	{
 	background: var(--color_background_blue);
-	color:      var(--color_silver);
+	color:      var(--color_platinum);
 	}
 	
 /*/////////////////////////////////////////////////////////////////////////////// NAVBAR */

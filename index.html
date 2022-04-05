@@ -91,7 +91,7 @@
 							<td class="numeric" id="stamina_max"></td>
 							<td>
 								<button id="stamina_move"> Move </button>
-								<button id="stamina_rest"/> Rest </button>
+								<button id="stamina_rest"> Rest </button>
 							</td>
 						</tr>
 					</table>
@@ -140,6 +140,24 @@
 						</table>
 					</div>
 				</div>
+
+				<div style="float: left; padding: 1em">
+					<h2> Wealth </h2>
+					<table>
+						<tr>
+							<th style="color: var(--color_platinum)">⍟</th>
+							<th style="color: var(--color_gold)"    >◉</th>
+							<th style="color: var(--color_silver)"  >⦿</th><!--⌾-->
+							<th style="color: var(--color_copper)"  >●</th>
+						</tr>
+						<tr>
+							<td><input class="wealth" data-id="platinum"/></td>
+							<td><input class="wealth" data-id="gold"    /></td>
+							<td><input class="wealth" data-id="silver"  /></td>
+							<td><input class="wealth" data-id="copper"  /></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			
 			<div class="tab_content" data-id="inventory">
@@ -178,6 +196,12 @@
 					<datalist id="selector_choices_jewelry"></datalist>
 					<button id="selector_add_jewelry"> ➕&#xFE0E; </button>
 					<button onclick="full_selector_open('jewelry')"> Advanced ➕&#xFE0E; </button>
+				</div>
+				<div style="float: left; padding: 1em">
+					<h2> Other </h2>
+					<table id="container_other">
+					</table>
+					<button id="container_other_add"> ➕&#xFE0E; </button>
 				</div>
 			</div>
 		

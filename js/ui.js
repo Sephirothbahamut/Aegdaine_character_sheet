@@ -576,7 +576,27 @@ export function setup()
 		this.value = Math.floor(Math.min(window.character.stamina_max, this.value));
 		window.character.character_data.stamina_current = this.value;
 		};
+		
+	//////////////////// Wealth
 	
+	tmp_fields = document.getElementsByClassName("wealth");
+	for(let i = 0; i < tmp_fields.length; i++)
+		{
+		if(!tmp_fields[i]) { continue; }
+		let field = tmp_fields[i];
+		field.style.width = "3em";
+		field.type = "number";
+		field.min = "0";
+		field.max = "9999";
+		field.classList.add("numeric");
+		field.id = "wealth_" + field.dataset.id;
+		
+		field.onchange = function()
+			{
+			window.character.character_data.inventory.wealth[this.dataset.id] = parseInt(this.value);
+			};
+		}
+		
 	//////////////////// Inventory
 		{
 		const containers_ids = ["container_head", "container_body", "container_jewelry"];
@@ -748,6 +768,13 @@ export function init()
 		field.value = window.character.character_data.attributes.tmp[field.dataset.attribute];
 		}
 
+	if(window.character.character_data.inventory.wealth)
+		{
+		for(const [key, value] of Object.entries(window.character.character_data.inventory.wealth))
+			{
+			document.getElementById("wealth_" + key).value = value;
+			}
+		}
 	////////////////// Experiences
 		
 	ui.update_equipment(window.character, "weapons");
