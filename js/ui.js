@@ -38,11 +38,14 @@ export class ui
 	
 	static update_tot(character, attributes)
 		{
+		let total = 0;
 		for(let [key, value] of Object.entries(attributes)) 
 			{
 			let element = document.getElementById("attr_tot_" + key);
 			if(element) 
 				{
+				if(key != "hearing" && key != "touch" && key != "smell" && key != "sight" && key != "taste") { total += value; }
+				
 				element.innerHTML = Math.round(value); 
 				const color = utils.getColorForPercentage(value / 100, utils.color_percent_red_to_green);
 				const light_css_color = utils.color_to_css(utils.color_multiply(color, .6));
@@ -51,7 +54,9 @@ export class ui
 				}
 			else { console.log(key + " is invalid"); }
 			}
-			
+		
+		document.getElementById("attr_tot_total").innerHTML = Math.round(total);
+		
 		document.getElementById("stamina_max").innerHTML = character.stamina_max;
 		document.getElementById("stamina").value = Math.floor(Math.min(character.character_data.stamina_current, character.stamina_max));
 		}
@@ -597,6 +602,16 @@ export function setup()
 			};
 		}
 		
+	//////////////////// Health
+	tmp_fields = document.getElementsByClassName("health")
+	for(let i = 0; i < tmp_fields.length; i++)
+		{
+		if(!tmp_fields[i]) { continue; }
+		let field = tmp_fields[i];
+		field.classList.add("numeric");
+		field.id = "health_" + field.dataset.id;
+		}
+
 	//////////////////// Inventory
 		{
 		const containers_ids = ["container_head", "container_body", "container_jewelry"];
@@ -768,6 +783,7 @@ export function init()
 		field.value = window.character.character_data.attributes.tmp[field.dataset.attribute];
 		}
 
+	////////////////// Wealth
 	if(window.character.character_data.inventory.wealth)
 		{
 		for(const [key, value] of Object.entries(window.character.character_data.inventory.wealth))
@@ -775,6 +791,16 @@ export function init()
 			document.getElementById("wealth_" + key).value = value;
 			}
 		}
+		
+	////////////////// Health
+	if(window.character.character_data.health)
+		{
+		for(const [key, value] of Object.entries(window.character.character_data.health))
+			{
+			document.getElementById("health_" + key).value = value;
+			}
+		}
+		
 	////////////////// Experiences
 		
 	ui.update_equipment(window.character, "weapons");
