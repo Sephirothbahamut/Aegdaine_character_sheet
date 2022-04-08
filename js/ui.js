@@ -663,7 +663,26 @@ export function setup()
 				}
 			}
 		}
-	
+		
+	////////////////// Inventory/other
+	document.getElementById("container_other_add").onclick = function()
+		{
+		const table = document.getElementById("container_other");
+		
+		const row   = utils.html.emplace_child(table, "tr"   ); row  .style.width = "100%"; 
+		const col   = utils.html.emplace_child(row  , "td"   ); col  .style.width = "100%"; 
+		const field = utils.html.emplace_child(col  , "input"); field.style.width = "100%"; 
+		
+		field.dataset.index = window.character.character_data.inventory.other.length;
+		window.character.character_data.inventory.other.push("");
+		field.value = "";
+		
+		field.onchange = function()
+			{
+			window.character.character_data.inventory.other[this.dataset.index] = this.value;
+			};
+		}
+		
 	//////////////////// Wealth
 	tmp_fields = document.getElementsByClassName("wealth");
 	for(let i = 0; i < tmp_fields.length; i++)
@@ -821,6 +840,33 @@ export function init()
 		field.value = window.character.character_data.attributes.tmp[field.dataset.attribute];
 		}
 
+	
+	////////////////// Inventory/other
+		{
+		let table = document.getElementById("container_other");
+		while(table.lastChild) { table.removeChild(table.lastChild); }
+		
+		if(window.character.character_data.inventory.other)
+			{
+			let table = document.getElementById("container_other");
+			for(let i = 0; i < window.character.character_data.inventory.other.length; i++)
+				{
+				const data  = window.character.character_data.inventory.other[i];
+				const row   = utils.html.emplace_child(table, "tr"      ); row  .style.width = "100%"; 
+				const col   = utils.html.emplace_child(row  , "td"      ); col  .style.width = "100%"; 
+				const field = utils.html.emplace_child(col  , "textarea"); field.style.width = "100%"; 
+				
+				field.dataset.index = i;
+				field.value = data;
+				
+				field.onchange = function()
+					{
+					window.character.character_data.inventory.other[this.dataset.index] = this.value;
+					};
+				}
+			}
+		}
+		
 	////////////////// Wealth
 	if(window.character.character_data.inventory.wealth)
 		{
