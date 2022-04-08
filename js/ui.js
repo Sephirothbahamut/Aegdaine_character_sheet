@@ -291,6 +291,27 @@ export class ui
 				let col_count = utils.html.emplace_child(first_row, "td"); col_count.rowSpan = col_name.rowSpan;
 				col_count.classList.add("numeric");
 				col_count.innerHTML = Math.round(weapon_stats.attacks_count);
+				
+				
+				let col_def_constitution = utils.html.emplace_child(first_row, "td"); 
+				let col_def_agility      = utils.html.emplace_child(first_row, "td"); 
+				
+				col_def_constitution.rowSpan = col_name.rowSpan;
+				col_def_agility     .rowSpan = col_name.rowSpan;
+				
+				col_def_constitution.classList.add("numeric");
+				col_def_agility     .classList.add("numeric");
+				
+				if(data.defenses && data.defenses.bonus)
+					{
+					col_def_constitution.innerHTML = data.defenses.bonus.constitution ? data.defenses.bonus.constitution : 0;
+					col_def_agility     .innerHTML = data.defenses.bonus.agility      ? data.defenses.bonus.agility      : 0;
+					}
+				else
+					{
+					col_def_constitution.innerHTML = 0;
+					col_def_agility     .innerHTML = 0;
+					}
 				}
 					
 			let col_btn  = utils.html.emplace_child(first_row, "td");  col_btn .rowSpan = col_name.rowSpan;
@@ -582,45 +603,6 @@ export function setup()
 		window.character.character_data.stamina_current = this.value;
 		};
 		
-	//////////////////// Wealth
-	
-	tmp_fields = document.getElementsByClassName("wealth");
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.style.width = "3em";
-		field.type = "number";
-		field.min = "0";
-		field.max = "9999";
-		field.classList.add("numeric");
-		field.id = "wealth_" + field.dataset.id;
-		
-		field.onchange = function()
-			{
-			window.character.character_data.inventory.wealth[this.dataset.id] = parseInt(this.value);
-			};
-		}
-		
-	//////////////////// Health
-	tmp_fields = document.getElementsByClassName("health")
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.style.width = "3em";
-		field.type = "number";
-		field.min = "0";
-		field.max = "9999";
-		field.classList.add("numeric");
-		field.id = "health_" + field.dataset.id;
-		
-		field.onchange = function()
-			{
-			window.character.character_data.health[this.dataset.id] = parseInt(this.value);
-			};
-		}
-
 	//////////////////// Inventory
 		{
 		const containers_ids = ["container_head", "container_body", "container_jewelry"];
@@ -655,8 +637,8 @@ export function setup()
 				{
 				let col_0 = utils.html.emplace_child(headers_row, "th");
 				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
-				//let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Defenses";
-				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Actions"; col_3.colSpan = 2;
+				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Actions"; col_2.colSpan = 2;
+				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Defense"; col_3.colSpan = 2;
 				}
 			let headers_2_row = utils.html.emplace_child(container, "tr");
 				{
@@ -665,6 +647,7 @@ export function setup()
 				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
 				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
 				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
+				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = "Bonus";  col_5.colSpan = 2;
 				}
 			let headers_3_row = utils.html.emplace_child(container, "tr");
 				{
@@ -674,10 +657,56 @@ export function setup()
 				let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
 				let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
 				let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
+				let col_6 = utils.html.emplace_child(headers_3_row, "th"); col_6.colSpan = 2;
+				let col_7 = utils.html.emplace_child(headers_3_row, "th"); col_7.innerHTML = database.symbols["constitution"];
+				let col_8 = utils.html.emplace_child(headers_3_row, "th"); col_8.innerHTML = database.symbols["agility"];
 				}
 			}
 		}
 	
+	//////////////////// Wealth
+	tmp_fields = document.getElementsByClassName("wealth");
+	for(let i = 0; i < tmp_fields.length; i++)
+		{
+		if(!tmp_fields[i]) { continue; }
+		let field = tmp_fields[i];
+		field.style.width = "3em";
+		field.type = "number";
+		field.min = "0";
+		field.max = "9999";
+		field.classList.add("numeric");
+		field.id = "wealth_" + field.dataset.id;
+		
+		field.onchange = function()
+			{
+			window.character.character_data.inventory.wealth[this.dataset.id] = parseInt(this.value);
+			};
+		}
+		
+	//////////////////// Health
+	tmp_fields = document.getElementsByClassName("health")
+	for(let i = 0; i < tmp_fields.length; i++)
+		{
+		if(!tmp_fields[i]) { continue; }
+		let field = tmp_fields[i];
+		field.style.width = "3em";
+		field.type = "number";
+		field.min = "0";
+		field.max = "999";
+		field.classList.add("numeric");
+		field.id = "health_" + field.dataset.id;
+		
+		field.onchange = function()
+			{
+			window.character.character_data.health[this.dataset.id] = parseInt(this.value);
+			
+			
+			const color = utils.getColorForPercentage(this.value / 100, utils.color_percent_red_to_green);
+			const light_css_color = utils.color_to_css(utils.color_multiply(color, .6));
+			const dark__css_color = utils.color_to_css(utils.color_multiply(color, .4));
+			field.style.background = "linear-gradient(to right, " + light_css_color + " " + this.value + "%, " + dark__css_color + " " + this.value + "%)";
+			};
+		}
 	//////////////////// Selectors
 	
 	function setup_selectors(slot)
@@ -806,7 +835,9 @@ export function init()
 		{
 		for(const [key, value] of Object.entries(window.character.character_data.health))
 			{
-			document.getElementById("health_" + key).value = value;
+			let element = document.getElementById("health_" + key);
+			element.value = value;
+			element.onchange();
 			}
 		}
 		

@@ -88,9 +88,62 @@ function merge_defenses(a, b)
 
 export class Character
 	{
+	validate_character_data()
+		{
+		let data = this.character_data;
+		
+		if(!data.hasOwnProperty("race"           )) { data.race            = Object.keys(database.races)[0]; }
+		if(!data.hasOwnProperty("name"           )) { data.name            = "Donald Fauntleroy Duck"; }
+		if(!data.hasOwnProperty("location"       )) { data.location        = "city"; }
+		if(!data.hasOwnProperty("stamina_current")) { data.stamina_current = 999; }
+		if(!data.hasOwnProperty("attributes"     )) { data.attributes = {}; }
+			
+		if(!data.attributes.hasOwnProperty("rolls")) { data.attributes.rolls = make_attributes(); }
+		if(!data.attributes.hasOwnProperty("tmp"  )) { data.attributes.tmp   = make_attributes(); }
+		
+		if(!data.hasOwnProperty("experiences")) { data.experiences = {}; }
+		if(!data.hasOwnProperty("skills"     )) { data.skills = []; }
+		
+		if(!data.hasOwnProperty("equipment")) { data.equipment = {}; }
+		
+		if(!data.equipment.hasOwnProperty("head"   )) { data.equipment.head    = []; }
+		if(!data.equipment.hasOwnProperty("body"   )) { data.equipment.body    = []; }
+		if(!data.equipment.hasOwnProperty("jewelry")) { data.equipment.jewelry = []; }
+		if(!data.equipment.hasOwnProperty("weapons")) { data.equipment.weapons = []; }
+		
+		if(!data.hasOwnProperty("inventory")) { data.inventory = {}; }
+		
+		if(!data.inventory.hasOwnProperty("equipment")) { data.inventory.equipment = {}; }
+		if(!data.inventory.equipment.hasOwnProperty("head"   )) { data.inventory.equipment.head    = []; }
+		if(!data.inventory.equipment.hasOwnProperty("body"   )) { data.inventory.equipment.body    = []; }
+		if(!data.inventory.equipment.hasOwnProperty("jewelry")) { data.inventory.equipment.jewelry = []; }
+		if(!data.inventory.equipment.hasOwnProperty("weapons")) { data.inventory.equipment.weapons = []; }
+		
+		if(!data.inventory.hasOwnProperty("wealth")) { data.inventory.wealth = {}; }
+		if(!data.inventory.wealth.hasOwnProperty("platinum")) { data.inventory.wealth.platinum = 0; }
+		if(!data.inventory.wealth.hasOwnProperty("gold"    )) { data.inventory.wealth.gold     = 0; }
+		if(!data.inventory.wealth.hasOwnProperty("silver"  )) { data.inventory.wealth.silver   = 0; }
+		if(!data.inventory.wealth.hasOwnProperty("copper"  )) { data.inventory.wealth.copper   = 0; }
+		
+		if(!data.inventory.hasOwnProperty("other")) { data.inventory.other = []; }
+		
+		
+	
+		if(!data.hasOwnProperty("health")) { data.health = {}; }
+
+		if(!data.health.hasOwnProperty("soul"  )) { data.health.soul   = 100; }
+		if(!data.health.hasOwnProperty("head"  )) { data.health.head   = 100; }
+		if(!data.health.hasOwnProperty("body"  )) { data.health.body   = 100; }
+		if(!data.health.hasOwnProperty("arm_ll")) { data.health.arm_ll = 100; }
+		if(!data.health.hasOwnProperty("arm_rr")) { data.health.arm_rr = 100; }
+		if(!data.health.hasOwnProperty("leg_ll")) { data.health.leg_ll = 100; }
+		if(!data.health.hasOwnProperty("leg_rr")) { data.health.leg_rr = 100; }
+		}
+		
 	constructor(character_data_json)
 		{
 		this.character_data = character_data_json;
+		this.validate_character_data();
 		
 		this.attributes = {
 			"_0_race"       : make_attributes(),
@@ -599,101 +652,9 @@ export class Character
 		else { ui.update_equipment(this, socket); }
 		}
 	//////////////////////////////// EQUIPMENT END
-	
-	
 	}
 	
 window.Character = Character;
 
-window.data = {
-"race": "Elf",
-"name": "Donald Fauntleroy Duck",
-"location": "city",
-"stamina_current": 0,
-"attributes":
-	{
-	"rolls": //no individual senses
-		{
-		"strength"     : 10,
-		"constitution" : 10,
-		"stamina"      : 10,
-		"agility"      : 10,
-		"precision"    : 10,
-		"intelligence" : 10,
-		"wisdom"       : 10,
-		"focus"        : 10,
-		"eloquence"    : 10,
-		"senses"       : 10,
-		"social_status": 10,
-		"hiddenness"   : 10
-		},
-	"tmp":
-		{
-		"strength"     : 0,
-		"constitution" : 0,
-		"stamina"      : 0,
-		"agility"      : 0,
-		"precision"    : 0,
-		"intelligence" : 0,
-		"wisdom"       : 0,
-		"focus"        : 0,
-		"eloquence"    : 0,
-		"senses"       : 0,
-		"sight"        : 0,
-		"touch"        : 0,
-		"smell"        : 0,
-		"taste"        : 0,
-		"hearing"      : 0,
-		"social_status": 0,
-		"hiddenness"   : 0
-		}
-	},
-	
-"experiences":
-	{
-	},
-	
-"skills": [],
-
-"equipment":
-	{
-	"head":    [ "Kettle" ],
-	"body":    [],
-	"jewelry": [],
-	"weapons": []
-	},
-
-"inventory":
-	{
-	"wealth":
-		{
-		"platinum": 0,
-		"gold"    : 0,
-		"silver"  : 0,
-		"copper"  : 0
-		},
-	"equipment":
-		{
-		"head":    [],
-		"body":    [],
-		"jewelry": [],
-		"weapons": []
-		},
-	"other":
-		{
-		"Name": "description"
-		}
-	},
-	
-"health":
-	{
-	"soul"  : 100,
-	"head"  : 100,
-	"body"  : 100,
-	"arm_ll": 100,
-	"arm_rr": 100,
-	"leg_ll": 100,
-	"leg_rr": 100,
-	}
-};
+window.data = {};
 
