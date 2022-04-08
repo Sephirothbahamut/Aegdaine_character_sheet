@@ -966,7 +966,7 @@ export const weapons = {
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
-	"experience_per_attack": 4,
+	"experience_per_attack": 1,
 	"attacks":
 		{
 		"Thrust":
@@ -986,7 +986,7 @@ export const weapons = {
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
-	"experience_per_attack": 4,
+	"experience_per_attack": 1,
 	"attacks":
 		{
 		"Thrust":
