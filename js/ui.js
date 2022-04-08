@@ -608,8 +608,17 @@ export function setup()
 		{
 		if(!tmp_fields[i]) { continue; }
 		let field = tmp_fields[i];
+		field.style.width = "3em";
+		field.type = "number";
+		field.min = "0";
+		field.max = "9999";
 		field.classList.add("numeric");
 		field.id = "health_" + field.dataset.id;
+		
+		field.onchange = function()
+			{
+			window.character.character_data.health[this.dataset.id] = parseInt(this.value);
+			};
 		}
 
 	//////////////////// Inventory
