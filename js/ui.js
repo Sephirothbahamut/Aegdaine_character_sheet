@@ -379,12 +379,17 @@ export class ui
 		function inner_update(element, value, offset, divide_by)
 			{
 			const color = utils.getColorForPercentage((value + offset) / divide_by, utils.color_percent_red_to_green);
+			if(!element)
+				{
+				console.log("a");
+				}
 			element.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
 			element.innerHTML = value;
 			}
 		
 		for(const [key, value] of Object.entries(character.defenses))
 			{
+			if (key == "jewelry") { continue; }
 			inner_update(document.getElementById("defense_" + key + "_reductions_cut"      ), character.defenses[key].reductions.cut      , 0, 100);
 			inner_update(document.getElementById("defense_" + key + "_reductions_pierce"   ), character.defenses[key].reductions.pierce   , 0, 100);
 			inner_update(document.getElementById("defense_" + key + "_reductions_crush"    ), character.defenses[key].reductions.crush    , 0, 100);
