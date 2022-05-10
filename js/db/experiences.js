@@ -177,7 +177,29 @@ export const experiences =
 			}
 		},
 	},
-"Mercant": 
+"Druid":
+	{	
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"eloquence": -1,
+			"hiddenness": 1
+			},
+		"city":
+			{
+			"senses": -1,
+			"social_status": -2
+			}
+		"wild": 
+			{ 
+			"intelligence": 1, 
+			"wisdom": 1,
+			"social_status": 2
+			}
+		},
+	},
+"Shopkeeper": 
 	{ 
 	"attributes": 
 		{
@@ -192,6 +214,26 @@ export const experiences =
 			"senses": 1 
 			}
 		},
+	},
+"Mercant":
+	{
+	"attributes":
+		{
+		"base": 
+			{ 
+			"stamina": 1, 
+			"hiddenness": -2
+			},
+		"city": 
+			{ 
+			"eloquence": 1,
+			"wisdom": 1
+			}
+		"social_status": 
+			{ 
+			"eloquence": 1
+			}
+		}
 	},
 "Noble": 
 	{ 
@@ -224,7 +266,29 @@ export const experiences =
 			"wisdom": 1, 
 			"focus": 1 
 			}
-		},
+		}
+	},
+"Medic":
+	{
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"intelligence": 1,
+			"focus": 1,
+			"strength": -1,
+			"agility": -1
+			},
+		"city": 
+			{ 
+			"wisdom": 1,
+			"social_status": 1
+			}
+		"wild":
+			{
+			"constitution": -1
+			}
+		}
 	},
 "Artist": 
 	{ 
@@ -342,11 +406,11 @@ export const experiences =
 			{ 
 			"stamina": 1, 
 			"precision": -1, 
-			"wisdom": 1, 
-			"focus": -1 
+			"wisdom": 1
 			},
 		"city": 
-			{ 
+			{  
+			"focus": -1,
 			"eloquence": 1, 
 			"social_status": 1 
 			},
