@@ -190,14 +190,14 @@ export const experiences =
 			{
 			"senses": -1,
 			"social_status": -2
-			}
+			},
 		"wild": 
 			{ 
 			"intelligence": 1, 
 			"wisdom": 1,
 			"social_status": 2
 			}
-		},
+		}
 	},
 "Shopkeeper": 
 	{ 
@@ -228,7 +228,7 @@ export const experiences =
 			{ 
 			"eloquence": 1,
 			"wisdom": 1
-			}
+			},
 		"social_status": 
 			{ 
 			"eloquence": 1
@@ -283,7 +283,7 @@ export const experiences =
 			{ 
 			"wisdom": 1,
 			"social_status": 1
-			}
+			},
 		"wild":
 			{
 			"constitution": -1
