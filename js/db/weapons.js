@@ -2,7 +2,7 @@ export const weapons = {
 "Arming Sword": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 60 }, "weapons_experience": { "Sword": 2 } },
+	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -47,7 +47,7 @@ export const weapons = {
 "Arming Sword (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 40, "precision": 60 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -84,7 +84,7 @@ export const weapons = {
 "Arming Sword (murder stroke)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 55, "precision": 40 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -122,7 +122,7 @@ export const weapons = {
 "Falchion": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 45 }, "weapons_experience": { "Sword": 2 } },
+	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -168,7 +168,7 @@ export const weapons = {
 "Broadsowrd": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 50 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -214,7 +214,7 @@ export const weapons = {
 "Broadsword (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 50 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -251,7 +251,7 @@ export const weapons = {
 "Rapier": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 25, "precision": 60 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -297,7 +297,7 @@ export const weapons = {
 "Estoc": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 25, "precision": 60 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 18 }, "precision": { "value": 35 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -342,7 +342,7 @@ export const weapons = {
 "Bastard Sword (one handed)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 55, "precision": 60 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 4,
@@ -389,7 +389,7 @@ export const weapons = {
 "Bastard Sword (two handed)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 50 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -434,7 +434,7 @@ export const weapons = {
 "Bastard Sword (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 40, "precision": 50 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -471,7 +471,7 @@ export const weapons = {
 "Bastard Sword (murder stroke)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 55, "precision": 40 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -509,7 +509,7 @@ export const weapons = {
 "Cutting Longsword": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 50 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -555,7 +555,7 @@ export const weapons = {
 "Cutting Longsword (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 50 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -592,7 +592,7 @@ export const weapons = {
 "Cutting Longsword (murder stroke)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 55, "precision": 40 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -630,7 +630,7 @@ export const weapons = {
 "Thrusting Longsword": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 50 }, "weapons_experience": { "Sword": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -676,7 +676,7 @@ export const weapons = {
 "Thrusting Longsword (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 50 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 23 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -713,7 +713,7 @@ export const weapons = {
 "Thrusting Longsword (murder stroke)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 55, "precision": 40 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -751,7 +751,7 @@ export const weapons = {
 "Claymore": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 60, "precision": 50 }, "weapons_experience": { "Sword": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 40 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 4,
@@ -791,7 +791,7 @@ export const weapons = {
 "Claymore (halfswording)": 
 	{
 	"type": "Sword",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 50 }, "weapons_experience": { "Sword": 5 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 5 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -821,7 +821,7 @@ export const weapons = {
 "Blunt Mace": 
 	{
 	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 20 }, "weapons_experience": { "Mace": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Mace": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -849,7 +849,7 @@ export const weapons = {
 "Spiked Mace": 
 	{
 	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 20 }, "weapons_experience": { "Mace": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 } }, "weapons_experience": { "Mace": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -879,7 +879,7 @@ export const weapons = {
 "Warhammer": 
 	{
 	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": 60, "precision": 30 }, "weapons_experience": { "Mace": 2 } },
+	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 20 } }, "weapons_experience": { "Mace": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -908,7 +908,7 @@ export const weapons = {
 "Chained Morningstar": 
 	{
 	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": 60, "precision": 20 }, "weapons_experience": { "Mace": 2 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 40 } }, "weapons_experience": { "Mace": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 4,
@@ -929,6 +929,7 @@ export const weapons = {
 "Woodchopping": 
 	{
 	"type": "Axe",
+	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Axe": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -949,6 +950,7 @@ export const weapons = {
 "Battle Axe": 
 	{
 	"type": "Axe",
+	"requirements":	{ "attributes": { "strength": { "value": 20 } }, "weapons_experience": { "Axe": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -969,6 +971,7 @@ export const weapons = {
 "Daneaxe": 
 	{
 	"type": "Axe",
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 20 } }, "weapons_experience": { "Axe": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -989,7 +992,7 @@ export const weapons = {
 "Ruby Axe of Courage":
 	{
 	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": 70, "precision": 30 }, "weapons_experience": { "Axe": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 50 }, "precision": { "value": 50 } }, "weapons_experience": { "Axe": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -1010,7 +1013,7 @@ export const weapons = {
 "Spear": 
 	{
 	"type": "Polearm",
-	"requirements":	{ "attributes": { "strength": 15, "precision": 40 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1030,7 +1033,7 @@ export const weapons = {
 "Short Spear": 
 	{
 	"type": "Polearm",
-	"requirements":	{ "attributes": { "strength": 10, "precision": 30 }, "weapons_experience": { "Polearm": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 15 }, "precision": { "value": 30 } }, "weapons_experience": { "Polearm": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -1050,6 +1053,7 @@ export const weapons = {
 "Leaf Blade": 
 	{
 	"type": "Polearm",
+	"requirements":	{ "attributes": { "strength": { "value": 18 }, "precision": { "value": 20 } }, "weapons_experience": { "Polearm": 1 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1101,7 +1105,7 @@ export const weapons = {
 "Knife": 
 	{
 	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "strength": 0, "precision": 50 }, "weapons_experience": { "Short Weapon": 1 } },
+	"requirements":	{ "attributes": { "precision": { "value": 30 } }, "weapons_experience": { "Short Weapon": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -1137,7 +1141,7 @@ export const weapons = {
 "Dagger": 
 	{
 	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "strength": 20, "precision": 70 }, "weapons_experience": { "Short Weapon": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 40 } }, "weapons_experience": { "Short Weapon": 4 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -1173,7 +1177,7 @@ export const weapons = {
 "Katar": 
 	{
 	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "strength": 40, "precision": 65 }, "weapons_experience": { "Short Weapon": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Short Weapon": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -1209,7 +1213,7 @@ export const weapons = {
 "Round Shield (Center Grip)": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 60, "precision": 40 }, "weapons_experience": { "Shield": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 40 }, "precision": { "value": 10 } }, "weapons_experience": { "Shield": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1245,7 +1249,7 @@ export const weapons = {
 "Heater Shield": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 45, "precision": 10 }, "weapons_experience": { "Shield": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Shield": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1280,7 +1284,7 @@ export const weapons = {
 "Kite Shield": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 50, "precision": 10 }, "weapons_experience": { "Shield": 2 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 } }, "weapons_experience": { "Shield": 2 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1315,7 +1319,7 @@ export const weapons = {
 "Buckler": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 30, "precision": 60 }, "weapons_experience": { "Shield": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Shield": 3 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,
@@ -1351,7 +1355,7 @@ export const weapons = {
 "Tower Shield": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 70, "precision": 0 }, "weapons_experience": { "Shield": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 50 } }, "weapons_experience": { "Shield": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
@@ -1386,7 +1390,7 @@ export const weapons = {
 "Celtic Shield": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 60, "precision": 10 }, "weapons_experience": { "Shield": 1 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 10 } }, "weapons_experience": { "Shield": 1 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 2,
@@ -1422,7 +1426,7 @@ export const weapons = {
 "Spiked Buckler": 
 	{
 	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": 35, "precision": 65 }, "weapons_experience": { "Shield": 4 } },
+	"requirements":	{ "attributes": { "strength": { "value": 23 }, "precision": { "value": 35 } }, "weapons_experience": { "Shield": 4 } },
 	"hands": 1,
 	"stamina_cost": 0,
 	"stamina_per_attack": 1,

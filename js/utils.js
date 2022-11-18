@@ -1,5 +1,7 @@
 export class utils
 	{
+	static worsen_value(value, flat_decrease) { return (value > 0 ? value / 2 : value) - flat_decrease; }
+	
 	static clamp(num, min, max) { return Math.min(Math.max(num, min), max); }
 	static average(...args) 
 		{
@@ -63,6 +65,30 @@ export class utils
 		if(tot == 0) { return 0; }
 		return soften_on_tot_precalc(x, tot, utils.soften(tot));
 		};
+		
+	static string = class string
+		{
+		static capitalize_word(word) { return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(); };
+	
+		static capitalize_arr(arr) { return arr.map(element => {
+				return capitalize(element);
+				});
+			}
+			
+		static capitalize_string(string)
+			{
+			let arr = string.split(' ');
+			arr = arr.map(element => { return utils.string.capitalize_word(element); });
+			
+			return arr.join(' ');
+			}
+		
+		static fancify(string)
+			{
+			let out = string.replace('_', ' ');
+			return utils.string.capitalize_string(out);
+			}
+		}
 	
 	static html = class html
 		{

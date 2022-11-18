@@ -1,23 +1,4 @@
 export const symbols = {
-	
-// Attributes
-"strength"     : "💪",
-"constitution" : "🏋",
-"stamina"      : "🏃",
-"agility"      : "🍃",
-"precision"    : "🎯",
-"intelligence" : "🧠",
-"wisdom"       : "📖",
-"focus"        : "🌌",
-"eloquence"    : "💬",
-"senses"       : "⬠",
-"sight"        : "👀",
-"touch"        : "✋",
-"smell"        : "👃",
-"taste"        : "👅",
-"hearing"      : "👂",
-"social_status": "✨",
-"hiddenness"   : "🐭",
 
 // Attacks/defenses
 "cut"          : "🔪",
@@ -34,4 +15,3 @@ export const symbols = {
 "Sword"        : "⚔",
 "Throwable"    : "🪨"
 };
-

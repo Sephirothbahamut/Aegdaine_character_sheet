@@ -1,5 +1,6 @@
 import { database  as database  } from "./database.js";
 import { Character as Character } from "./character.js";
+import { attributes as attributes } from "./attributes.js";
 import { utils as utils } from "./utils.js";
 
 
@@ -15,47 +16,66 @@ export class ui
 		
 	static update_rolls(character)
 		{
-		for(let [key, value] of Object.entries(character.character_data.attributes.rolls)) 
+		attributes.for_each((arr) =>
 			{
-			let element = document.getElementById("roll_field_" + key);
+			let element = document.getElementById("roll_field_" + arr.join("_"));
 			if(element) 
 				{
-				element.innerHTML = Math.round(value);
-				var color = utils.getColorForPercentage(value / 20, utils.color_percent_red_to_green);
+				element.innerHTML = Math.round(element.value);
+				var color = utils.getColorForPercentage(element.value / 20, utils.color_percent_red_to_green);
 				element.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
 				}
-			}
+			});
 		}
 		
-	static update_base(attributes)
+	static update_base(current_attributes)
 		{
-		for(let [key, value] of Object.entries(attributes)) 
+		attributes.for_each((arr) =>
 			{
-			let element = document.getElementById("attr_base_" + key);
-			if(element) { element.innerHTML = Math.round(value); }
-			}
+			let element = document.getElementById("attr_base_" + arr.join("_"));
+			if(element) { element.innerHTML = Math.round(current_attributes.get_value_arr(arr)); }
+			});
 		}
 	
-	static update_tot(character, attributes)
+	static update_tot(character, current_attributes)
 		{
 		let total = 0;
-		for(let [key, value] of Object.entries(attributes)) 
+		let max   = 0;
+		
+		attributes.for_each((arr) =>
 			{
-			let element = document.getElementById("attr_tot_" + key);
+			let element = document.getElementById("attr_tot_" + arr.join("_"));
 			if(element) 
 				{
-				if(key != "hearing" && key != "touch" && key != "smell" && key != "sight" && key != "taste") { total += value; }
-				
+				max += 100;
+				const value = current_attributes.get_value_arr(arr);
+				total += value;
 				element.innerHTML = Math.round(value); 
-				const color = utils.getColorForPercentage(value / 100, utils.color_percent_red_to_green);
+				
+				const fraction = value / 100;
+				const percent  = fraction * 100;
+				
+				const color = utils.getColorForPercentage(fraction, utils.color_percent_red_to_green);
 				const light_css_color = utils.color_to_css(utils.color_multiply(color, .6));
 				const dark__css_color = utils.color_to_css(utils.color_multiply(color, .4));
-				element.style.background = "linear-gradient(to right, " + light_css_color + " " + value + "%, " + dark__css_color + " " + value + "%)";
+				element.style.background = "linear-gradient(to right, " + light_css_color + " " + percent + "%, " + dark__css_color + " " + (1 - percent) + "%)";
 				}
-			else { console.log(key + " is invalid"); }
+			});
+		
+		let element_total = document.getElementById("attr_tot_total");
+		if(element_total)
+			{
+			element_total.innerHTML = Math.round(total);
+			
+			const total_fraction = total / max;
+			const total_percent  = total_fraction * 100;
+			
+			const color = utils.getColorForPercentage(total_fraction, utils.color_percent_red_to_green);
+			const light_css_color = utils.color_to_css(utils.color_multiply(color, .6));
+			const dark__css_color = utils.color_to_css(utils.color_multiply(color, .4));
+			element_total.style.background = "linear-gradient(to right, " + light_css_color + " " + total_percent + "%, " + dark__css_color + " " + (1 - total_percent) + "%)";
 			}
 		
-		document.getElementById("attr_tot_total").innerHTML = Math.round(total);
 		
 		document.getElementById("stamina_max").innerHTML = character.stamina_max;
 		document.getElementById("stamina").value = Math.floor(Math.min(character.character_data.stamina_current, character.stamina_max));
@@ -90,8 +110,8 @@ export class ui
 			
 			let col_name = utils.html.emplace_child(row, "th");
 			col_name.innerHTML = name;
-			
-			if(!character.check_experience(name))
+			const requirements_satisfied = character.check_experience(name);
+			if(!requirements_satisfied)
 				{
 				col_name.style.color = "#FF0000";
 				}
@@ -112,29 +132,42 @@ export class ui
 				}
 					
 					
-			function add_attribute_span(parent, key, value)
+			function add_attribute_span(parent, arr, value) //value in % of contribute
 				{
 				const color = utils.getColorForPercentage((value / 100) + .5, utils.color_percent_red_to_green);
 				let span = utils.html.emplace_child(parent, "span");
 				span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
 				span.dataset.value = value;
-				span.innerHTML = value.toPrecision(3) + " " + database.symbols[key];
+				span.innerHTML = value.toPrecision(3) + " " + database.symbols[arr.join("_")];
 				return span;
 				}
 				
 			function add_location_col(parent, location)
 				{
+				//TODO
 				let col_attributes = utils.html.emplace_child(parent, "td");
+				
 				if(experience_data.attributes && experience_data.attributes[location])
 					{
-					for(const [key, value] of Object.entries(experience_data.attributes[location]))
+					let attributes_in_location = attributes.from_partial(experience_data.attributes[location]);
+					let abs_tot_attributes_in_location = character.attributes.cache._2_experiences[location].abs;
+					let reduced_tot_attributes_in_location = character.attributes.cache._2_experiences[location].reduced;
+					
+					if(location != "base") { reduced_tot_attributes_in_location = attributes.add(reduced_tot_attributes_in_location, character.attributes.cache._2_experiences.base.reduced, false); }
+					
+					attributes.for_each((arr) =>
 						{
-						let my_contribution_to_reduced = 
-							character.attributes.cache._2_experiences[location].full[key] == 0 ? 0 :
-								utils.soften_on_tot_precalc(value * experience.years, character.attributes.cache._2_experiences[location].full[key], character.attributes.cache._2_experiences[location].reduced[key]);
+						const value = attributes_in_location.get_value_arr(arr) * (requirements_satisfied ? 1 : .5);
+						
+						if(value)
+							{
+							let mult_value = value * experience.years;
+							let contribution_percent = mult_value / abs_tot_attributes_in_location.get_value_arr(arr);
+							let contribution = contribution_percent * reduced_tot_attributes_in_location.get_value_arr(arr);
 							
-						add_attribute_span(col_attributes, key, my_contribution_to_reduced);
-						}
+							add_attribute_span(col_attributes, arr, contribution);
+							}
+						});
 					}
 				}
 			
@@ -270,13 +303,18 @@ export class ui
 				if(data.attributes)
 					{
 					attrs_col.classList.add("numeric");
-					for(const [key, value] of Object.entries(data.attributes))
+					attributes.for_each((arr) =>
 						{
-						const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
-						let span = utils.html.emplace_child(attrs_col, "span");
-						span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
-						span.innerHTML = Math.round(value) + " " + database.symbols[key];
-						}
+						const obj = attributes.get_object_arr(arr, data.attributes);
+						if(obj && obj.value)
+							{
+							const value  = requirements_satisfied ? obj.value : utils.worsen_value(obj.value, 0);
+							const color = utils.getColorForPercentage((value + 50) / 100, utils.color_percent_red_to_green);
+							let span = utils.html.emplace_child(attrs_col, "span");
+							span.style.backgroundColor = utils.color_to_css(utils.color_multiply(color, .6));
+							span.innerHTML = Math.round(value) + " " + database.symbols[arr.join("_")];
+							}
+						});
 					}
 				}
 					
@@ -454,6 +492,111 @@ export class ui
 		utils.html.set_visibility(document.getElementById("message"), true);
 		}
 	
+	static setup_attributes()
+		{
+		const attributes_table = document.getElementById("attributes_table");
+		
+		function add_row(table, arr)
+			{
+			let code_name = arr.join("_");
+			
+			let row         = utils.html.emplace_child(attributes_table, "tr");
+			let head_symbol = utils.html.emplace_child(row             , "th");
+			head_symbol.classList.add("symbol");
+			head_symbol.dataset.id = code_name;
+			
+			let head_text   = utils.html.emplace_child(row             , "th");
+			head_text.dataset.attribute = code_name;
+			head_text.jsdataset = {};
+			head_text.jsdataset.arr = arr;
+			head_text.style.textAlign = "left";
+			if(arr.length == 1)
+				{
+				head_text.innerHTML = utils.string.fancify(arr[0]);
+				}
+			else
+				{
+				head_text.innerHTML = "&nbsp;> " + utils.string.fancify(arr[arr.length - 1]);
+				}
+			head_text.id = "attr_header_" + code_name;
+			
+			let col_base    = utils.html.emplace_child(row             , "td");
+			col_base.dataset.attribute = code_name;
+			col_base.jsdataset = {};
+			col_base.jsdataset.arr = arr;
+			col_base.classList.add("numeric");
+			col_base.id = "attr_base_" + code_name;
+			col_base.innerHTML = 100;
+			
+			let col_tmp     = utils.html.emplace_child(row             , "td");
+			let input_tmp   = utils.html.emplace_child(col_tmp         , "input");
+			input_tmp.dataset.attribute = code_name;
+			input_tmp.jsdataset = {};
+			input_tmp.jsdataset.arr = arr;
+			input_tmp.classList.add("numeric");
+			input_tmp.style.width = "3em";
+			input_tmp.type        = "number";
+			input_tmp.min         = "-99";
+			input_tmp.max         = "100";
+			
+			input_tmp.id = "attr_tmp_" + code_name;
+			
+			input_tmp.onchange = function()
+				{
+				window.character.set_tmp(this.jsdataset.arr, parseInt(this.value));
+				};
+			
+			let col_tot     = utils.html.emplace_child(row             , "td");
+			col_tot .jsdataset = {};
+			col_tot .jsdataset.arr = arr;
+			col_tot .classList.add("numeric");
+			col_tot .id = "attr_tot_" + code_name;
+			
+			return {"row": row, "header": head_text};
+			}
+		
+		for(const [attribute, data] of Object.entries(database.attributes))
+			{
+			let added = add_row(attributes_table, [attribute]);
+				
+			if(data.components)
+				{
+				added.header.jsdataset = {};
+				added.header.classList.add("button");
+					
+				let arr = [];
+				for(const [component, component_data] of Object.entries(data.components))
+					{
+					let component_added = add_row(attributes_table, [attribute, component]);
+					arr.push(component_added.row);
+					}
+					
+				added.header.jsdataset.components = arr;
+				added.header.onclick = function()
+					{
+					let new_visibility = !utils.html.is_visible(this.jsdataset.components[0]);
+					for(const index in this.jsdataset.components)
+						{
+						utils.html.set_visibility(this.jsdataset.components[index], new_visibility, "", "none");
+						}
+						
+					this.innerHTML = utils.string.fancify(this.dataset.attribute) + " " + (new_visibility ? "▼" : "►");
+					}
+				
+				added.header.click();
+				}
+			}
+		
+		
+		let tot_row  = utils.html.emplace_child(attributes_table, "tr");
+		let tot_head = utils.html.emplace_child(tot_row         , "th");
+		tot_head.colSpan = 4;
+		tot_head.innerHTML = "Total";
+		let col_tot = utils.html.emplace_child(tot_row          , "th");
+		col_tot.classList.add("numeric");
+		col_tot.id = "attr_tot_total";
+		col_tot.innerHTML = 0;
+		}
 	};
 
 
@@ -473,8 +616,7 @@ export function setup()
         var reader = new FileReader();
         reader.onload = function(event)
 			{
-			console.log("Loaded:");
-			console.dir(event.target.result);
+			console.log("Loaded");
 			window.character = new Character(JSON.parse(event.target.result));
 			
 			init();
@@ -482,9 +624,8 @@ export function setup()
         reader.readAsText(event.target.files[0]);
 		};
 		
-	//////////////////// Icons replacements
-	ui.update_symbols();
-		
+	ui.setup_attributes();	
+	
 	//////////////////// Creation
 
 	const name_field = document.getElementById("name");
@@ -492,6 +633,13 @@ export function setup()
 		{
 		window.character.character_data.name = this.value; 
 		document.title                       = this.value;
+		}
+		
+	const age_field = document.getElementById("age");
+	age_field.onchange = function()
+		{
+		window.character.character_data.age = this.value;
+		window.character.update_0_race();
 		}
 
 	const race_selector = document.getElementById("selector_race");
@@ -515,81 +663,21 @@ export function setup()
 		field.type = "number";
 		field.min = "1";
 		field.max = "20";
-		field.classList.add("numeric");
 		field.id = field.className + "_" + field.dataset.attribute;
+		field.classList.add("numeric");
 		
 		field.onchange = function()
 			{
 			window.character.set_roll(this.dataset.attribute, parseInt(this.value));
 			};
 		}
-
-	//////////////////// Attributes
-	const attributes_table = document.getElementById("attributes_table");
-
-
-	let tmp_fields = document.getElementsByClassName("attr_base")
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.classList.add("numeric");
-		field.id = "attr_base_" + field.dataset.attribute;
-		}
-
-	tmp_fields = document.getElementsByClassName("attr_tmp");
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.style.width = "3em";
-		field.type = "number";
-		field.min = "-99";
-		field.max = "100";
-		field.classList.add("numeric");
-		field.id = "attr_tmp_" + field.dataset.attribute;
-		
-		field.onchange = function()
-			{
-			window.character.set_tmp(this.dataset.attribute, parseInt(this.value));
-			};
-		}
-		
-	tmp_fields = document.getElementsByClassName("attr_tot");
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.classList.add("numeric");
-		field.id = "attr_tot_" + field.dataset.attribute;
-		
-		field.onchange = function()
-			{
-			window.character.set_tmp(this.dataset.attribute, parseInt(this.value));
-			};
-		}
-		
-	const col_senses_toggle = document.getElementById("attr_base_senses").parentNode.getElementsByTagName("th")[1];
-	col_senses_toggle.classList.add("button");
-	col_senses_toggle.onclick = function()
-		{
-		let new_visibility = !utils.html.is_visible(document.getElementById("attr_base_sight").parentNode);
-		utils.html.set_visibility(document.getElementById("attr_base_sight"  ).parentNode, new_visibility, "", "none");
-		utils.html.set_visibility(document.getElementById("attr_base_touch"  ).parentNode, new_visibility, "", "none");
-		utils.html.set_visibility(document.getElementById("attr_base_smell"  ).parentNode, new_visibility, "", "none");
-		utils.html.set_visibility(document.getElementById("attr_base_taste"  ).parentNode, new_visibility, "", "none");
-		utils.html.set_visibility(document.getElementById("attr_base_hearing").parentNode, new_visibility, "", "none");
-		
-		this.innerHTML = "Senses " + (new_visibility ? "▼" : "►");
-		};
-	col_senses_toggle.click();
 	
 	//////////////////// Location and Stamina
 	let location_field = document.getElementById("location");
 	location_field.onchange = function()
 		{
 		window.character.character_data.location = this.value;
-		window.character.update_4_location();
+		window.character.update_3_location();
 		};
 		
 	document.getElementById("stamina_move").onclick = function()
@@ -689,7 +777,7 @@ export function setup()
 		}
 		
 	//////////////////// Wealth
-	tmp_fields = document.getElementsByClassName("wealth");
+	let tmp_fields = document.getElementsByClassName("wealth");
 	for(let i = 0; i < tmp_fields.length; i++)
 		{
 		if(!tmp_fields[i]) { continue; }
@@ -799,6 +887,11 @@ export function setup()
 		utils.html.set_visibility(document.getElementById(this.dataset.go_to), true);
 		utils.html.set_visibility(document.getElementById("message"), false);
 		};
+		
+		
+		
+	//////////////////// Icons replacements
+	ui.update_symbols();
 	}
 	
 
@@ -813,38 +906,29 @@ export function init()
 	let name_field = document.getElementById("name"); 
 	name_field.value = window.character.character_data.name;
 	document.title   = window.character.character_data.name;
+	let age_field    = document.getElementById("age"); 
+	age_field.value  = window.character.character_data.age;
 	
 	let location_field = document.getElementById("location");
 	location_field.value = window.character.character_data.location;
 	
-	let roll_fields = document.getElementsByClassName("roll_field")
-
-	for(let i = 0; i < roll_fields.length; i++)
+	const attr_rolls = attributes.from_partial(window.character.character_data.attributes.rolls);
+	
+	attributes.for_each((arr) => 
 		{
-		if(!roll_fields[i]) { continue; }
-		let field = roll_fields[i];
-		field.value = window.character.character_data.attributes.rolls[field.dataset.attribute];
-		}
+		let element = document.getElementById("roll_field_" + arr.join("_"));
+		if(element) { element.value = Math.round(attr_rolls.get_value_arr(arr)); } //Checks because not all attributes have rolls
+		});
 
 	////////////////// Attributes
-	const attributes_table = document.getElementById("attributes_table");
-
-	let tmp_fields = document.getElementsByClassName("attr_tmp");
-	for(let i = 0; i < tmp_fields.length; i++)
+	
+	const attr_tmps = attributes.from_partial(window.character.character_data.attributes.tmp);
+	
+	attributes.for_each((arr) => 
 		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.value = window.character.character_data.attributes.tmp[field.dataset.attribute];
-		}
-		
-	tmp_fields = document.getElementsByClassName("attr_tot");
-	for(let i = 0; i < tmp_fields.length; i++)
-		{
-		if(!tmp_fields[i]) { continue; }
-		let field = tmp_fields[i];
-		field.value = window.character.character_data.attributes.tmp[field.dataset.attribute];
-		}
-
+		let element = document.getElementById("attr_tmp_" + arr.join("_"));
+		element.value = Math.round(attr_tmps.get_value_arr(arr));
+		});
 	
 	////////////////// Inventory/other
 		{

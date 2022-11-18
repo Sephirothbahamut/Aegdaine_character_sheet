@@ -6,33 +6,61 @@
 	{
 	"rolls": 
 		{
-		"strength"     : 10,
-		"constitution" : 10,
-		"stamina"      : 10,
-		"agility"      : 10,
-		"precision"    : 10,
-		"intelligence" : 10,
-		"wisdom"       : 10,
-		"focus"        : 10,
-		"eloquence"    : 10,
-		"senses"       : 10,
-		"social status": 10,
-		"hiddenness"   : 10
+		"strength"     : { "value": 11 },
+		"constitution" : { "value": 12 },
+		"stamina"      : { "value": 11 },
+		"agility"      : { "value": 12 },
+		"precision"    : { "value": 11 },
+		"intelligence" : { "value": 12 },
+		"focus"        : { "value": 11 },
+		"eloquence"    : { "value": 12 },
+		"senses"       : 
+			{
+			"components": 
+				{
+				"sight"  : { "value": 14 },
+				"touch"  : { "value": 15 },
+				"smell"  : { "value": 16 },
+				"taste"  : { "value": 17 },
+				"hearing": { "value": 18 }
+				}
+			},
+		"social_status": { "value": 12 },
+		"hiddenness"   : { "value": 11 }
 		},
 	"tmp":
 		{
-		"strength"     : 5,
-		"constitution" : 5,
-		"stamina"      : 5,
-		"agility"      : 5,
-		"precision"    : 5,
-		"intelligence" : 5,
-		"wisdom"       : 5,
-		"focus"        : 5,
-		"eloquence"    : 5,
-		"senses"       : 5,
-		"social status": 5,
-		"hiddenness"   : 5
+		"strength"     : { "value": 5 },
+		"constitution" : { "value": 5 },
+		"stamina"      : { "value": 5 },
+		"agility"      : { "value": 5 },
+		"precision"    : { "value": 5 },
+		"intelligence" : { "value": 5 },
+		"knowledge"    : 
+			{
+			"value": 5,
+			"components":
+				{
+				"geography": { "value": 5 },
+				"nature"   : { "value": 5 }
+				}
+			},
+		"focus"        : { "value": 5 },
+		"eloquence"    : { "value": 5 },
+		"senses"       : 
+			{
+			"value": 5,
+			"components": 
+				{
+				"sight"  : { "value": 5 },
+				"touch"  : { "value": 5 },
+				"smell"  : { "value": 5 },
+				"taste"  : { "value": 5 },
+				"hearing": { "value": 5 }
+				}
+			},
+		"social_status": { "value": 5 },
+		"hiddenness"   : { "value": 5 }
 		}
 	},
 	
@@ -72,6 +100,6 @@
 	"arm_ll": 100,
 	"arm_rr": 100,
 	"leg_ll": 100,
-	"leg_rr": 100,
+	"leg_rr": 100
 	}
 }

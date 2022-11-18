@@ -59,24 +59,6 @@
 					<h1> Attributes </h1>
 					<table id="attributes_table">
 						<tr><th colspan=2, style="border: none; border-collapse: separate">   </th><th>Base</th><th>Temp</th><th>Total</th></tr>
-						<tr><th class="symbol" data-id="strength">     </th><th style="text-align: left">Strength     </th><td class="attr_base" data-attribute="strength">     100</td><td><input class="attr_tmp" data-attribute="strength"/>     </td><td class="attr_tot" data-attribute="strength">      100</td></tr>
-						<tr><th class="symbol" data-id="constitution"> </th><th style="text-align: left">Constitution </th><td class="attr_base" data-attribute="constitution"> 100</td><td><input class="attr_tmp" data-attribute="constitution"/> </td><td class="attr_tot" data-attribute="constitution">  100</td></tr>
-						<tr><th class="symbol" data-id="stamina">      </th><th style="text-align: left">Stamina      </th><td class="attr_base" data-attribute="stamina">      100</td><td><input class="attr_tmp" data-attribute="stamina"/>      </td><td class="attr_tot" data-attribute="stamina">       100</td></tr>
-						<tr><th class="symbol" data-id="agility">      </th><th style="text-align: left">Agility      </th><td class="attr_base" data-attribute="agility">      100</td><td><input class="attr_tmp" data-attribute="agility"/>      </td><td class="attr_tot" data-attribute="agility">       100</td></tr>
-						<tr><th class="symbol" data-id="precision">    </th><th style="text-align: left">Precision    </th><td class="attr_base" data-attribute="precision">    100</td><td><input class="attr_tmp" data-attribute="precision"/>    </td><td class="attr_tot" data-attribute="precision">     100</td></tr>
-						<tr><th class="symbol" data-id="intelligence"> </th><th style="text-align: left">Intelligence </th><td class="attr_base" data-attribute="intelligence"> 100</td><td><input class="attr_tmp" data-attribute="intelligence"/> </td><td class="attr_tot" data-attribute="intelligence">  100</td></tr>
-						<tr><th class="symbol" data-id="wisdom">       </th><th style="text-align: left">Wisdom       </th><td class="attr_base" data-attribute="wisdom">       100</td><td><input class="attr_tmp" data-attribute="wisdom"/>       </td><td class="attr_tot" data-attribute="wisdom">        100</td></tr>
-						<tr><th class="symbol" data-id="focus">        </th><th style="text-align: left">Focus        </th><td class="attr_base" data-attribute="focus">        100</td><td><input class="attr_tmp" data-attribute="focus"/>        </td><td class="attr_tot" data-attribute="focus">         100</td></tr>
-						<tr><th class="symbol" data-id="eloquence">    </th><th style="text-align: left">Eloquence    </th><td class="attr_base" data-attribute="eloquence">    100</td><td><input class="attr_tmp" data-attribute="eloquence"/>    </td><td class="attr_tot" data-attribute="eloquence">     100</td></tr>
-						<tr><th class="symbol" data-id="senses">       </th><th style="text-align: left">Senses       </th><td class="attr_base" data-attribute="senses">       100</td><td><input class="attr_tmp" data-attribute="senses"/>       </td><td class="attr_tot" data-attribute="senses">        100</td></tr>
-						<tr><th class="symbol" data-id="sight">        </th><th style="text-align: left">Sight        </th><td class="attr_base" data-attribute="sight">        100</td><td><input class="attr_tmp" data-attribute="sight"/>        </td><td class="attr_tot" data-attribute="sight">         100</td></tr>
-						<tr><th class="symbol" data-id="touch">        </th><th style="text-align: left">Touch        </th><td class="attr_base" data-attribute="touch">        100</td><td><input class="attr_tmp" data-attribute="touch"/>        </td><td class="attr_tot" data-attribute="touch">         100</td></tr>
-						<tr><th class="symbol" data-id="smell">        </th><th style="text-align: left">Smell        </th><td class="attr_base" data-attribute="smell">        100</td><td><input class="attr_tmp" data-attribute="smell"/>        </td><td class="attr_tot" data-attribute="smell">         100</td></tr>
-						<tr><th class="symbol" data-id="taste">        </th><th style="text-align: left">Taste        </th><td class="attr_base" data-attribute="taste">        100</td><td><input class="attr_tmp" data-attribute="taste"/>        </td><td class="attr_tot" data-attribute="taste">         100</td></tr>
-						<tr><th class="symbol" data-id="hearing">      </th><th style="text-align: left">Hearing      </th><td class="attr_base" data-attribute="hearing">      100</td><td><input class="attr_tmp" data-attribute="hearing"/>      </td><td class="attr_tot" data-attribute="hearing">       100</td></tr>
-						<tr><th class="symbol" data-id="social_status"></th><th style="text-align: left">Social Status</th><td class="attr_base" data-attribute="social_status">100</td><td><input class="attr_tmp" data-attribute="social_status"/></td><td class="attr_tot" data-attribute="social_status"> 100</td></tr>
-						<tr><th class="symbol" data-id="hiddenness">   </th><th style="text-align: left">Hiddenness   </th><td class="attr_base" data-attribute="hiddenness">   100</td><td><input class="attr_tmp" data-attribute="hiddenness"/>   </td><td class="attr_tot" data-attribute="hiddenness">    100</td></tr>
-						<tr><th colspan=4> Total </th> <th class="numeric" id="attr_tot_total"> 0 </th> </tr>
 					</table>
 					
 					<label> Location: </label>
@@ -237,6 +219,8 @@
 			<div class="tab_content" data-id="creation" style="padding: 1em">
 				<label>Name</label>
 				<input id="name"/>
+				<label>Age</label>
+				<input id="age" class="numeric" type="number" min="10"/>
 				<label>Race</label>
 				<input list="selector_choices_race" id="selector_race"/>
 				<datalist id="selector_choices_race"></datalist>

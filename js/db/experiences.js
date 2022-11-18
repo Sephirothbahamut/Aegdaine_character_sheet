@@ -1,106 +1,117 @@
 export const experiences = 
 {
-"Basic Education":  {},
-"Basic Military training":  {},
-"Basic Magic training":  {},
-"Scientific Education":  {},
-"Humanistic Education":  {},
-"Mage": 
-	{ 
+"Education":  
+	{
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"intelligence": 2, 
-			"wisdom": 1, 
-			"focus": 1, 
-			"social_status": 1 
+			"intelligence":  { "value":   .5 }, 
+			"wisdom":        { "value":   .5 }, 
+			"focus":         { "value":   .5 }, 
+			"social_status": { "value":   .5 } 
 			}
-		},
-	"weapons": []
+		}
 	},
-"Training": 
+"Military training": 
 	{ 
+	"requirements": { "experiences": { "Education": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"strength": 1,
-			"constitution": 1, 
-			"stamina": 1, 
-			"agility": 1, 
-			"precision": 1, 
-			"social_status": -1 
+			"strength":      { "value":   1 },
+			"constitution":  { "value":   1 }, 
+			"stamina":       { "value":   1 }, 
+			"agility":       { "value":   1 }, 
+			"precision":     { "value":   1 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
 	},
-"Scout": 
-	{ 
+"Magic training":  
+	{
+	"requirements": { "experiences": { "Education": 4 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"stamina": 1, 
-			"agility": 1, 
-			"eloquence": -1, 
-			"senses": 1, 
-			"social_status": -1 
-			},
-		"city": 
+			"intelligence":  { "value":    1 }, 
+			"wisdom":        { "value":    1 }, 
+			"focus":         { "value":    2 }
+			}
+		}
+	},
+"Mage": 
+	{ 
+	"requirements": { "experiences": { "Magic training": 3 } },
+	"attributes": 
+		{
+		"base": 
 			{ 
-			"agility": -1, 
-			"focus": -1 
+			"intelligence":  { "value":   2 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"social_status": { "value":   1 } 
+			}
+		}
+	},
+"Scout": 
+	{ 
+	"requirements": { "experiences": { "Military training": 1 } },
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"stamina":       { "value":   1 }, 
+			"agility":       { "value":   1 }, 
+			"senses":        { "value":   1 }, 
+			"social_status": { "value":  -1 } 
 			},
 		"wild": 
 			{ 
-			"agility": 1, 
-			"wisdom": 1, 
-			"senses": 1, 
-			"hiddenness": 1
-			},
+			"agility":       { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"senses":        { "value":   1 }, 
+			"hiddenness":    { "value":   1 }
+			}
 		},
 	"weapons": [ "Axe", "Short Weapon" ]
 	},
 "Guard": 
 	{ 
+	"requirements": { "experiences": { "Military training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": 1, 
-			"stamina": 1, 
-			"eloquence": -1, 
-			"senses": 2 
+			"constitution":  { "value":   1 }, 
+			"stamina":       { "value":   1 }, 
+			"senses":        { "value":   2 } 
 			},
 		"city": 
 			{ 
-			"intelligence": 1, 
-			"focus": 1, 
-			"senses": 1 
-			},
-		"wild": 
-			{ 
-			"wisdom": -2 
+			"intelligence":  { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"senses":        { "value":   1 } 
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Polearm", "Shield", "Sword" ]
 	},
 "Soldier": 
 	{ 
+	"requirements": { "experiences": { "Military training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"strength": 2,
-			"constitution": 1, 
-			"stamina": 1, 
-			"eloquence": -1, 
-			"social_status": -1 
+			"strength":      { "value":   2 },
+			"constitution":  { "value":   1 }, 
+			"stamina":       { "value":   1 }, 
+			"social_status": { "value":  -1 } 
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Sword" ]
@@ -112,51 +123,48 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"constitution": -2, 
-			"stamina": 1, 
-			"agility": 2, 
-			"precision": 2, 
-			"wisdom": -1, 
-			"social_status": 1 
+			"stamina":       { "value":   1 }, 
+			"agility":       { "value":   2 }, 
+			"precision":     { "value":   2 }, 
+			"social_status": { "value":   1 } 
 			},
 		"city": 
 			{ 
-			"social_status": 1 
+			"social_status": { "value":   1 }
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Polearm", "Short Weapon", "Sword" ]
 	},
 "Captain": 
 	{ 
+	"requirements": { "experiences": { "Military training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"strength": 1,
-			"agility": -1, 
-			"intelligence": 1, 
-			"wisdom": 1, 
-			"focus": 1, 
-			"social_status": 1 
+			"strength":      { "value":   1 },
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"social_status": { "value":   1 } 
 			}
 		},
 	"weapons": [ "Mace", "Shield", "Sword" ]
 	},
 "General": 
 	{ 
+	"requirements": { "experiences": { "Military training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"agility": -1, 
-			"precision": -1, 
-			"intelligence": 1, 
-			"wisdom": 1, 
-			"focus": 1, 
-			"eloquence": 1, 
-			"social_status": 2 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"eloquence":     { "value":   1 }, 
+			"social_status": { "value":   2 } 
 			}
 		},
 	"weapons": [ "Mace", "Shield", "Sword" ]
@@ -165,37 +173,33 @@ export const experiences =
 	{ 
 	"attributes": 
 		{
-		"base": 
-			{ 
-			"strength": -1,
-			"eloquence": 1 
-			},
 		"city": 
 			{ 
-			"intelligence": 1, 
-			"senses": 2 
+			"eloquence":     { "value":   1 },
+			"intelligence":  { "value":   1 }, 
+			"senses":        { "value":   2 } 
 			}
 		},
 	},
 "Druid":
 	{	
+	"requirements": { "experiences": { "Magic training": 3 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"eloquence": -1,
-			"hiddenness": 1
+			"hiddenness":    { "value":   1 }
 			},
 		"city":
 			{
-			"senses": -1,
-			"social_status": -2
+			"senses":        { "value":  -1 },
+			"social_status": { "value":  -2 }
 			},
 		"wild": 
 			{ 
-			"intelligence": 1, 
-			"wisdom": 1,
-			"social_status": 2
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   1 },
+			"social_status": { "value":   1 }
 			}
 		}
 	},
@@ -205,107 +209,103 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"agility": -1, 
-			"eloquence": 1 
+			"eloquence":     { "value":   1 } 
 			},
 		"city": 
 			{ 
-			"intelligence": 1, 
-			"senses": 1 
+			"intelligence":  { "value":   1 }, 
+			"hiddenness":    { "value":  -2 },
+			"senses":        { "value":   2 } 
 			}
 		},
 	},
-"Mercant":
+"Merchant":
 	{
 	"attributes":
 		{
 		"base": 
 			{ 
-			"stamina": 1, 
-			"hiddenness": -2
+			"stamina":       { "value":   1 }, 
+			"hiddenness":    { "value":  -2 },
+			"eloquence":     { "value":   1 }
 			},
 		"city": 
 			{ 
-			"eloquence": 1,
-			"wisdom": 1
-			},
-		"social_status": 
-			{ 
-			"eloquence": 1
+			"wisdom":        { "value":   1 }
 			}
 		}
 	},
 "Noble": 
 	{ 
+	"requirements": { "experiences": { "Education": 3 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"eloquence": 1, 
-			"social_status": 2 
+			"eloquence":     { "value":   1 }, 
+			"social_status": { "value":   2 } 
 			},
 		"city": 
 			{ 
-			"intelligence": 1 
+			"intelligence":  { "value":   1 }
 			}
 		},
 	"weapons": [ "Sword" ]
 	},
 "Researcher": 
 	{ 
+	"requirements": { "experiences": { "Education": 5 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"stamina": -1 
+			"constitution":  { "value": -.5 }, 
+			"wisdom":        { "value":   1 },
+			"intelligence":  { "value":   1 }, 
+			"focus":         { "value":   1 }
 			},
 		"city": 
 			{ 
-			"intelligence": 2, 
-			"wisdom": 1, 
-			"focus": 1 
+			"intelligence":  { "value":   1 }
 			}
 		}
 	},
 "Medic":
 	{
+	"requirements": { "experiences": { "Education": 5 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"intelligence": 1,
-			"focus": 1,
-			"strength": -1,
-			"agility": -1
+			"intelligence":  { "value":   1 },
+			"precision":     { "value":   1 },
+			"focus":         { "value":   1 }
 			},
 		"city": 
 			{ 
-			"wisdom": 1,
-			"social_status": 1
-			},
-		"wild":
-			{
-			"constitution": -1
+			"wisdom":        { "value":   1 },
+			"social_status": { "value":   1 }
 			}
 		}
 	},
-"Artist": 
+"Painter": 
 	{ 
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"stamina": -1, 
-			"precision": 2, 
-			"intelligence": 1, 
-			"focus": 1
+			"precision":     { "value":   2 }, 
+			"intelligence":  { "value":   1 }, 
+			"focus":         { "value":   1 },
+			"senses":        
+				{
+				"components": 
+					{
+					"sight": { "value":   1 },
+					"touch": { "value":   1 }
+					}
+				}
 			},
-		"wild": 
-			{ 
-			"senses": 1 
-			}
 		},
 	},
 "Musician": 
@@ -314,16 +314,20 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"stamina": -1, 
-			"intelligence": 1, 
-			"focus": 1, 
-			"eloquence": 1, 
-			"hearing": 2 
+			"intelligence":  { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"eloquence":     { "value":   1 }, 
+			"senses":        
+				{
+				"components": 
+					{
+					"hearing": { "value":   2 }
+					}
+				}
 			},
 		"city": 
 			{ 
-			"social_status": 1 
+			"social_status": { "value":   1 }
 			}
 		}
 	},
@@ -333,19 +337,24 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength": 1, 
-			"constitution": 2, 
-			"eloquence": -2, 
-			"senses": -1,
-			"touch": 2
+			"strength":      { "value":   1 }, 
+			"constitution":  { "value":   2 }, 
+			"senses":        
+				{
+				"value":  -1,
+				"components": 
+					{
+					"touch": { "value":   2 }
+					}
+				}
 			},
 		"city": 
 			{ 
-			"social_status": 1 
+			"social_status": { "value":   1 }
 			},
 		"wild": 
 			{ 
-			"social_status": -1 
+			"social_status": { "value":  -1 }
 			}
 		},
 	},
@@ -353,48 +362,45 @@ export const experiences =
 	{ 
 	"attributes": 
 		{
-		"base": 
-			{ 
-			"agility": -1 
-			},
 		"city": 
 			{ 
-			"intelligence": 1, 
-			"wisdom": 2, 
-			"social_status": 1 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   2 }, 
+			"social_status": { "value":   1 } 
 			}
 		},
 	},
 "Alchemist": 
 	{ 
+	"requirements": { "experiences": { "Magic training": 3 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"strength": -1,
-			"wisdom": 1 
+			"wisdom":        { "value":   1 } 
 			},
 		"city": 
 			{ 
-			"intelligence": 1, 
-			"wisdom": 1, 
-			"focus": 1 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   1 } 
 			}
 		},
 	},
 "Envoy": 
 	{ 
+	"requirements": { "experiences": { "Education": 3 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"social_status": 1 
+			"eloquence":     { "value":   2 }, 
+			"social_status": { "value":   1 } 
 			},
 		"city": 
 			{ 
-			"wisdom": 1, 
-			"social_status": 2 
+			"wisdom":        { "value":   1 }, 
+			"social_status": { "value":   2 } 
 			}
 		},
 	},
@@ -404,19 +410,18 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"stamina": 1, 
-			"precision": -1, 
-			"wisdom": 1
+			"stamina":       { "value":   1 }, 
+			"wisdom":        { "value":   1 }
 			},
 		"city": 
 			{  
-			"focus": -1,
-			"eloquence": 1, 
-			"social_status": 1 
+			"focus":         { "value":  -1 },
+			"eloquence":     { "value":   1 }, 
+			"social_status": { "value":   1 } 
 			},
 		"wild": 
 			{ 
-			"senses": 1 
+			"senses":        { "value":   1 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Short Weapon" ]
@@ -427,23 +432,22 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength": 1,
+			"strength":      { "value":   1 },
 			},
 		"city": 
 			{ 
-			"agility": -1, 
-			"focus": -1, 
-			"senses": -1, 
-			"social_status": -1 
+			"focus":         { "value":  -1 }, 
+			"senses":        { "value":  -1 }, 
+			"social_status": { "value":  -1 } 
 			},
 		"wild": 
 			{ 
-			"agility": 1, 
-			"precision": 1, 
-			"wisdom": 1, 
-			"focus": 1, 
-			"senses": 2, 
-			"hiddenness": 2
+			"agility":       { "value":   1 }, 
+			"precision":     { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   1 }, 
+			"senses":        { "value":   2 }, 
+			"hiddenness":    { "value":   2 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Polearm", "Short Weapon" ]
@@ -454,20 +458,20 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence": -1, 
-			"social_status": -1 
+			"eloquence":     { "value":  -2 }, 
+			"social_status": { "value":  -1 } 
 			},
 		"city": 
 			{ 
-			"focus": -2, 
-			"senses": -2 
+			"focus":         { "value":  -2 }, 
+			"senses":        { "value":  -2 } 
 			},
 		"wild": 
 			{ 
-			"intelligence": 1, 
-			"wisdom": 1, 
-			"focus": 4, 
-			"senses": 2 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   1 }, 
+			"focus":         { "value":   4 }, 
+			"senses":        { "value":   2 } 
 			}
 		},
 	},
@@ -478,38 +482,36 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength": 1,
-			"constitution": 2, 
-			"stamina": 2 
+			"strength":      { "value":   1 },
+			"constitution":  { "value":   2 }, 
+			"stamina":       { "value":   2 } 
 			},
 		"city": 
 			{ 
-			"social_status": 1 
+			"social_status": { "value":   1 } 
 			},
 		"wild": 
 			{ 
-			"wisdom": -2, 
-			"senses": -1, 
-			"social_status": -1 
+			"social_status": { "value":  -1 } 
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Shield", "Sword" ]
 	},
-"Alchool": 
+"Alchoolic": 
 	{ 
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"wisdom": -2, 
-			"focus": -2, 
-			"eloquence": 4, 
-			"senses": -1 
+			"wisdom":        { "value":  -2 }, 
+			"focus":         { "value":  -2 }, 
+			"eloquence":     { "value":   4 }, 
+			"senses":        { "value":  -1 } 
 			},
 		"city": 
 			{ 
-			"focus": 1, 
-			"eloquence": 1 
+			"focus":         { "value":   1 }, 
+			"eloquence":     { "value":   1 } 
 			}
 		},
 	},
@@ -519,9 +521,9 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence": 1, 
-			"wisdom": 4, 
-			"eloquence": -1 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   4 }, 
+			"eloquence":     { "value":  -1 } 
 			}
 		},
 	},
@@ -531,13 +533,12 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"agility": 1 
+			"agility":       { "value":   1 },
+			"strength":      { "value":  .5 }
 			},
 		"wild": 
 			{ 
-			"strength": 1,
-			"constitution": 1, 
-			"senses": 1 
+			"senses":        { "value":  .5 } 
 			}
 		},
 	},
@@ -545,16 +546,19 @@ export const experiences =
 	{ 
 	"attributes": 
 		{
+		"base": 
+			{ 
+			"agility":       { "value":  .5 }, 
+			"intelligence":  { "value":  .5 }, 
+			"eloquence":     { "value":  .5 }, 
+			"senses":        { "value":   1 } 
+			},
 		"city": 
 			{ 
-			"agility": 1, 
-			"intelligence": 1, 
-			"eloquence": 1, 
-			"senses": 2 
-			},
-		"wild": 
-			{ 
-			"senses": -1 
+			"agility":       { "value":  .5 }, 
+			"intelligence":  { "value":  .5 }, 
+			"eloquence":     { "value":  .5 }, 
+			"senses":        { "value":   1 } 
 			}
 		},
 	},
@@ -562,19 +566,20 @@ export const experiences =
 	{ 
 	"attributes": 
 		{
+		"base":
+			{
+			"strength":      { "value":   1 },
+			"constitution":  { "value":   1 }, 
+			"stamina":       { "value":   1 }, 
+			},
 		"city": 
 			{ 
-			"agility": -1, 
-			"senses": -1, 
-			"hiddenness": -1
+			"hiddenness":    { "value":  -1 }
 			},
 		"wild": 
 			{ 
-			"strength": 1,
-			"constitution": 1, 
-			"stamina": 1, 
-			"senses": 2, 
-			"hiddenness": 1
+			"senses":        { "value":   1 }, 
+			"hiddenness":    { "value":   1 }
 			}
 		},
 	"weapons": [ "Short Weapon" ]
@@ -583,38 +588,47 @@ export const experiences =
 	{ 
 	"attributes": 
 		{
+		"base":
+			{
+			"strength":      { "value":   1 },
+			"constitution":  { "value":   1 }, 
+			"stamina":       { "value":   1 }, 
+			},
 		"city": 
 			{ 
-			"strength": 1,
-			"constitution": 1, 
-			"stamina": 1, 
-			"senses": 2, 
-			"hiddenness": 1
+			"senses":        { "value":   1 }, 
+			"hiddenness":    { "value":   1 }
 			},
 		"wild": 
 			{ 
-			"agility": -1, 
-			"senses": -1, 
-			"hiddenness": -1
+			"hiddenness":    { "value":  -1 }
 			}
 		},
 	"weapons": [ "Short Weapon" ]
 	},
-"Oration": 
+"Orator": 
 	{ 
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"constitution": -1, 
-			"eloquence": 2 
+			"eloquence":     { "value":   2 } 
 			},
 		"city": 
 			{ 
-			"wisdom": 1, 
-			"eloquence": 2 
+			"wisdom":        { "value":   1 }, 
+			"eloquence":     { "value":   2 }
 			}
 		},
 	},
-"Beggar":  {}
+"Beggar":  
+	{
+	"attributes":
+		{
+		"base":
+			{
+			"social_status": { "value":  -3 } 
+			}
+		}
+	}
 }

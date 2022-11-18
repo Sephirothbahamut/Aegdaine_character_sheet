@@ -1,5 +1,6 @@
 import { ui as ui } from "../ui.js";
 import { database as database } from "../database.js";
+import { attributes as attributes } from "../attributes.js";
 
 /* IMPORTANT NOTE:
 Attributes-affecting effects should scale based on character.attributes._4_location, and be +='d to attributes.cache._5_skills.
@@ -7,14 +8,18 @@ That way, all attributes affecting effects are cumulated in attributes.cache._5_
 */
 
 export const skills = {
-"Help Developer":
+"Prodigy":
 	{
 	"effect": function(character)
 		{
-		for(const [key, value] of Object.entries(character.attributes._4_location))
+		attributes.for_each((arr) =>
 			{
-			if(key != "senses") {character.attributes.cache._5_skills[key] += value * .05; }
-			}
+			const base_value = character.attributes._4_equipment.get_value_arr(arr);
+			const add_to     = character.attributes.cache._5_skills.get_value_arr(arr);
+			const value = character.attributes.cache._5_skills.get_value_arr(arr);
+			
+			character.attributes.cache._5_skills.set_value_arr(add_to + (base_value * .05), arr);
+			});
 		},
 	"text": "All your attributes are increased by 5%."
 	},
@@ -111,7 +116,7 @@ export const skills = {
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
-	"requirements": { "attributes": { "strength": 50 } },
+	"requirements": { "attributes": { "strength": { "value": 50 } } },
 	"text": "If your opponent fails a Parry or block, and your Strength is higher than your opponent's Constitution + 30, he can no longer Parry or block. \
 			\nThis malus is reset when you Attack a different target or at the end of your turn."
 	},
@@ -119,14 +124,14 @@ export const skills = {
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
-	"requirements": { "experience_categories": { "military": 3 }, "attributes": { "agility": 20 } },
+	"requirements": { "experience_categories": { "military": 3 }, "attributes": { "agility": { "value": 20 } } },
 	"text": "Before each Attack (or Counter-Attack), you can perform a step towards your opponent or away from him."
 	},
 "Sidestep": 
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
-	"requirements": { "experience_categories": { "military": 3 }, "attributes": { "agility": 40 } },
+	"requirements": { "experience_categories": { "military": 3 }, "attributes": { "agility": { "value": 40 } } },
 	"text": "Before each Attack (or Counter-Attack), you can perform a step to one side. You get -10 Strength for that Attack and your Opponent gets -10 Agility if he tries to Parry that Attack."
 	},
 "Quick Stance Change": 
@@ -147,7 +152,7 @@ export const skills = {
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
-	"requirements": { "attributes": { "agility": 60 } },
+	"requirements": { "attributes": { "agility": { "value": 60 } } },
 	"text": "Add your Step's length to the range of one Attack of your Attack Chain. If the chosen attack is not the first one, that Attack will conclude the Chain."
 	},
 
@@ -202,13 +207,19 @@ export const skills = {
 "Sommelier":
 	{
 	"auto_assign": true,
-	"requirements": { "experiences": { "Alchool": 3 } },
+	"requirements": { "experiences": { "Alchoolic": 3 } },
 	"text": "When checking value, quality and properties of drink, add your years of experience as an alchoolic to your Wisdom roll."
+	},
+"Drunkard":
+	{
+	"auto_assign": true,
+	"requirements": { "experiences": { "Alchoolic": 5 } },
+	"text": "Add your years as alchoolic to any constitution roll related to drinking alchoolic drinks."
 	},
 "Cheater":
 	{
 	"auto_assign": true,
-	"requirements": { "experiences": { "Alchool": 3 } },
+	"requirements": { "experiences": { "Gambling": 3 } },
 	"text": "Add your years of experience as a gambler to Wisdom throws to check if someone is cheating at a game, and to Dexterity throws when cheating at a game, up to 30."
 	},
 

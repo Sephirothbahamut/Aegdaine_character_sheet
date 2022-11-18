@@ -6,7 +6,7 @@ export const equipment = {
 	"Kettle":
 		{
 		"type": "Helmet",
-		"attributes": { "hiddenness": -10 },
+		"attributes": { "hiddenness": { "value": -10 } },
 		
 		"stamina_cost": 0,
 		
@@ -28,7 +28,18 @@ export const equipment = {
 	"Sallet":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -20, "hearing": -20, "hiddenness": -10 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -20 },
+					"hearing": { "value": -20 }
+					}
+				},
+			"hiddenness": { "value": -10 } 
+			},
 		
 		"stamina_cost": 2,
 			
@@ -50,7 +61,18 @@ export const equipment = {
 	"Gjermundbu":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -10, "hearing": -10, "hiddenness": -5 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -10 },
+					"hearing": { "value": -10 }
+					}
+				},
+			"hiddenness": { "value": -5 } 
+			},
 		
 		"stamina_cost": 1,
 			
@@ -72,7 +94,18 @@ export const equipment = {
 	"Anglosaxon Helmet":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -10, "hearing": -10, "hiddenness": -10 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -10 },
+					"hearing": { "value": -10 }
+					}
+				},
+			"hiddenness": { "value": -10 } 
+			},
 		
 		"stamina_cost": 1,
 			
@@ -94,7 +127,18 @@ export const equipment = {
 	"Spangenhelm":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -8, "hearing": -8, "hiddenness": -8 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -8 },
+					"hearing": { "value": -8 }
+					}
+				},
+			"hiddenness": { "value": -8 } 
+			},
 		
 		"stamina_cost": 1,
 			
@@ -116,7 +160,18 @@ export const equipment = {
 	"Barbute":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -10, "hearing": -10, "hiddenness": -12 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -10 },
+					"hearing": { "value": -10 }
+					}
+				},
+			"hiddenness": { "value": -12 } 
+			},
 		
 		"stamina_cost": 1,
 			
@@ -138,7 +193,19 @@ export const equipment = {
 	"Great Helm":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -20, "hearing": -20, "social_status": 5, "hiddenness": -12 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -20 },
+					"hearing": { "value": -20 }
+					}
+				},
+			"social_status": { "value": 5 },
+			"hiddenness": { "value": -12 } 
+			},
 		
 		"stamina_cost": 2,
 			
@@ -160,7 +227,19 @@ export const equipment = {
 	"Bashinet":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -20, "hearing": -20, "social_status": 12, "hiddenness": -15 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -20 },
+					"hearing": { "value": -20 }
+					}
+				},
+			"social_status": { "value": 12 },
+			"hiddenness": { "value": -15 } 
+			},
 		
 		"stamina_cost": 3,
 			
@@ -183,7 +262,19 @@ export const equipment = {
 	"Burgonet":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -18, "hearing": -18, "social_status": 15, "hiddenness": -15 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -18 },
+					"hearing": { "value": -18 }
+					}
+				},
+			"social_status": { "value": 15 },
+			"hiddenness": { "value": -15 } 
+			},
 		
 		"stamina_cost": 3,
 			
@@ -207,7 +298,18 @@ export const equipment = {
 	"Padded Coif":
 		{
 		"type": "Helmet",
-		"attributes": { "sight": -10, "hearing": -10, "hiddenness": -5 },
+		"attributes": 
+			{
+			"senses":
+				{
+				"components":
+					{
+					"sight"  : { "value": -10 },
+					"hearing": { "value": -10 }
+					}
+				},
+			"hiddenness": { "value": -5 } 
+			},
 		
 		"stamina_cost": 1,
 			
@@ -232,7 +334,7 @@ export const equipment = {
 	"Quilted Jacket":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -2 },
+		"attributes": { "agility": { "value": -2 } },
 		
 		"stamina_cost": 0,
 			
@@ -254,7 +356,7 @@ export const equipment = {
 	"Gambeson":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -4, "social_status": 5, "hiddenness": -5 },
+		"attributes": { "agility": { "value": -4 }, "social_status": { "value": 5 }, "hiddenness": { "value": -5 } },
 		
 		"stamina_cost": 1,
 			
@@ -276,7 +378,7 @@ export const equipment = {
 	"Chainmail":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -2, "social_status": 5, "hiddenness": -10 },
+		"attributes": { "agility": { "value": -2 }, "social_status": { "value": 5 }, "hiddenness": { "value": -10 } },
 		
 		"stamina_cost": 1,
 			
@@ -298,7 +400,7 @@ export const equipment = {
 	"Plated Mail":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -5, "precision": -2, "hiddenness": -20 },
+		"attributes": { "agility": { "value": -5 }, "precision": { "value": -2 }, "hiddenness": { "value": -20 } },
 		
 		"stamina_cost": 2,
 			
@@ -320,7 +422,7 @@ export const equipment = {
 	"Scale Armour":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -8, "precision": -3, "social_status": 10, "hiddenness": -15 },
+		"attributes": { "agility": { "value": -8 }, "precision": { "value": -3 }, "social_status": { "value": 10 }, "hiddenness": { "value": -15 } },
 		
 		"stamina_cost": 2,
 			
@@ -342,7 +444,7 @@ export const equipment = {
 	"Brigandine":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -10, "precision": -4, "social_status": 10, "hiddenness": -15 },
+		"attributes": { "agility": { "value": -10 }, "precision": { "value": -4 }, "social_status": { "value": 10 }, "hiddenness": { "value": -15 } },
 		
 		"stamina_cost": 3,
 			
@@ -364,7 +466,7 @@ export const equipment = {
 	"Breastplate":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -8, "social_status": 12, "hiddenness": -20 },
+		"attributes": { "agility": { "value": -8 }, "social_status": { "value": 12 }, "hiddenness": { "value": -20 } },
 		
 		"stamina_cost": 3,
 			
@@ -386,7 +488,7 @@ export const equipment = {
 	"Plate Armour":
 		{
 		"type": "Armour",
-		"attributes": { "agility": -8, "precision": -5, "social_status": 15, "hiddenness": -30 },
+		"attributes": { "agility": { "value": -8 }, "precision": { "value": -5 }, "social_status": { "value": 15 }, "hiddenness": { "value": -30 } },
 		
 		"stamina_cost": 3,
 			
@@ -408,7 +510,7 @@ export const equipment = {
 	"Travel Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "hiddenness": 5 },
+		"attributes": { "hiddenness": { "value": 5 } },
 		
 		"stamina_cost": 0,
 			
@@ -430,7 +532,7 @@ export const equipment = {
 	"Farmer Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "social_status": -15, "hiddenness": 5 },
+		"attributes": { "social_status": { "value": -15 }, "hiddenness": { "value": 5 } },
 		
 		"stamina_cost": 0,
 			
@@ -452,7 +554,7 @@ export const equipment = {
 	"Nobleman Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "social_status": 30, "hiddenness": -30 },
+		"attributes": { "social_status": { "value": 30 }, "hiddenness": { "value": -30 } },
 		
 		"stamina_cost": 0,
 			
@@ -474,7 +576,7 @@ export const equipment = {
 	"Ripped Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "social_status": -20, "hiddenness": 10 },
+		"attributes": { "social_status": { "value": -20 }, "hiddenness": { "value": 10 } },
 		
 		"stamina_cost": 0,
 			
@@ -496,7 +598,7 @@ export const equipment = {
 	"Rich Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "social_status": 20, "hiddenness": -20 },
+		"attributes": { "social_status": { "value": 20 }, "hiddenness": { "value": -20 } },
 		
 		"stamina_cost": 0,
 			
@@ -518,7 +620,7 @@ export const equipment = {
 	"Dark Clothing":
 		{
 		"type": "Clothing",
-		"attributes": { "hiddenness": 20 },
+		"attributes": { "hiddenness": { "value": 20 } },
 		
 		"stamina_cost": 0,
 			
@@ -562,7 +664,7 @@ export const equipment = {
 	"Blacksmith Clothing":
 		{
 		"type": "Clothing",
-		"attributes": {"social_status": -10 },
+		"attributes": { "social_status": -10 } },
 		
 		"stamina_cost": 0,
 			
@@ -584,7 +686,7 @@ export const equipment = {
 	"Night Tunic":
 		{
 		"type": "Clothing",
-		"attributes": {"social_status": -10 },
+		"attributes": { "social_status": { "value": -10 } },
 		
 		"stamina_cost": 0,
 			
@@ -606,7 +708,7 @@ export const equipment = {
 	"Cape":
 		{
 		"type": "Addition",
-		"attributes": {"social_status": 10, "hiddenness": 15 },
+		"attributes": { "social_status": { "value": 10 }, "hiddenness": { "value": 15 } },
 		
 		"stamina_cost": 0,
 			
@@ -628,7 +730,7 @@ export const equipment = {
 	"Jacket":
 		{
 		"type": "Addition",
-		"attributes": {"hiddenness": 10 },
+		"attributes": { "hiddenness": { "value": 10 } },
 		
 		"stamina_cost": 0,
 			
@@ -650,7 +752,7 @@ export const equipment = {
 	"Surcoat":
 		{
 		"type": "Addition",
-		"attributes": {"social_status": 20, "hiddenness": -20 },
+		"attributes": { "social_status": { "value": 20, "hiddenness": { "value": -20 } },
 		
 		"stamina_cost": 0,
 			
@@ -672,7 +774,7 @@ export const equipment = {
 	"Fur":
 		{
 		"type": "Addition",
-		"attributes": {"social_status": -5, "hiddenness": -10 },
+		"attributes": { "social_status": { "value": -5 }, "hiddenness": { "value": -10 } },
 		
 		"stamina_cost": 0,
 			
@@ -697,7 +799,7 @@ export const equipment = {
 	"Crystal Sphere Fragment Amulet":
 		{
 		"type": "Necklace",
-		"attributes": {"intelligence": 5, "wisdom": 5, "focus": 5, "hiddenness": -1 },
+		"attributes": { "intelligence": { "value": 5 }, "knowledge": { "value": 5 }, "focus": { "value": 5 }, "hiddenness": { "value": -1 } },
 		
 		"stamina_cost": 0,
 			
@@ -719,8 +821,22 @@ export const equipment = {
 	"White Wyvern Silver Amulet":
 		{
 		"type": "Necklace",
-		"attributes": {"stamina": 2, "agility": 2, "wisdom": 3, "focus": 5, "hearing": 3, "hiddenness": -5 },
-		
+		"attributes": 
+			{
+			"stamina"  : { "value": 2 },
+			"agility"  : { "value": 2 },
+			"knowledge": { "value": 3 },
+			"focus"    : { "value": 5 },
+			"senses":
+				{
+				"components":
+					{
+					"hearing": { "value": 3 }
+					}
+				},
+			"hiddenness": { "value": -5 } 
+			},
+			
 		"stamina_cost": 0,
 			
 		"defenses":
@@ -741,7 +857,7 @@ export const equipment = {
 	"Leaf Amulet":
 		{
 		"type": "Necklace",
-		"attributes": {"stamina": 1, "agility": 5 },
+		"attributes": { "stamina": { "value": 1 }, "agility": { "value": 5 } },
 		
 		"stamina_cost": 0,
 			
@@ -763,7 +879,7 @@ export const equipment = {
 	"Feather Amulet":
 		{
 		"type": "Necklace",
-		"attributes": {"agility": 8 },
+		"attributes": { "agility": { "value": 8 } },
 		
 		"stamina_cost": 0,
 			
@@ -785,7 +901,7 @@ export const equipment = {
 	"Silver Ring":
 		{
 		"type": "Ring",
-		"attributes": {"agility": 3, "social_status": 10, "hiddenness": -3 },
+		"attributes": { "agility": { "value": 3 }, "social_status": { "value": 10 }, "hiddenness": { "value": -3 } },
 		
 		"stamina_cost": 0,
 			
