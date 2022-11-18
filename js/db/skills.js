@@ -152,7 +152,7 @@ export const skills = {
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
-	"requirements": { "attributes": { "agility": { "value": 60 } } },
+	"requirements": { "attributes": { "agility": { "value": 50 } } },
 	"text": "Add your Step's length to the range of one Attack of your Attack Chain. If the chosen attack is not the first one, that Attack will conclude the Chain."
 	},
 

@@ -545,7 +545,7 @@ export class Character
 		if(!equipment_data) { return false; }
 		if(equipment_data.requirements)
 			{
-			if(!this.check_requirements(equipment_data.requirements, this.attributes._2_experiences)) { return false; }
+			if(!this.check_requirements(equipment_data.requirements, this.attributes._3_location)) { return false; }
 			}
 		
 		return true;
