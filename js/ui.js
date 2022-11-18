@@ -163,7 +163,8 @@ export class ui
 							{
 							let mult_value = value * experience.years;
 							let contribution_percent = mult_value / abs_tot_attributes_in_location.get_value_arr(arr);
-							let contribution = contribution_percent * reduced_tot_attributes_in_location.get_value_arr(arr);
+							let unsigned_reduced_tot = Math.abs(reduced_tot_attributes_in_location.get_value_arr(arr));
+							let contribution = contribution_percent * unsigned_reduced_tot;
 							
 							add_attribute_span(col_attributes, arr, contribution);
 							}
