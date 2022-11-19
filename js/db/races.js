@@ -105,7 +105,7 @@ export const races =
 			"eloquence"    : { "base": make_base_mental_immortal  ( 30, 15), "experience": make_exp_mental_immortal  (100, 60) },
 			"senses"       : 
 				{
-				"base": make_base_physical_immortal(100, 40), "experience": make_exp_physical_mortal(100, 20),
+				"base": make_base_physical_immortal(100, 40), "experience": make_exp_physical_immortal(100, 20),
 				"components":
 					{
 					"sight"  : { "base": make_base_physical_immortal(100, 50), "experience": make_exp_physical_immortal(100, 20) },
