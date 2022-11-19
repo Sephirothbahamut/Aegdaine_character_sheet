@@ -57,6 +57,19 @@ export const experiences =
 			}
 		}
 	},
+"Priest": 
+	{ 
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"intelligence":  { "value":   1 }, 
+			"wisdom":        { "value":   2 }, 
+			"focus":         { "value":  .5 }, 
+			"social_status": { "value":   2 } 
+			}
+		}
+	},
 "Scout": 
 	{ 
 	"requirements": { "experiences": { "Military training": 1 } },
