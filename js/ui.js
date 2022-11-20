@@ -149,24 +149,20 @@ export class ui
 				
 				if(experience_data.attributes && experience_data.attributes[location])
 					{
+					let cache = character.attributes.cache._2_experiences[location];
 					let attributes_in_location = attributes.from_partial(experience_data.attributes[location]);
-					let abs_tot_attributes_in_location = character.attributes.cache._2_experiences[location].abs;
-					let reduced_tot_attributes_in_location = character.attributes.cache._2_experiences[location].reduced;
 					
-					if(location != "base") { reduced_tot_attributes_in_location = attributes.add(reduced_tot_attributes_in_location, character.attributes.cache._2_experiences.base.reduced, false); }
-					
+						
 					attributes.for_each((arr) =>
 						{
-						const value = attributes_in_location.get_value_arr(arr) * (requirements_satisfied ? 1 : .5);
-						
+						const value = attributes_in_location.get_value_arr(arr);
 						if(value)
 							{
 							let mult_value = value * experience.years;
-							let contribution_percent = mult_value / abs_tot_attributes_in_location.get_value_arr(arr);
-							let unsigned_reduced_tot = Math.abs(reduced_tot_attributes_in_location.get_value_arr(arr));
-							let contribution = contribution_percent * unsigned_reduced_tot;
+							let percent_of_full = mult_value / cache.full.get_value_arr(arr);
+							let contribution_to_reduced = percent_of_full * cache.reduced.get_value_arr(arr);
 							
-							add_attribute_span(col_attributes, arr, contribution);
+							add_attribute_span(col_attributes, arr, contribution_to_reduced);
 							}
 						});
 					}
@@ -289,8 +285,11 @@ export class ui
 					{
 					let element = utils.html.emplace_child(parent, "td");
 					element.classList.add("numeric");
-					element.innerHTML = Math.round(data.defenses[a][b]);
-					element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
+					if(data.defenses)
+						{
+						element.innerHTML = Math.round(data.defenses[a][b]);
+						element.style.backgroundColor = utils.color_to_css(utils.color_multiply(utils.getColorForPercentage(data.defenses[a][b] / 100, utils.color_percent_red_to_green), .6)); 
+						}
 					return element;
 					}
 				
@@ -322,8 +321,8 @@ export class ui
 					
 			let col_cost = utils.html.emplace_child(first_row, "td");  col_cost.rowSpan = col_name.rowSpan;
 			col_cost.classList.add("numeric");
-			if(weapon_stats) { col_cost.innerHTML = Math.round(weapon_stats.stamina_per_attack); }
-			else             { col_cost.innerHTML = Math.round(data.stamina_cost); }
+			     if(weapon_stats     ) { col_cost.innerHTML = Math.round(weapon_stats.stamina_per_attack); }
+			else if(data.stamina_cost) { col_cost.innerHTML = Math.round(data.stamina_cost); }
 			
 			if(weapon_stats)
 				{

@@ -167,9 +167,9 @@ export class Character
 		
 		this.attributes.cache._2_experiences = 
 			{
-			"base": { "abs": attributes.make(), "full": attributes.make(), "reduced": attributes.make() },
-			"wild": { "abs": attributes.make(), "full": attributes.make(), "reduced": attributes.make() },
-			"city": { "abs": attributes.make(), "full": attributes.make(), "reduced": attributes.make() }
+			"base": { "full": attributes.make(), "growth": attributes.make(), "reduced": attributes.make() },
+			"wild": { "full": attributes.make(), "growth": attributes.make(), "reduced": attributes.make() },
+			"city": { "full": attributes.make(), "growth": attributes.make(), "reduced": attributes.make() }
 			};
 		
 		//remove experiences with 0 years
@@ -193,16 +193,15 @@ export class Character
 					
 					let exp_attrs = attributes.from_partial(attrs);
 					
-					if(!requirements_satisfied) { exp_attrs.multiply_self(.5); }
+					//if(!requirements_satisfied) { exp_attrs.multiply_self(.5); }
 					
 					attributes.for_each((arr) =>
 						{
-						let value = exp_attrs.get_value_arr(arr) * character_experience.years;
-						exp_attrs.set_value_arr(value, arr);
+						let value = exp_attrs.get_value_arr(arr);
+						if(value) { exp_attrs.set_value_arr(value * character_experience.years, arr); }
 						});
 					
-					cache.full = attributes.add    (cache.full, exp_attrs, false);
-					cache.abs  = attributes.add_abs(cache.abs , exp_attrs, false);
+					cache.full = attributes.add(cache.full, exp_attrs, false);
 					}
 				}
 			
@@ -241,24 +240,17 @@ export class Character
 			else           { return -Math.pow(Math.abs(value), 1/neg_factor); }
 			}
 		
-		const base_cache   = this.attributes.cache._2_experiences.base;
-		
-		let cache_abs_tots = {};
-		for (let [location, cache] of Object.entries(this.attributes.cache._2_experiences))
-			{
-			cache_abs_tots[location] = cache.abs.absolute_tot();
-			}
-		const reference_abs_tot = cache_abs_tots.base + Math.max(cache_abs_tots.wild, cache_abs_tots.city);//TODO instead of absolute total, pick the absolute from the location where the non-absolute value is max
-		
 		attributes.for_each((arr) =>
 			{
 			const race_attr_exp_weight = attributes.get_object_arr(arr, this.race_data.attributes).experience(this.character_data.age);
 			
 			for (let [location, cache] of Object.entries(this.attributes.cache._2_experiences))
 				{
-				const percent = cache.full.get_value_arr(arr) / reference_abs_tot;
-				const value = apply_growth_factor(reference_abs_tot == 0 ? 0 : percent, 5/*TODO customizable growth factor*/) * race_attr_exp_weight;
-				cache.reduced.set_value_arr(value, arr);
+				const percent = cache.full.get_value_arr(arr) / (this.character_data.age * 3);
+				const growth  = apply_growth_factor(percent, 4/*TODO customizable growth factor*/);
+				const value   = growth * race_attr_exp_weight;
+				cache.growth .set_value_arr(growth, arr);
+				cache.reduced.set_value_arr(value , arr);
 				}
 			});	
 		

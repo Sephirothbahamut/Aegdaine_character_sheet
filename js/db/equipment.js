@@ -799,24 +799,7 @@ export const equipment = {
 	"Crystal Sphere Fragment Amulet":
 		{
 		"type": "Necklace",
-		"attributes": { "intelligence": { "value": 5 }, "knowledge": { "value": 5 }, "focus": { "value": 5 }, "hiddenness": { "value": -1 } },
-		
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
-			}
+		"attributes": { "intelligence": { "value": 5 }, "knowledge": { "value": 5 }, "focus": { "value": 5 }, "hiddenness": { "value": -1 } }
 		},
 	"White Wyvern Silver Amulet":
 		{
@@ -834,113 +817,59 @@ export const equipment = {
 					"hearing": { "value": 3 }
 					}
 				},
-			"hiddenness": { "value": -5 } 
-			},
-			
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
+			"hiddenness": { "value": -3 } 
 			}
 		},
 	"Leaf Amulet":
 		{
 		"type": "Necklace",
-		"attributes": { "stamina": { "value": 1 }, "agility": { "value": 5 } },
-		
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
-			}
+		"attributes": { "stamina": { "value": 1 }, "agility": { "value": 5 } }
 		},
 	"Feather Amulet":
 		{
 		"type": "Necklace",
-		"attributes": { "agility": { "value": 8 } },
-		
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
-			}
+		"attributes": { "agility": { "value": 8 } }
 		},
 	"Silver Ring":
 		{
 		"type": "Ring",
-		"attributes": { "agility": { "value": 3 }, "social_status": { "value": 10 }, "hiddenness": { "value": -3 } },
-		
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
-			}
+		"attributes": { "social_status": { "value": 10 }, "hiddenness": { "value": -1 } }
 		},
-	"Crystal Sphere Fragment":
+	"Ruby Ring":
 		{
-		"type": "Shard",
-		"attributes": { },
-		
-		"stamina_cost": 0,
-			
-		"defenses":
-			{
-			"reductions":
-				{
-				"cut"   : 0,
-				"pierce": 0,
-				"crush" : 0
-				},
-			"protection":
-				{
-				"strength" : 0,
-				"precision": 0
-				}
-			}
+		"type": "Ring",
+		"attributes": { "strength":     { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Amethist Ring":
+		{
+		"type": "Ring",
+		"attributes": { "focus":        { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Sapphire Ring":
+		{
+		"type": "Ring",
+		"attributes": { "agility":      { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Emerald Ring":
+		{
+		"type": "Ring",
+		"attributes": { "stamina":      { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Opal Ring":
+		{
+		"type": "Ring",
+		"attributes": { "intelligence": { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Quartz Ring":
+		{
+		"type": "Ring",
+		"attributes": { "precision":    { "value": 4 }, "social_status": { "value": 15 }, "hiddenness": { "value": -2 } }
+		},
+	"Iron Braclet":
+		{
+		"type": "Braclet",
+		"attributes": { "strength": { "value": 10 }, "hiddenness": { "value": -1 } },
+		"stamina_cost": 2
 		}
 	},
 "weapons": weapons

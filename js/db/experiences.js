@@ -6,10 +6,10 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   .5 }, 
-			"wisdom":        { "value":   .5 }, 
-			"focus":         { "value":   .5 }, 
-			"social_status": { "value":   .5 } 
+			"intelligence":  { "value":     .50 }, 
+			"wisdom":        { "value":     .50 }, 
+			"focus":         { "value":     .50 }, 
+			"social_status": { "value":     .50 } 
 			}
 		}
 	},
@@ -21,11 +21,11 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   1 },
-			"constitution":  { "value":   1 }, 
-			"stamina":       { "value":   1 }, 
-			"agility":       { "value":   1 }, 
-			"precision":     { "value":   1 }
+			"strength":      { "value":    .75 },
+			"constitution":  { "value":    .75 }, 
+			"stamina":       { "value":    .75 }, 
+			"agility":       { "value":    .75 }, 
+			"precision":     { "value":    .75 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
@@ -37,9 +37,9 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":    1 }, 
-			"wisdom":        { "value":    1 }, 
-			"focus":         { "value":    2 }
+			"intelligence":  { "value":     .80 }, 
+			"wisdom":        { "value":     .80 }, 
+			"focus":         { "value":    1.00 }
 			}
 		}
 	},
@@ -50,10 +50,10 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   2 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"social_status": { "value":   1 } 
+			"intelligence":  { "value":    .80 }, 
+			"wisdom":        { "value":    .80 }, 
+			"focus":         { "value":   1.00 }, 
+			"social_status": { "value":    .50 } 
 			}
 		}
 	},
@@ -63,31 +63,31 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   2 }, 
-			"focus":         { "value":  .5 }, 
-			"social_status": { "value":   2 } 
+			"intelligence":  { "value":    .50 }, 
+			"wisdom":        { "value":   1.00 }, 
+			"focus":         { "value":    .50 }, 
+			"social_status": { "value":   1.00 } 
 			}
 		}
 	},
 "Scout": 
 	{ 
-	"requirements": { "experiences": { "Military training": 1 } },
+	"requirements": { "experiences": { "Military training": 1.00 } },
 	"attributes": 
 		{
 		"base": 
 			{ 
-			"stamina":       { "value":   1 }, 
-			"agility":       { "value":   1 }, 
-			"senses":        { "value":   1 }, 
-			"social_status": { "value":  -1 } 
+			"stamina":       { "value":    .75 }, 
+			"agility":       { "value":    .75 }, 
+			"senses":        { "value":    .75 }, 
+			"social_status": { "value":   -.75 } 
 			},
 		"wild": 
 			{ 
-			"agility":       { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"senses":        { "value":   1 }, 
-			"hiddenness":    { "value":   1 }
+			"agility":       { "value":    .50 }, 
+			"wisdom":        { "value":    .25 }, 
+			"senses":        { "value":    .25 }, 
+			"hiddenness":    { "value":    .50 }
 			}
 		},
 	"weapons": [ "Axe", "Short Weapon" ]
@@ -100,15 +100,15 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"constitution":  { "value":   1 }, 
-			"stamina":       { "value":   1 }, 
-			"senses":        { "value":   2 } 
+			"constitution":  { "value":    .75 }, 
+			"stamina":       { "value":    .50 }, 
+			"senses":        { "value":    .80 } 
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"senses":        { "value":   1 } 
+			"intelligence":  { "value":    .50 }, 
+			"focus":         { "value":    .50 }, 
+			"senses":        { "value":    .20 } 
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Polearm", "Shield", "Sword" ]
@@ -121,10 +121,10 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   2 },
-			"constitution":  { "value":   1 }, 
-			"stamina":       { "value":   1 }, 
-			"social_status": { "value":  -1 } 
+			"strength":      { "value":   1.00 },
+			"constitution":  { "value":   1.00 }, 
+			"stamina":       { "value":    .50 }, 
+			"social_status": { "value":   -.50 } 
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Sword" ]
@@ -136,14 +136,14 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"stamina":       { "value":   1 }, 
-			"agility":       { "value":   2 }, 
-			"precision":     { "value":   2 }, 
-			"social_status": { "value":   1 } 
+			"stamina":       { "value":    .20 }, 
+			"agility":       { "value":    .80 }, 
+			"precision":     { "value":   1.00 }, 
+			"social_status": { "value":    .20 } 
 			},
 		"city": 
 			{ 
-			"social_status": { "value":   1 }
+			"social_status": { "value":    .80 }
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Polearm", "Short Weapon", "Sword" ]
@@ -156,11 +156,11 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   1 },
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"social_status": { "value":   1 } 
+			"strength":      { "value":    .50 },
+			"intelligence":  { "value":    .80 }, 
+			"wisdom":        { "value":    .50 }, 
+			"focus":         { "value":    .20 }, 
+			"social_status": { "value":    .80 } 
 			}
 		},
 	"weapons": [ "Mace", "Shield", "Sword" ]
@@ -173,11 +173,11 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"eloquence":     { "value":   1 }, 
-			"social_status": { "value":   2 } 
+			"intelligence":  { "value":    .80 }, 
+			"wisdom":        { "value":    .80 }, 
+			"focus":         { "value":    .50 }, 
+			"eloquence":     { "value":    .50 }, 
+			"social_status": { "value":   1.00 } 
 			}
 		},
 	"weapons": [ "Mace", "Shield", "Sword" ]
@@ -188,9 +188,9 @@ export const experiences =
 		{
 		"city": 
 			{ 
-			"eloquence":     { "value":   1 },
-			"intelligence":  { "value":   1 }, 
-			"senses":        { "value":   2 } 
+			"eloquence":     { "value":    .50 },
+			"intelligence":  { "value":    .50 }, 
+			"senses":        { "value":   1.00 } 
 			}
 		},
 	},
@@ -201,18 +201,18 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"hiddenness":    { "value":   1 }
+			"hiddenness":    { "value":    .25 }
 			},
 		"city":
 			{
-			"senses":        { "value":  -1 },
-			"social_status": { "value":  -2 }
+			"senses":        { "value":  -1.00 },
+			"social_status": { "value":  -1.00 }
 			},
 		"wild": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   1 },
-			"social_status": { "value":   1 }
+			"intelligence":  { "value":    .50 }, 
+			"wisdom":        { "value":   1.00 },
+			"social_status": { "value":   1.00 }
 			}
 		}
 	},
@@ -222,13 +222,13 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence":     { "value":   1 } 
+			"eloquence":     { "value":   1.00 } 
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"hiddenness":    { "value":  -2 },
-			"senses":        { "value":   2 } 
+			"intelligence":  { "value":   1.00 }, 
+			"hiddenness":    { "value":  -2.00 },
+			"senses":        { "value":   2.00 } 
 			}
 		},
 	},
@@ -238,13 +238,13 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"stamina":       { "value":   1 }, 
-			"hiddenness":    { "value":  -2 },
-			"eloquence":     { "value":   1 }
+			"stamina":       { "value":    .25 }, 
+			"hiddenness":    { "value":  -1.00 },
+			"eloquence":     { "value":   1.00 }
 			},
 		"city": 
 			{ 
-			"wisdom":        { "value":   1 }
+			"wisdom":        { "value":   1.00 }
 			}
 		}
 	},
@@ -255,12 +255,12 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence":     { "value":   1 }, 
-			"social_status": { "value":   2 } 
+			"eloquence":     { "value":   1.00 }, 
+			"social_status": { "value":   1.00 } 
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }
+			"intelligence":  { "value":   1.00 }
 			}
 		},
 	"weapons": [ "Sword" ]
@@ -272,14 +272,14 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"constitution":  { "value": -.5 }, 
-			"wisdom":        { "value":   1 },
-			"intelligence":  { "value":   1 }, 
-			"focus":         { "value":   1 }
+			"constitution":  { "value":   -.50 }, 
+			"wisdom":        { "value":    .80 },
+			"intelligence":  { "value":    .80 }, 
+			"focus":         { "value":    .80 }
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }
+			"wisdom":        { "value":    .20 }
 			}
 		}
 	},
@@ -290,14 +290,15 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   1 },
-			"precision":     { "value":   1 },
-			"focus":         { "value":   1 }
+			"intelligence":  { "value":    .80 },
+			"precision":     { "value":    .80 },
+			"wisdom":        { "value":    .80 },
+			"focus":         { "value":    .50 }
 			},
 		"city": 
 			{ 
-			"wisdom":        { "value":   1 },
-			"social_status": { "value":   1 }
+			"wisdom":        { "value":    .20 },
+			"social_status": { "value":    .50 }
 			}
 		}
 	},
@@ -307,15 +308,15 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"precision":     { "value":   2 }, 
-			"intelligence":  { "value":   1 }, 
-			"focus":         { "value":   1 },
+			"precision":     { "value":   1.00 }, 
+			"intelligence":  { "value":    .25 }, 
+			"focus":         { "value":    .80 },
 			"senses":        
 				{
 				"components": 
 					{
-					"sight": { "value":   1 },
-					"touch": { "value":   1 }
+					"sight": { "value":   1.00 },
+					"touch": { "value":    .80 }
 					}
 				}
 			},
@@ -327,20 +328,20 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"eloquence":     { "value":   1 }, 
+			"intelligence":  { "value":    .25 }, 
+			"focus":         { "value":    .80 }, 
+			"eloquence":     { "value":    .80 }, 
 			"senses":        
 				{
 				"components": 
 					{
-					"hearing": { "value":   2 }
+					"hearing": { "value": 1.00 }
 					}
 				}
 			},
 		"city": 
 			{ 
-			"social_status": { "value":   1 }
+			"social_status": { "value":    .80 }
 			}
 		}
 	},
@@ -350,24 +351,24 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   1 }, 
-			"constitution":  { "value":   2 }, 
+			"strength":      { "value":   1.00 }, 
+			"constitution":  { "value":   1.00 }, 
 			"senses":        
 				{
-				"value":  -1,
+				"value":  -1.00,
 				"components": 
 					{
-					"touch": { "value":   2 }
+					"touch": { "value":   1.00 }
 					}
 				}
 			},
 		"city": 
 			{ 
-			"social_status": { "value":   1 }
+			"social_status": { "value":    .25 }
 			},
 		"wild": 
 			{ 
-			"social_status": { "value":  -1 }
+			"social_status": { "value":   -.5 }
 			}
 		},
 	},
@@ -377,9 +378,9 @@ export const experiences =
 		{
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   2 }, 
-			"social_status": { "value":   1 } 
+			"intelligence":  { "value":    .80 }, 
+			"wisdom":        { "value":    .75 }, 
+			"social_status": { "value":    .75 } 
 			}
 		},
 	},
@@ -390,13 +391,14 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"wisdom":        { "value":   1 } 
+			"intelligence":  { "value":   1.00 }, 
+			"wisdom":        { "value":    .80 }, 
+			"focus":         { "value":    .25 }
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   1 } 
+			"wisdom":        { "value":    .20 }, 
+			"focus":         { "value":    .25 } 
 			}
 		},
 	},
@@ -407,13 +409,12 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence":     { "value":   2 }, 
-			"social_status": { "value":   1 } 
+			"eloquence":     { "value":   1.00 }, 
+			"social_status": { "value":   1.00 } 
 			},
 		"city": 
 			{ 
-			"wisdom":        { "value":   1 }, 
-			"social_status": { "value":   2 } 
+			"wisdom":        { "value":   1.00 }
 			}
 		},
 	},
@@ -423,18 +424,18 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"stamina":       { "value":   1 }, 
-			"wisdom":        { "value":   1 }
+			"stamina":       { "value":    .50 }, 
+			"wisdom":        { "value":    .50 }
 			},
 		"city": 
 			{  
-			"focus":         { "value":  -1 },
-			"eloquence":     { "value":   1 }, 
-			"social_status": { "value":   1 } 
+			"focus":         { "value":   -.75 },
+			"eloquence":     { "value":    .80 }, 
+			"social_status": { "value":    .75 } 
 			},
 		"wild": 
 			{ 
-			"senses":        { "value":   1 }
+			"senses":        { "value":    .80 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Short Weapon" ]
@@ -445,22 +446,22 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   1 },
+			"strength":      { "value":    .50 },
 			},
 		"city": 
 			{ 
-			"focus":         { "value":  -1 }, 
-			"senses":        { "value":  -1 }, 
-			"social_status": { "value":  -1 } 
+			"focus":         { "value":   -.50 }, 
+			"senses":        { "value":   -.50 }, 
+			"social_status": { "value":   -.50 } 
 			},
 		"wild": 
 			{ 
-			"agility":       { "value":   1 }, 
-			"precision":     { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   1 }, 
-			"senses":        { "value":   2 }, 
-			"hiddenness":    { "value":   2 }
+			"agility":       { "value":    .75 }, 
+			"precision":     { "value":    .75 }, 
+			"wisdom":        { "value":    .50 }, 
+			"focus":         { "value":    .50 }, 
+			"senses":        { "value":   1.00 }, 
+			"hiddenness":    { "value":   1.00 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Polearm", "Short Weapon" ]
@@ -471,20 +472,20 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence":     { "value":  -2 }, 
-			"social_status": { "value":  -1 } 
+			"eloquence":     { "value":  -1.00 }, 
+			"social_status": { "value":  -1.00 } 
 			},
 		"city": 
 			{ 
-			"focus":         { "value":  -2 }, 
-			"senses":        { "value":  -2 } 
+			"focus":         { "value":  -1.00 }, 
+			"senses":        { "value":  -1.00 } 
 			},
 		"wild": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   1 }, 
-			"focus":         { "value":   4 }, 
-			"senses":        { "value":   2 } 
+			"intelligence":  { "value":   1.00 }, 
+			"wisdom":        { "value":   1.00 }, 
+			"focus":         { "value":   1.00 }, 
+			"senses":        { "value":   1.00 } 
 			}
 		},
 	},
@@ -495,17 +496,17 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"strength":      { "value":   1 },
-			"constitution":  { "value":   2 }, 
-			"stamina":       { "value":   2 } 
+			"strength":      { "value":   1.00 },
+			"constitution":  { "value":   0.80 }, 
+			"stamina":       { "value":   0.50 } 
 			},
 		"city": 
 			{ 
-			"social_status": { "value":   1 } 
+			"social_status": { "value":   1.00 } 
 			},
 		"wild": 
 			{ 
-			"social_status": { "value":  -1 } 
+			"social_status": { "value":   -.50 } 
 			}
 		},
 	"weapons": [ "Axe", "Mace", "Shield", "Sword" ]
@@ -516,15 +517,10 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"wisdom":        { "value":  -2 }, 
-			"focus":         { "value":  -2 }, 
-			"eloquence":     { "value":   4 }, 
-			"senses":        { "value":  -1 } 
-			},
-		"city": 
-			{ 
-			"focus":         { "value":   1 }, 
-			"eloquence":     { "value":   1 } 
+			"wisdom":        { "value":   -.25 }, 
+			"focus":         { "value":   -.25 }, 
+			"eloquence":     { "value":   1.00 }, 
+			"senses":        { "value":   -.25 } 
 			}
 		},
 	},
@@ -534,9 +530,8 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"intelligence":  { "value":   1 }, 
-			"wisdom":        { "value":   4 }, 
-			"eloquence":     { "value":  -1 } 
+			"intelligence":  { "value":   1.00 }, 
+			"wisdom":        { "value":   1.00 }
 			}
 		},
 	},
@@ -546,12 +541,12 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"agility":       { "value":   1 },
-			"strength":      { "value":  .5 }
+			"agility":       { "value":   1.00 },
+			"strength":      { "value":    .25 }
 			},
 		"wild": 
 			{ 
-			"senses":        { "value":  .5 } 
+			"senses":        { "value":    .50 } 
 			}
 		},
 	},
@@ -561,17 +556,17 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"agility":       { "value":  .5 }, 
-			"intelligence":  { "value":  .5 }, 
-			"eloquence":     { "value":  .5 }, 
-			"senses":        { "value":   1 } 
+			"agility":       { "value":    .50 }, 
+			"intelligence":  { "value":    .50 }, 
+			"wisdom":        { "value":   -.75 }, 
+			"eloquence":     { "value":    .50 }, 
+			"senses":        { "value":   1.00 } 
 			},
 		"city": 
 			{ 
-			"agility":       { "value":  .5 }, 
-			"intelligence":  { "value":  .5 }, 
-			"eloquence":     { "value":  .5 }, 
-			"senses":        { "value":   1 } 
+			"agility":       { "value":    .25 }, 
+			"intelligence":  { "value":    .25 }, 
+			"eloquence":     { "value":    .25 }
 			}
 		},
 	},
@@ -581,18 +576,18 @@ export const experiences =
 		{
 		"base":
 			{
-			"strength":      { "value":   1 },
-			"constitution":  { "value":   1 }, 
-			"stamina":       { "value":   1 }, 
+			"strength":      { "value":    .25 },
+			"constitution":  { "value":    .25 }, 
+			"stamina":       { "value":    .25 }
 			},
 		"city": 
 			{ 
-			"hiddenness":    { "value":  -1 }
+			"hiddenness":    { "value":   -.75 }
 			},
 		"wild": 
 			{ 
-			"senses":        { "value":   1 }, 
-			"hiddenness":    { "value":   1 }
+			"senses":        { "value":    .80 }, 
+			"hiddenness":    { "value":   1.00 }
 			}
 		},
 	"weapons": [ "Short Weapon" ]
@@ -603,18 +598,18 @@ export const experiences =
 		{
 		"base":
 			{
-			"strength":      { "value":   1 },
-			"constitution":  { "value":   1 }, 
-			"stamina":       { "value":   1 }, 
+			"strength":      { "value":    .25 },
+			"constitution":  { "value":    .25 }, 
+			"stamina":       { "value":    .25 }
 			},
 		"city": 
 			{ 
-			"senses":        { "value":   1 }, 
-			"hiddenness":    { "value":   1 }
+			"senses":        { "value":    .80 }, 
+			"hiddenness":    { "value":   1.00 }
 			},
 		"wild": 
 			{ 
-			"hiddenness":    { "value":  -1 }
+			"hiddenness":    { "value":   -.75 }
 			}
 		},
 	"weapons": [ "Short Weapon" ]
@@ -625,12 +620,13 @@ export const experiences =
 		{
 		"base": 
 			{ 
-			"eloquence":     { "value":   2 } 
+			"eloquence":     { "value":   1.00 }, 
+			"intelligence":  { "value":    .50 }, 
+			"wisdom":        { "value":    .50 }
 			},
 		"city": 
 			{ 
-			"wisdom":        { "value":   1 }, 
-			"eloquence":     { "value":   2 }
+			"wisdom":        { "value":    .25 }
 			}
 		},
 	},
@@ -640,7 +636,7 @@ export const experiences =
 		{
 		"base":
 			{
-			"social_status": { "value":  -3 } 
+			"social_status": { "value":  -1 } 
 			}
 		}
 	}
