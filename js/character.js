@@ -509,7 +509,7 @@ export class Character
 			for (const [key, value] of Object.entries(requirements.experience_categories)) 
 				{
 				if(!this.experience_categories[key]) { return false; }
-				if(this.experience_categories[key].years < value) { return false; }
+				if(this.experience_categories[key] < value) { return false; }
 				}
 			}
 			

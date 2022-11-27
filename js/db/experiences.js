@@ -16,7 +16,7 @@ export const experiences =
 "Military training": 
 	{ 
 	"requirements": { "experiences": { "Education": 3 } },
-	"categories": ["military"],
+	"categories": ["military", "military_training"],
 	"attributes": 
 		{
 		"base": 
@@ -26,6 +26,23 @@ export const experiences =
 			"stamina":       { "value":    .75 }, 
 			"agility":       { "value":    .75 }, 
 			"precision":     { "value":    .75 }
+			}
+		},
+	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
+	},
+"Military training (Elite)": 
+	{ 
+	"requirements": { "experiences": { "Education": 3 } },
+	"categories": ["military", "military_training"],
+	"attributes": 
+		{
+		"base": 
+			{ 
+			"strength":      { "value":    .90 },
+			"constitution":  { "value":    .90 }, 
+			"stamina":       { "value":    .90 }, 
+			"agility":       { "value":    .90 }, 
+			"precision":     { "value":    .90 }
 			}
 		},
 	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
@@ -72,7 +89,7 @@ export const experiences =
 	},
 "Scout": 
 	{ 
-	"requirements": { "experiences": { "Military training": 1.00 } },
+	"requirements": { "experience_categories": { "military_training": 1 } },
 	"attributes": 
 		{
 		"base": 
@@ -94,7 +111,7 @@ export const experiences =
 	},
 "Guard": 
 	{ 
-	"requirements": { "experiences": { "Military training": 3 } },
+	"requirements": { "experience_categories": { "military_training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
@@ -115,7 +132,7 @@ export const experiences =
 	},
 "Soldier": 
 	{ 
-	"requirements": { "experiences": { "Military training": 3 } },
+	"requirements": { "experience_categories": { "military_training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
@@ -150,7 +167,7 @@ export const experiences =
 	},
 "Captain": 
 	{ 
-	"requirements": { "experiences": { "Military training": 3 } },
+	"requirements": { "experience_categories": { "military_training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
@@ -167,7 +184,7 @@ export const experiences =
 	},
 "General": 
 	{ 
-	"requirements": { "experiences": { "Military training": 3 } },
+	"requirements": { "experience_categories": { "military_training": 3 } },
 	"categories": ["military"],
 	"attributes": 
 		{
@@ -255,12 +272,13 @@ export const experiences =
 		{
 		"base": 
 			{ 
+			"intelligence":  { "value":   0.67 },
 			"eloquence":     { "value":   1.00 }, 
 			"social_status": { "value":   1.00 } 
 			},
 		"city": 
 			{ 
-			"intelligence":  { "value":   1.00 }
+			"intelligence":  { "value":   0.33 }
 			}
 		},
 	"weapons": [ "Sword" ]

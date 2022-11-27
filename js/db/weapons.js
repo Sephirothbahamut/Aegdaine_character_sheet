@@ -992,7 +992,7 @@ export const weapons = {
 "Ruby Axe of Courage":
 	{
 	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": { "value": 50 }, "precision": { "value": 50 } }, "weapons_experience": { "Axe": 3 } },
+	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 35 } }, "weapons_experience": { "Axe": 3 } },
 	"hands": 2,
 	"stamina_cost": 0,
 	"stamina_per_attack": 3,
