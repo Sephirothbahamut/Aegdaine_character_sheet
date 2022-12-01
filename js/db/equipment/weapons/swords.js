@@ -1,10 +1,9 @@
-export const weapons = {
+export const swords = {
 "Arming Sword": 
 	{
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 2 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -49,7 +48,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -86,7 +84,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -124,7 +121,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 2 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -170,7 +166,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -216,7 +211,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
 	"attacks":
@@ -253,7 +247,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 4,
 	"attacks":
@@ -299,7 +292,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 18 }, "precision": { "value": 35 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 4,
 	"attacks":
@@ -344,7 +336,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 1,
-	"stamina_cost": 0,
 	"stamina_per_attack": 4,
 	"experience_per_attack": 6,
 	"attacks":
@@ -391,7 +382,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -436,7 +426,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
 	"attacks":
@@ -473,7 +462,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -511,7 +499,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -557,7 +544,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
 	"attacks":
@@ -594,7 +580,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -632,7 +617,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 3 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -678,7 +662,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 23 }, "precision": { "value": 30 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
 	"attacks":
@@ -715,7 +698,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 28 }, "precision": { "value": 20 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
 	"attacks":
@@ -753,7 +735,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 40 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 4 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 4,
 	"experience_per_attack": 7,
 	"attacks":
@@ -793,7 +774,6 @@ export const weapons = {
 	"type": "Sword",
 	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 25 } }, "weapons_experience": { "Sword": 5 } },
 	"hands": 2,
-	"stamina_cost": 0,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 7,
 	"attacks":
@@ -817,648 +797,5 @@ export const weapons = {
 			"agility": -15
 			}
 		}
-	},
-"Blunt Mace": 
-	{
-	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Mace": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 6,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 5},
-			"damage":
-				{
-				"crush": { "base": 10, "strength": 0.50 }
-				}
-			},
-		"Thrust":
-			{
-			"bonus": { "strength": 5},
-			"damage":
-				{
-				"crush": { "base": 5, "strength": 0.30, "precision": 0.10 }
-				}
-			}
-		}
-	},
-"Spiked Mace": 
-	{
-	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": { "value": 35 } }, "weapons_experience": { "Mace": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 7,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 10},
-			"damage":
-				{
-				"pierce":{ "base": 3,  },
-				"crush": { "base": 15, "strength": 0.50 }
-				}
-			},
-		"Thrust":
-			{
-			"bonus": { "strength": 10, "precision": -10},
-			"damage":
-				{
-				"pierce":{ "base": 3,  },
-				"crush": { "base": 5, "strength": 0.30, "precision": 0.10 }
-				}
-			}
-		}
-	},
-"Warhammer": 
-	{
-	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": { "value": 25 }, "precision": { "value": 20 } }, "weapons_experience": { "Mace": 2 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 6,
-	"attacks":
-		{
-		"Swing (Hammer)":
-			{
-			"bonus": { "strength": 15},
-			"damage":
-				{
-				"crush": { "base": 20, "strength": 0.45, "precision": 0.5 }
-				}
-			},
-		"Swing (Pick)":
-			{
-			"bonus": { "strength": 15},
-			"damage":
-				{
-				"pierce":{ "base": 20, "strength": 0.50, "precision": 0.20 },
-				"crush": { "base": 10, "strength": 0.30, "precision": 0.10 }
-				}
-			}
-		}
-	},
-"Chained Morningstar": 
-	{
-	"type": "Mace",
-	"requirements":	{ "attributes": { "strength": { "value": 30 }, "precision": { "value": 40 } }, "weapons_experience": { "Mace": 2 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 4,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 20, "precision": -5},
-			"damage":
-				{
-				"pierce":{ "base": 5,  },
-				"crush": { "base": 30, "strength": 0.60, "precision": 0.20 }
-				}
-			}
-		}
-	},
-"Woodchopping": 
-	{
-	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Axe": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 6,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 10},
-			"damage":
-				{
-				"cut":   { "base": 8, "strength": 0.1 },
-				"crush": { "base": 16, "strength": 0.50 }
-				}
-			}
-		}
-	},
-"Battle Axe": 
-	{
-	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": { "value": 20 } }, "weapons_experience": { "Axe": 2 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 8 },
-			"damage":
-				{
-				"cut":   { "base": 14, "strength": .2, "precision": .2 },
-				"crush": { "base": 10, "strength": .10 }
-				}
-			}
-		}
-	},
-"Daneaxe": 
-	{
-	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 20 } }, "weapons_experience": { "Axe": 3 } },
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 7,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 6, "precision": 4},
-			"damage":
-				{
-				"cut":   { "base": 16, "precision": .5 },
-				"crush": { "base": 8, "strength": .1 }
-				}
-			}
-		}
-	},
-"Ruby Axe of Courage":
-	{
-	"type": "Axe",
-	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 35 } }, "weapons_experience": { "Axe": 3 } },
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "strength": 20, "precision": 5},
-			"damage":
-				{
-				"cut":   { "base": 20, "strength": .3, "precision": .2 },
-				"crush": { "base": 15, "strength": .40 }
-				}
-			}
-		}
-	},
-"Spear": 
-	{
-	"type": "Polearm",
-	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } } },
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 1,
-	"attacks":
-		{
-		"Thrust":
-			{
-			"bonus": { "precision": 5},
-			"damage":
-				{
-				"pierce":{ "base": 15, "precision": 0.55 }
-				}
-			}
-		}
-	},
-"Short Spear": 
-	{
-	"type": "Polearm",
-	"requirements":	{ "attributes": { "strength": { "value": 15 }, "precision": { "value": 30 } }, "weapons_experience": { "Polearm": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 1,
-	"attacks":
-		{
-		"Thrust":
-			{
-			"bonus": { "precision": 10},
-			"damage":
-				{
-				"pierce":{ "base": 15, "precision": 0.50 }
-				}
-			}
-		}
-	},
-"Leaf Blade": 
-	{
-	"type": "Polearm",
-	"requirements":	{ "attributes": { "strength": { "value": 18 }, "precision": { "value": 20 } }, "weapons_experience": { "Polearm": 1 } },
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Thrust":
-			{
-			"damage":
-				{
-				"pierce":{ "base": 10, "precision": 0.50 }
-				}
-			}
-		}
-	},
-"Poleaxe": 
-	{
-	"type": "Polearm",
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 7,
-	"attacks":
-		{
-		}
-	},
-"Halberd": 
-	{
-	"type": "Polearm",
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		}
-	},
-"Pike": 
-	{
-	"type": "Polearm",
-	"hands": 2,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 7,
-	"attacks":
-		{
-		}
-	},
-"Knife": 
-	{
-	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "precision": { "value": 30 } }, "weapons_experience": { "Short Weapon": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 2,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "precision": 20},
-			"damage":
-				{
-				"cut":   { "base": 10, "strength": 0.5, "precision": 0.20 }
-				}
-			},
-		"Thrust":
-			{
-			"bonus": { "precision": 30},
-			"damage":
-				{
-				"pierce":{ "base": 10, "precision": 0.40 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": -50,
-			"agility": 10
-			}
-		}
-	},
-"Dagger": 
-	{
-	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 40 } }, "weapons_experience": { "Short Weapon": 4 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 2,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "precision": 5},
-			"damage":
-				{
-				"cut":   { "base": 2,  }
-				}
-			},
-		"Thrust":
-			{
-			"bonus": { "precision": 40},
-			"damage":
-				{
-				"pierce":{ "base": 15, "precision": 0.50 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": -50,
-			"agility": 20
-			}
-		}
-	},
-"Katar": 
-	{
-	"type": "Short Weapon",
-	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Short Weapon": 3 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Swing":
-			{
-			"bonus": { "precision": 10},
-			"damage":
-				{
-				"cut":   { "base": 20,  }
-				}
-			},
-		"Thrust":
-			{
-			"bonus": { "precision": 10},
-			"damage":
-				{
-				"pierce":{ "base": 15, "precision": 0.40 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": -30,
-			"agility": 20
-			}
-		}
-	},
-"Round Shield (Center Grip)": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 40 }, "precision": { "value": 10 } }, "weapons_experience": { "Shield": 3 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 7,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.15 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 25,
-			"agility": 5
-			}
-		}
-	},
-"Heater Shield": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Shield": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.2,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.15 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 30
-			}
-		}
-	},
-"Kite Shield": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 35 } }, "weapons_experience": { "Shield": 2 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.2,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.15 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 35
-			}
-		}
-	},
-"Buckler": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 20 }, "precision": { "value": 25 } }, "weapons_experience": { "Shield": 3 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.8,
-			"damage":
-				{
-				"crush": { "base": 5, "strength": 0.5 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 5, "strength": 0.10 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 10,
-			"agility": 15
-			}
-		}
-	},
-"Tower Shield": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 50 } }, "weapons_experience": { "Shield": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.2,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.15 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 40
-			}
-		}
-	},
-"Celtic Shield": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 35 }, "precision": { "value": 10 } }, "weapons_experience": { "Shield": 1 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 2,
-	"experience_per_attack": 8,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.2,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.5,
-			"damage":
-				{
-				"crush": { "base": 8, "strength": 0.15 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 35,
-			"agility": 5
-			}
-		}
-	},
-"Spiked Buckler": 
-	{
-	"type": "Shield",
-	"requirements":	{ "attributes": { "strength": { "value": 23 }, "precision": { "value": 35 } }, "weapons_experience": { "Shield": 4 } },
-	"hands": 1,
-	"stamina_cost": 0,
-	"stamina_per_attack": 1,
-	"experience_per_attack": 5,
-	"attacks":
-		{
-		"Push":
-			{
-			"range": 0.8,
-			"damage":
-				{
-				"pierce":{ "base": 15, "precision": 0.15 },
-				"crush": { "base": 5, "strength": 0.5, "precision": 0.10 }
-				}
-			},
-		"Slap":
-			{
-			"range": 0.8,
-			"damage":
-				{
-				"crush": { "base": 5, "strength": 0.10 }
-				}
-			}
-		},
-	"defenses":
-		{
-		"bonus":
-			{
-			"constitution": 10,
-			"agility": 10
-			}
-		}
 	}
-
 };

@@ -28,7 +28,7 @@ export const experiences =
 			"precision":     { "value":    .75 }
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
+	"weapons": [ "Axe", "Ranged", "Mace", "Polearm", "Shield", "Short Weapon", "Sword", "Natural" ]
 	},
 "Military training (Elite)": 
 	{ 
@@ -45,7 +45,7 @@ export const experiences =
 			"precision":     { "value":    .90 }
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Short Weapon", "Sword" ]
+	"weapons": [ "Axe", "Ranged", "Mace", "Polearm", "Shield", "Short Weapon", "Sword", "Natural" ]
 	},
 "Magic training":  
 	{
@@ -107,7 +107,7 @@ export const experiences =
 			"hiddenness":    { "value":    .50 }
 			}
 		},
-	"weapons": [ "Axe", "Short Weapon" ]
+	"weapons": [ "Axe", "Short Weapon", "Natural" ]
 	},
 "Guard": 
 	{ 
@@ -128,7 +128,7 @@ export const experiences =
 			"senses":        { "value":    .20 } 
 			}
 		},
-	"weapons": [ "Axe", "Mace", "Polearm", "Shield", "Sword" ]
+	"weapons": [ "Axe", "Mace", "Polearm", "Shield", "Sword", "Natural" ]
 	},
 "Soldier": 
 	{ 
@@ -144,7 +144,7 @@ export const experiences =
 			"social_status": { "value":   -.50 } 
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Mace", "Polearm", "Shield", "Sword" ]
+	"weapons": [ "Axe", "Ranged", "Mace", "Polearm", "Shield", "Sword", "Natural" ]
 	},
 "Duelist": 
 	{ 
@@ -163,7 +163,7 @@ export const experiences =
 			"social_status": { "value":    .80 }
 			}
 		},
-	"weapons": [ "Axe", "Mace", "Polearm", "Short Weapon", "Sword" ]
+	"weapons": [ "Axe", "Mace", "Polearm", "Short Weapon", "Sword", "Natural" ]
 	},
 "Captain": 
 	{ 
@@ -456,7 +456,7 @@ export const experiences =
 			"senses":        { "value":    .80 }
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Short Weapon" ]
+	"weapons": [ "Axe", "Ranged", "Short Weapon", "Natural" ]
 	},
 "Hunter": 
 	{
@@ -482,7 +482,7 @@ export const experiences =
 			"hiddenness":    { "value":   1.00 }
 			}
 		},
-	"weapons": [ "Axe", "Bow", "Polearm", "Short Weapon" ]
+	"weapons": [ "Axe", "Ranged", "Polearm", "Short Weapon", "Natural" ]
 	},
 "Heremit": 
 	{ 
@@ -527,7 +527,7 @@ export const experiences =
 			"social_status": { "value":   -.50 } 
 			}
 		},
-	"weapons": [ "Axe", "Mace", "Shield", "Sword" ]
+	"weapons": [ "Axe", "Mace", "Shield", "Sword", "Natural" ]
 	},
 "Alchoolic": 
 	{ 
@@ -608,7 +608,7 @@ export const experiences =
 			"hiddenness":    { "value":   1.00 }
 			}
 		},
-	"weapons": [ "Short Weapon" ]
+	"weapons": [ "Short Weapon", "Natural" ]
 	},
 "Thiefing (Town)": 
 	{ 
@@ -630,7 +630,7 @@ export const experiences =
 			"hiddenness":    { "value":   -.75 }
 			}
 		},
-	"weapons": [ "Short Weapon" ]
+	"weapons": [ "Short Weapon", "Natural" ]
 	},
 "Orator": 
 	{ 

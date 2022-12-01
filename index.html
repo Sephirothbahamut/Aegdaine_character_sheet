@@ -13,7 +13,7 @@
 				document.getElementById('full_selector_weapons_div')    .style.display = 'none';
 				document.getElementById('full_selector_head_div')       .style.display = 'none';
 				document.getElementById('full_selector_body_div')       .style.display = 'none';
-				document.getElementById('full_selector_jewelry_div')    .style.display = 'none';
+				document.getElementById('full_selector_accessories_div').style.display = 'none';
 				document.getElementById('full_selector_experiences_div').style.display = 'none';
 				document.getElementById('sheet')                        .style.display = 'block';
 				}
@@ -112,7 +112,7 @@
 							</td>
 							<td>
 								<table>
-									<tr><th colspan=2>D20</th></tr>
+									<tr><th colspan=2>D12</th></tr>
 									
 									<tr><td class="numeric"> 1</td><td class="numeric">-30</td></tr>
 									<tr><td class="numeric"> 2</td><td class="numeric">-25</td></tr>
@@ -213,7 +213,9 @@
 					<h2> Weapons </h2>
 					<table id="container_weapons">
 					</table>
+					<input list="selector_choices_category_weapons" id="selector_category_weapons"/>
 					<input list="selector_choices_weapons" id="selector_weapons"/>
+					<datalist id="selector_choices_category_weapons"></datalist>
 					<datalist id="selector_choices_weapons"></datalist>
 					<button id="selector_add_weapons"> ➕&#xFE0E; </button>
 					<button onclick="full_selector_open('weapons')"> Advanced ➕&#xFE0E; </button>
@@ -222,7 +224,9 @@
 					<h2> Head </h2>
 					<table id="container_head">
 					</table>
+					<input list="selector_choices_category_head" id="selector_category_head"/>
 					<input list="selector_choices_head" id="selector_head"/>
+					<datalist id="selector_choices_category_head"></datalist>
 					<datalist id="selector_choices_head"></datalist>
 					<button id="selector_add_head"> ➕&#xFE0E; </button>
 					<button onclick="full_selector_open('head')"> Advanced ➕&#xFE0E; </button>
@@ -231,19 +235,23 @@
 					<h2> Body </h2>
 					<table id="container_body">
 					</table>
+					<input list="selector_choices_category_body" id="selector_category_body"/>
 					<input list="selector_choices_body" id="selector_body"/>
+					<datalist id="selector_choices_category_body"></datalist>
 					<datalist id="selector_choices_body"></datalist>
 					<button id="selector_add_body"> ➕&#xFE0E; </button>
 					<button onclick="full_selector_open('body')"> Advanced ➕&#xFE0E; </button>
 				</div>
 				<div style="float: left; padding: 1em">
-					<h2> Jewelry </h2>
-					<table id="container_jewelry">
+					<h2> Accessories </h2>
+					<table id="container_accessories">
 					</table>
-					<input list="selector_choices_jewelry" id="selector_jewelry"/>
-					<datalist id="selector_choices_jewelry"></datalist>
-					<button id="selector_add_jewelry"> ➕&#xFE0E; </button>
-					<button onclick="full_selector_open('jewelry')"> Advanced ➕&#xFE0E; </button>
+					<input list="selector_choices_category_accessories" id="selector_category_accessories"/>
+					<input list="selector_choices_accessories" id="selector_accessories"/>
+					<datalist id="selector_choices_category_accessories"></datalist>
+					<datalist id="selector_choices_accessories"></datalist>
+					<button id="selector_add_accessories"> ➕&#xFE0E; </button>
+					<button onclick="full_selector_open('accessories')"> Advanced ➕&#xFE0E; </button>
 				</div>
 				<div style="padding: 1em">
 					<h2> Other </h2>
@@ -324,9 +332,9 @@
 				<table id="full_container_body">
 				</table>
 			</div>
-			<div id="full_selector_jewelry_div"     style="display: none;">
-				<h2> Jewelry </h2>
-				<table id="full_container_jewelry">
+			<div id="full_selector_accessories_div"     style="display: none;">
+				<h2> accessories </h2>
+				<table id="full_container_accessories">
 				</table>
 			</div>
 			<div id="full_selector_experiences_div" style="display: none;">

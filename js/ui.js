@@ -49,7 +49,7 @@ export class ui
 				{
 				max += 100;
 				const value = current_attributes.get_value_arr(arr);
-				total += value;
+				if(arr.length === 1) { total += value; }
 				element.innerHTML = Math.round(value); 
 				
 				const fraction = value / 100;
@@ -103,7 +103,7 @@ export class ui
 		for(const [name, experience] of Object.entries(character.character_data.experiences))
 			{
 			const experience_data = database.experiences[name];
-			if(!experience_data) { console.log("Invalid experience in character. Experience is '" + name + "'"); break; }
+			if(!experience_data) { throw "Invalid experience in character. Experience is '" + name + "'"; }
 			
 			let row = utils.html.emplace_child(experiences_container, "tr");
 				
@@ -224,18 +224,21 @@ export class ui
 			while(container.childElementCount >= 3) { container.removeChild(container.lastChild); }
 			}
 		
-		function add_element(container, name, buttons)
+		function add_element(container, item_arr, buttons)
 			{
-			let data = database.equipment[slot][name];
-			if(!data) { console.log("Invalid equipment in character. Equipment is '" + slot + "/" + name + "'"); return; }
-			let weapon_stats = (slot === "weapons")? character.weapons[name] : null;
+			const category = item_arr[0];
+			const item     = item_arr[1];
+			
+			let data = database.equipment[slot][category][item];
+			if(!data) { throw "Invalid equipment in character. Equipment is '" + slot + "/" + category + "/" + item + "'"; }
+			let weapon_stats = (slot === "weapons") ? character.weapons[category][item] : null;
 			
 			let first_row = utils.html.emplace_child(container, "tr");
 			
 			let col_name = utils.html.emplace_child(first_row, "th");
 			
-			col_name.innerHTML = name;
-			const requirements_satisfied = character.check_equipment(name, slot);
+			col_name.innerHTML = item;
+			const requirements_satisfied = character.check_equipment(slot, category, item);
 			if(!requirements_satisfied)
 				{
 				col_name.style.color = "#FF0000";
@@ -362,9 +365,11 @@ export class ui
 					btn.type = "button";
 					btn.innerHTML = "Unequip";
 					
-					btn.dataset.name = name;
-					btn.dataset.slot = slot;
-					btn.onclick = function() { window.character.unequip(this.dataset.name, this.dataset.slot); };
+					btn.jsdataset = {};
+					btn.jsdataset.slot     = slot    ;
+					btn.jsdataset.category = category;
+					btn.jsdataset.item     = item    ;
+					btn.onclick = function() { window.character.unequip(this.jsdataset.slot, this.jsdataset.category, this.jsdataset.item); };
 					}
 				}
 			else if(buttons == "inventory")
@@ -373,17 +378,21 @@ export class ui
 					{
 					btn_equip.innerHTML = "Equip";
 					
-					btn_equip.dataset.name = name;
-					btn_equip.dataset.slot = slot;
-					btn_equip.onclick = function() { window.character.equip(this.dataset.name, this.dataset.slot); };
+					btn_equip.jsdataset = {};
+					btn_equip.jsdataset.slot     = slot    ;
+					btn_equip.jsdataset.category = category;
+					btn_equip.jsdataset.item     = item    ;
+					btn_equip.onclick = function() { window.character.equip(this.jsdataset.slot, this.jsdataset.category, this.jsdataset.item); };
 					}
 				let btn_delete = utils.html.emplace_child(col_btn, "button");
 					{
 					btn_delete.innerHTML = "Delete";
 					
-					btn_delete.dataset.name = name;
-					btn_delete.dataset.slot = slot;
-					btn_delete.onclick = function() { window.character.delete_equipment(this.dataset.name, this.dataset.slot); };
+					btn_delete.jsdataset = {};
+					btn_delete.jsdataset.slot     = slot    ;
+					btn_delete.jsdataset.category = category;
+					btn_delete.jsdataset.item     = item    ;
+					btn_delete.onclick = function() { window.character.delete_equipment(this.jsdataset.slot, this.jsdataset.category, this.jsdataset.item); };
 					}
 				}
 			if(!requirements_satisfied)
@@ -393,22 +402,23 @@ export class ui
 					{
 					btn_req.innerHTML = "Requirements";
 					
-					btn_req.dataset.name = name;
-					btn_req.dataset.slot = slot;
-					btn_req.dataset.go_to = "sheet";
-					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.dataset.slot][this.dataset.name].requirements, null, "\t")); };
+					btn_req.jsdataset = {};
+					btn_req.jsdataset.slot     = slot    ;
+					btn_req.jsdataset.category = category;
+					btn_req.jsdataset.item     = item    ;
+					btn_req.onclick = function() { ui.show_message(slot + "/" + name + "'s requirements", JSON.stringify(database.equipment[this.jsdataset.slot][this.jsdataset.category][this.jsdataset.item].requirements, null, "\t")); };
 					}
 				}
 			}
 		
-		for(const name of character.character_data.equipment[slot])
+		for(const item_arr of character.character_data.equipment[slot])
 			{
-			add_element(container, name, "equipped");
-			if(slot === "weapons") { add_element(container_attacks, name, "none"); }
+			add_element(container, item_arr, "equipped");
+			if(slot === "weapons") { add_element(container_attacks, item_arr, "none"); }
 			}
-		for(const name of character.character_data.inventory.equipment[slot])
+		for(const item_arr of character.character_data.inventory.equipment[slot])
 			{
-			add_element(container, name, "inventory");
+			add_element(container, item_arr, "inventory");
 			}
 		}
 		
@@ -427,7 +437,7 @@ export class ui
 		
 		for(const [key, value] of Object.entries(character.defenses))
 			{
-			if (key == "jewelry") { continue; }
+			if (key == "accessories") { continue; }
 			inner_update(document.getElementById("defense_" + key + "_reductions_cut"      ), character.defenses[key].reductions.cut      , 0, 100);
 			inner_update(document.getElementById("defense_" + key + "_reductions_pierce"   ), character.defenses[key].reductions.pierce   , 0, 100);
 			inner_update(document.getElementById("defense_" + key + "_reductions_crush"    ), character.defenses[key].reductions.crush    , 0, 100);
@@ -698,7 +708,7 @@ export function setup()
 		
 	//////////////////// Inventory
 		{
-		const containers_ids = ["container_head", "container_body", "container_jewelry"];
+		const containers_ids = ["container_head", "container_body", "container_accessories"];
 		for(let container_id of containers_ids)
 			{
 			let container = document.getElementById(container_id);
@@ -825,28 +835,95 @@ export function setup()
 		{
 		// Base selectors
 		const selector_add = document.getElementById("selector_add_" + slot);
-		selector_add.dataset.slot = slot;
+		selector_add.jsdataset = {};
+		selector_add.jsdataset.slot = slot;
 		
-		if(slot == "experiences")
+		selector_add.onclick = function() 
 			{
-			selector_add.onclick = function()
-				{
-				const object_id = document.getElementById("selector_" + slot).value;
-				window.character.add_experience(object_id);
-				};
-			}
-		else
-			{
-			selector_add.onclick = function() 
-				{
-				const object_id = document.getElementById("selector_" + slot).value;
-				window.character.add_equipment(object_id, slot);
-				}
+			const category = document.getElementById("selector_category_" + this.jsdataset.slot).value;
+			const item     = document.getElementById("selector_" + this.jsdataset.slot).value;
+			window.character.add_equipment(this.jsdataset.slot, category, item);
 			}
 			
+		let selector_choices_category = document.getElementById("selector_choices_category_" + slot);
+		selector_choices_category.jsdataset = {};
+		selector_choices_category.jsdataset.slot = slot;
 		const selector_choices = document.getElementById("selector_choices_" + slot);
 		
-		const entries = Object.entries((slot == "experiences") ? database.experiences : database.equipment[slot]);
+		var full_table = document.getElementById("full_container_" + slot);
+		for(const [category, category_data] of Object.entries(database.equipment[slot]))
+			{
+			// HTML Selector
+			let category_element = document.createElement("option");
+			category_element.innerHTML = category;
+			selector_choices_category.appendChild(category_element);
+			
+			let selector_category = document.getElementById("selector_category_" + slot);
+			selector_category.jsdataset = {};
+			selector_category.jsdataset.slot     = slot;
+			selector_category.onchange = function()
+				{
+				document.getElementById("selector_" + this.jsdataset.slot).value = "";
+				
+				const selector_choices = document.getElementById("selector_choices_" + this.jsdataset.slot);
+				selector_choices.replaceChildren();
+				
+				for(const [item, item_data] of Object.entries(database.equipment[this.jsdataset.slot][this.value]))
+					{
+					let element = document.createElement("option");
+					element.innerHTML = item;
+					selector_choices.appendChild(element);
+					}
+				};
+				
+				
+			let row       = utils.html.emplace_child(full_table, "tr");
+			let col_title = utils.html.emplace_child(row, "th"); 
+			col_title.colSpan = 2;
+			col_title.innerHTML = category;
+			
+			for(const [item, item_data] of Object.entries(category_data))
+				{
+				// Advanced selectors
+				let row      = utils.html.emplace_child(full_table, "tr");
+				let col_name = utils.html.emplace_child(row, "td");
+				
+				col_name.innerHTML = item;
+				
+				let col_btn  = utils.html.emplace_child(row, "td");
+				let btn      = utils.html.emplace_child(col_btn, "button");
+				
+				btn.innerHTML = "➕&#xFE0E;";
+				
+				btn.jsdataset = {};
+				btn.jsdataset.slot     = slot;
+				btn.jsdataset.category = category;
+				btn.jsdataset.item     = item;
+				
+				btn.onclick = function() { window.character.add_equipment(this.jsdataset.slot, this.jsdataset.category, this.jsdataset.item); }
+				}
+			}
+		}
+	setup_selectors("weapons");
+	setup_selectors("head");
+	setup_selectors("body");
+	setup_selectors("accessories");
+	function setup_selectors_exp()
+		{
+		const slot = "experiences";
+		// Base selectors
+		const selector_add = document.getElementById("selector_add_" + slot);
+		selector_add.dataset.slot = slot;
+		
+		selector_add.onclick = function()
+			{
+			const object_id = document.getElementById("selector_" + slot).value;
+			window.character.add_experience(object_id);
+			};
+			
+		const selector_choices          = document.getElementById("selector_choices_" + slot);
+		
+		const entries = Object.entries(database.experiences);
 		
 		var full_table = document.getElementById("full_container_" + slot);
 		for(const [key, value] of entries)
@@ -866,19 +943,12 @@ export function setup()
 			let btn      = utils.html.emplace_child(col_btn, "button");
 			
 			btn.innerHTML = "➕&#xFE0E;";
-			
-			if(slot != "experiences") { btn.dataset.slot = slot; }
 			btn.dataset.name = key;
 			
-			if(slot == "experiences") { btn.onclick = function() { window.character.add_experience(this.dataset.name); } }
-			else                      { btn.onclick = function() { window.character.add_equipment (this.dataset.name, this.dataset.slot); } }
+			btn.onclick = function() { window.character.add_experience(this.dataset.name); }
 			}
 		}
-	setup_selectors("weapons");
-	setup_selectors("head");
-	setup_selectors("body");
-	setup_selectors("jewelry");
-	setup_selectors("experiences");
+	setup_selectors_exp();
 	
 	//////////////////// Message
 	const message_close_btn = document.getElementById("message_close_btn");
@@ -981,6 +1051,6 @@ export function init()
 	ui.update_equipment(window.character, "weapons");
 	ui.update_equipment(window.character, "head");
 	ui.update_equipment(window.character, "body");
-	ui.update_equipment(window.character, "jewelry");
+	ui.update_equipment(window.character, "accessories");
 	}
 	

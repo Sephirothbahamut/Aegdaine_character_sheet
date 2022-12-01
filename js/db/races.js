@@ -308,7 +308,7 @@ export const races =
 	}
 
 
-/*export const races =*/ let a = {
+let old = {
 "Astral Dragon":
 	{
 	"attributes":
@@ -699,5 +699,6 @@ export const races =
 		"hiddenness"   : 30
 		},
 	"step"             : 2
-	}
+	},
+"Wolf": { /*TODO*/ }
 }

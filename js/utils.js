@@ -1,5 +1,19 @@
 export class utils
 	{
+	static traverse_object_arr(root, arr) 
+		{
+		let remaining = arr.slice();
+		let obj = root;
+		
+		while(true)
+			{
+			obj = obj[remaining[0]];
+			if(obj === null || obj === undefined || remaining.length <= 1) { return obj; }
+			remaining = remaining.slice(1);
+			};
+		}
+		
+	
 	static worsen_value(value, flat_decrease) { return (value > 0 ? value / 2 : value) - flat_decrease; }
 	
 	static clamp(num, min, max) { return Math.min(Math.max(num, min), max); }

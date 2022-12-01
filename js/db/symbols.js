@@ -13,5 +13,6 @@ export const symbols = {
 "Shield"       : "🛡",
 "Short Weapon" : "🗡",
 "Sword"        : "⚔",
-"Throwable"    : "🪨"
+"Ranged"       : "🪨",
+"Natural"      : "🐺"
 };

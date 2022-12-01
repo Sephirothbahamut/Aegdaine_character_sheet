@@ -66,14 +66,15 @@ export const skills = {
 		},
 	"effect": function(character)
 		{
-		for(const [key, value] of Object.entries(character.weapons)) 
+		for(const [category, category_list] of Object.entries(character.weapons)) 
 			{
-			const equipment_data = database.equipment.weapons[key];
-			
-			if(character.weapons_experience[equipment_data.type] > 5)
+			for(const [element, element_data] of Object.entries(category_list)) 
 				{
-				const exp_above_5 = character.weapons_experience[equipment_data.type] - 5;
-				value.stamina_per_Attack *= Math.pow(.9, exp_above_5);
+				if(character.weapons_experience[category] > 5)
+					{
+					const exp_above_5 = character.weapons_experience[category] - 5;
+					element_data.stamina_per_Attack *= Math.pow(.9, exp_above_5);
+					}
 				}
 			}
 		ui.update_equipment(character, "weapons");
