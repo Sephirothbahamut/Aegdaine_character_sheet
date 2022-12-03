@@ -58,21 +58,55 @@ export const polearms = {
 "Poleaxe": 
 	{
 	"type": "Polearm",
+	"requirements":	{ "attributes": { "strength": { "value": 20 } }, "weapons_experience": { "Axe": 1, "Polearm": 2 } },
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 7,
 	"attacks":
 		{
+		"Swing":
+			{
+			"bonus": { "strength": 8 },
+			"damage":
+				{
+				"cut":   { "base": 14, "strength": .2, "precision": .2 },
+				"crush": { "base": 15, "strength": .1 }
+				}
+			},
+		"Thrust":
+			{
+			"damage":
+				{
+				"pierce":{ "base": 10, "strength": .1, "precision": 0.4 }
+				}
+			}
 		}
 	},
 "Halberd": 
 	{
 	"type": "Polearm",
+	"requirements":	{ "attributes": { "strength": { "value": 30 } }, "weapons_experience": { "Axe": 1, "Polearm": 2 } },
 	"hands": 2,
-	"stamina_per_attack": 3,
-	"experience_per_attack": 8,
+	"stamina_per_attack": 4,
+	"experience_per_attack": 7,
 	"attacks":
 		{
+		"Swing":
+			{
+			"bonus": { "strength": 8 },
+			"damage":
+				{
+				"cut":   { "base": 14, "strength": .2, "precision": .2 },
+				"crush": { "base": 15, "strength": .1 }
+				}
+			},
+		"Thrust":
+			{
+			"damage":
+				{
+				"pierce":{ "base": 10, "strength": .1, "precision": 0.4 }
+				}
+			}
 		}
 	},
 "Pike": 
