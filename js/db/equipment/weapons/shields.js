@@ -6,6 +6,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 7,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -41,6 +42,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 8,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -75,6 +77,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 8,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -109,6 +112,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 5,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -144,6 +148,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 8,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -178,6 +183,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 8,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":
@@ -213,6 +219,7 @@ export const shields = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 5,
+	"range": 0.5,
 	"attacks":
 		{
 		"Push":

@@ -556,6 +556,7 @@ export class Character
 		group_root[equipment[1]] = {
 			"attacks_count": 1,
 			"stamina_per_attack": equipment_data.stamina_per_attack,
+			"range": equipment_data.range,
 			"attacks": {}
 			};
 			

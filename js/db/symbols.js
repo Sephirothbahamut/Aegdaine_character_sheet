@@ -7,12 +7,11 @@ export const symbols = {
 
 // Weapon types
 "Axe"          : "🪓",
-"Bow"          : "🏹",
 "Mace"         : "🔨",
 "Polearm"      : "↘", //"𐃆",
 "Shield"       : "🛡",
 "Short Weapon" : "🗡",
 "Sword"        : "⚔",
-"Ranged"       : "🪨",
+"Ranged"       : "🏹",
 "Natural"      : "🐺"
 };

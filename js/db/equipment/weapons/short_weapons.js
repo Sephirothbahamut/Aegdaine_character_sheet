@@ -7,6 +7,7 @@ export const short_weapons = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 2,
+	"range": 0.5,
 	"attacks":
 		{
 		"Swing":
@@ -42,6 +43,7 @@ export const short_weapons = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 2,
+	"range": 0.5,
 	"attacks":
 		{
 		"Swing":
@@ -77,6 +79,7 @@ export const short_weapons = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 5,
+	"range": 0.8,
 	"attacks":
 		{
 		"Swing":

@@ -6,6 +6,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -50,6 +51,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 0.5,
 	"attacks":
 		{
 		"Thrust":
@@ -86,6 +88,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -123,6 +126,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -168,6 +172,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -213,6 +218,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 5,
+	"range": 0.5,
 	"attacks":
 		{
 		"Thrust":
@@ -249,6 +255,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 4,
+	"range": 1.6,
 	"attacks":
 		{
 		"Swing":
@@ -294,6 +301,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 4,
+	"range": 1.6,
 	"attacks":
 		{
 		"Swing":
@@ -338,6 +346,7 @@ export const swords = {
 	"hands": 1,
 	"stamina_per_attack": 4,
 	"experience_per_attack": 6,
+	"range": 1.2,
 	"attacks":
 		{
 		"Swing":
@@ -384,6 +393,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -428,6 +438,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
+	"range": 0.6,
 	"attacks":
 		{
 		"Thrust":
@@ -464,6 +475,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1,
 	"attacks":
 		{
 		"Swing":
@@ -501,6 +513,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1.5,
 	"attacks":
 		{
 		"Swing":
@@ -546,6 +559,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
+	"range": 0.75,
 	"attacks":
 		{
 		"Thrust":
@@ -582,6 +596,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1.5,
 	"attacks":
 		{
 		"Swing":
@@ -619,6 +634,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1.5,
 	"attacks":
 		{
 		"Swing":
@@ -664,6 +680,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 6,
+	"range": 0.75,
 	"attacks":
 		{
 		"Thrust":
@@ -700,6 +717,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 6,
+	"range": 1.5,
 	"attacks":
 		{
 		"Swing":
@@ -737,6 +755,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 4,
 	"experience_per_attack": 7,
+	"range": 1.8,
 	"attacks":
 		{
 		"Swing":
@@ -776,6 +795,7 @@ export const swords = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 7,
+	"range": 0.9,
 	"attacks":
 		{
 		"Thrust":

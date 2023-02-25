@@ -97,7 +97,7 @@ export const skills = {
 	"text": "If you successfully Parry an enemy Attack with a weapon (or shield), you can Counter-Attack with the same weapon (or shield). \
 			\nThe enemy can defend from a Counter-Attack, but cannot Counter-Attack in response. Counter-Attacking still applies the Attacking stamina cost to your character."
 	},
-"block Counter": 
+"Block counter": 
 	{
 	"categories": ["combat"],
 	"auto_assign": true,
@@ -155,6 +155,13 @@ export const skills = {
 	"auto_assign": true,
 	"requirements": { "attributes": { "agility": { "value": 50 } } },
 	"text": "Add your Step's length to the range of one Attack of your Attack Chain. If the chosen attack is not the first one, that Attack will conclude the Chain."
+	},
+"Snipe":
+	{
+	"categories": ["combat"],
+	"auto_assign": true,
+	"requirements": { "weapons_experience": { "Ranged": 2 } },
+	"text": "If you can perform 2 or more attacks with a ranged weapon, you may chose to attack only once in this turn. If you do, add your experience with ranged weapons to your precision roll for that attack."
 	},
 
 "Blacksmith's Keen Eye":

@@ -333,6 +333,10 @@ export class ui
 				col_count.classList.add("numeric");
 				col_count.innerHTML = Math.round(weapon_stats.attacks_count);
 				
+				let col_range = utils.html.emplace_child(first_row, "td"); col_range.rowSpan = col_name.rowSpan;
+				col_range.classList.add("numeric");
+				col_range.innerHTML = weapon_stats.range;
+				
 				
 				let col_def_constitution = utils.html.emplace_child(first_row, "td"); 
 				let col_def_agility      = utils.html.emplace_child(first_row, "td"); 
@@ -740,7 +744,7 @@ export function setup()
 				{
 				let col_0 = utils.html.emplace_child(headers_row, "th");
 				let col_1 = utils.html.emplace_child(headers_row, "th"); col_1.innerHTML = "Attacks"; col_1.colSpan = 6;
-				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Actions"; col_2.colSpan = 2;
+				let col_2 = utils.html.emplace_child(headers_row, "th"); col_2.innerHTML = "Actions"; col_2.colSpan = 3;
 				let col_3 = utils.html.emplace_child(headers_row, "th"); col_3.innerHTML = "Defense"; col_3.colSpan = 2;
 				}
 			let headers_2_row = utils.html.emplace_child(container, "tr");
@@ -750,7 +754,8 @@ export function setup()
 				let col_2 = utils.html.emplace_child(headers_2_row, "th"); col_2.innerHTML = "Damage"; col_2.colSpan = 3;
 				let col_3 = utils.html.emplace_child(headers_2_row, "th"); col_3.innerHTML = "Cost";
 				let col_4 = utils.html.emplace_child(headers_2_row, "th"); col_4.innerHTML = "Max";
-				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = "Bonus";  col_5.colSpan = 2;
+				let col_5 = utils.html.emplace_child(headers_2_row, "th"); col_5.innerHTML = "Range";
+				let col_6 = utils.html.emplace_child(headers_2_row, "th"); col_6.innerHTML = "Bonus";  col_6.colSpan = 2;
 				}
 			let headers_3_row = utils.html.emplace_child(container, "tr");
 				{
@@ -760,7 +765,7 @@ export function setup()
 				let col_3 = utils.html.emplace_child(headers_3_row, "th"); col_3.innerHTML = database.symbols["cut"];
 				let col_4 = utils.html.emplace_child(headers_3_row, "th"); col_4.innerHTML = database.symbols["pierce"];
 				let col_5 = utils.html.emplace_child(headers_3_row, "th"); col_5.innerHTML = database.symbols["crush"];
-				let col_6 = utils.html.emplace_child(headers_3_row, "th"); col_6.colSpan = 2;
+				let col_6 = utils.html.emplace_child(headers_3_row, "th"); col_6.colSpan = 3;
 				let col_7 = utils.html.emplace_child(headers_3_row, "th"); col_7.innerHTML = database.symbols["constitution"];
 				let col_8 = utils.html.emplace_child(headers_3_row, "th"); col_8.innerHTML = database.symbols["agility"];
 				}

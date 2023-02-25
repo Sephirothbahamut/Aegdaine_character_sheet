@@ -6,6 +6,7 @@ export const polearms = {
 	"hands": 2,
 	"stamina_per_attack": 2,
 	"experience_per_attack": 1,
+	"range": 2,
 	"attacks":
 		{
 		"Thrust":
@@ -25,6 +26,7 @@ export const polearms = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 1,
+	"range": 1.5,
 	"attacks":
 		{
 		"Thrust":
@@ -71,8 +73,27 @@ export const polearms = {
 	"hands": 2,
 	"stamina_per_attack": 3,
 	"experience_per_attack": 8,
+	"range": 2,
 	"attacks":
 		{
+		"Swing":
+			{
+			"bonus": { "strength": 6, "precision": 4},
+			"damage":
+				{
+				"cut":   { "base": 16, "precision": .5 },
+				"crush": { "base": 8, "strength": .1 }
+				}
+			},
+		"Thrust":
+			{
+			"bonus": { "precision": -5},
+			"damage":
+				{
+				"pierce":{ "base": 3,  },
+				"crush": { "base": 5, "strength": 0.30, "precision": 0.10 }
+				}
+			}
 		}
 	},
 "Pike": 

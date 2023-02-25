@@ -5,6 +5,7 @@ export const natural = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 1,
+	"range": 0.5,
 	"attacks":
 		{
 		"Punch":
@@ -23,6 +24,7 @@ export const natural = {
 	"hands": 1,
 	"stamina_per_attack": 5,
 	"experience_per_attack": 8,
+	"range": 0.5,
 	"attacks":
 		{
 		"Kick":
@@ -42,6 +44,7 @@ export const natural = {
 	"hands": 1,
 	"stamina_per_attack": 1,
 	"experience_per_attack": 1,
+	"range": 0.5,
 	"attacks":
 		{
 		"Scratch":
@@ -61,6 +64,7 @@ export const natural = {
 	"hands": 1,
 	"stamina_per_attack": 5,
 	"experience_per_attack": 10,
+	"range": 1,
 	"attacks":
 		{
 		"Sweep":
